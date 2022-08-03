@@ -248,6 +248,13 @@
   </url>
   
   <url>
+    <loc>https://vsouild.github.io/tags/mysql/</loc>
+    <lastmod>2022-08-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://vsouild.github.io/tags/jwt/</loc>
     <lastmod>2022-08-03</lastmod>
     <changefreq>weekly</changefreq>
@@ -269,7 +276,7 @@
   </url>
   
   <url>
-    <loc>https://vsouild.github.io/tags/mysql/</loc>
+    <loc>https://vsouild.github.io/tags/vim/</loc>
     <lastmod>2022-08-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -290,7 +297,7 @@
   </url>
   
   <url>
-    <loc>https://vsouild.github.io/tags/vim/</loc>
+    <loc>https://vsouild.github.io/tags/java/</loc>
     <lastmod>2022-08-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -311,7 +318,14 @@
   </url>
   
   <url>
-    <loc>https://vsouild.github.io/tags/java/</loc>
+    <loc>https://vsouild.github.io/tags/jedis/</loc>
+    <lastmod>2022-08-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://vsouild.github.io/tags/lettuce/</loc>
     <lastmod>2022-08-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -333,20 +347,6 @@
   
   <url>
     <loc>https://vsouild.github.io/tags/aop/</loc>
-    <lastmod>2022-08-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://vsouild.github.io/tags/jedis/</loc>
-    <lastmod>2022-08-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://vsouild.github.io/tags/lettuce/</loc>
     <lastmod>2022-08-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -432,13 +432,6 @@
   </url>
   
   <url>
-    <loc>https://vsouild.github.io/categories/software/</loc>
-    <lastmod>2022-08-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://vsouild.github.io/categories/mysql/</loc>
     <lastmod>2022-08-03</lastmod>
     <changefreq>weekly</changefreq>
@@ -446,7 +439,7 @@
   </url>
   
   <url>
-    <loc>https://vsouild.github.io/categories/spring/</loc>
+    <loc>https://vsouild.github.io/categories/software/</loc>
     <lastmod>2022-08-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -454,6 +447,13 @@
   
   <url>
     <loc>https://vsouild.github.io/categories/nosql/</loc>
+    <lastmod>2022-08-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://vsouild.github.io/categories/spring/</loc>
     <lastmod>2022-08-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
