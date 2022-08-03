@@ -276,20 +276,6 @@
   </url>
   
   <url>
-    <loc>https://vsouild.github.io/tags/java/</loc>
-    <lastmod>2022-08-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://vsouild.github.io/tags/mybatis/</loc>
-    <lastmod>2022-08-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://vsouild.github.io/tags/rpm/</loc>
     <lastmod>2022-08-03</lastmod>
     <changefreq>weekly</changefreq>
@@ -311,7 +297,21 @@
   </url>
   
   <url>
+    <loc>https://vsouild.github.io/tags/mybatis/</loc>
+    <lastmod>2022-08-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://vsouild.github.io/tags/mybatis-plus/</loc>
+    <lastmod>2022-08-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://vsouild.github.io/tags/java/</loc>
     <lastmod>2022-08-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -339,20 +339,6 @@
   </url>
   
   <url>
-    <loc>https://vsouild.github.io/tags/springboot/</loc>
-    <lastmod>2022-08-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://vsouild.github.io/tags/shiro/</loc>
-    <lastmod>2022-08-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://vsouild.github.io/tags/jedis/</loc>
     <lastmod>2022-08-03</lastmod>
     <changefreq>weekly</changefreq>
@@ -367,21 +353,21 @@
   </url>
   
   <url>
+    <loc>https://vsouild.github.io/tags/springboot/</loc>
+    <lastmod>2022-08-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://vsouild.github.io/tags/shiro/</loc>
+    <lastmod>2022-08-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://vsouild.github.io/tags/springMVC/</loc>
-    <lastmod>2022-08-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://vsouild.github.io/tags/vue/</loc>
-    <lastmod>2022-08-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://vsouild.github.io/tags/vue-cli/</loc>
     <lastmod>2022-08-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -396,6 +382,20 @@
   
   <url>
     <loc>https://vsouild.github.io/tags/springfox/</loc>
+    <lastmod>2022-08-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://vsouild.github.io/tags/vue/</loc>
+    <lastmod>2022-08-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://vsouild.github.io/tags/vue-cli/</loc>
     <lastmod>2022-08-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -418,13 +418,6 @@
   </url>
   
   <url>
-    <loc>https://vsouild.github.io/categories/mybatis/</loc>
-    <lastmod>2022-08-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://vsouild.github.io/categories/linux/</loc>
     <lastmod>2022-08-03</lastmod>
     <changefreq>weekly</changefreq>
@@ -432,7 +425,7 @@
   </url>
   
   <url>
-    <loc>https://vsouild.github.io/categories/mysql/</loc>
+    <loc>https://vsouild.github.io/categories/mybatis/</loc>
     <lastmod>2022-08-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -446,6 +439,13 @@
   </url>
   
   <url>
+    <loc>https://vsouild.github.io/categories/mysql/</loc>
+    <lastmod>2022-08-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://vsouild.github.io/categories/spring/</loc>
     <lastmod>2022-08-03</lastmod>
     <changefreq>weekly</changefreq>
@@ -453,14 +453,14 @@
   </url>
   
   <url>
-    <loc>https://vsouild.github.io/categories/springboot/</loc>
+    <loc>https://vsouild.github.io/categories/nosql/</loc>
     <lastmod>2022-08-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://vsouild.github.io/categories/nosql/</loc>
+    <loc>https://vsouild.github.io/categories/springboot/</loc>
     <lastmod>2022-08-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

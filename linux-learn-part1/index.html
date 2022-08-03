@@ -21,12 +21,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"vsouild.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":220},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="一、简介  Linux，全称GNU&#x2F;Linux，是一套免费使用和自由传播的类UNIX操作系统，其内核由林纳斯·本纳第克特·托瓦兹于1991年第一次释出，它主要受到Minix和Unix思想的启发，是一个基于POSIX和Unix的多用户、多任务、支持多线程和多CPU的操作系统。它能运行主要的Unix工具软件、应用程序和网络协议。它支持32位和64位硬件。Linux继承了Unix以网络为核心的设计思想，">
+    <meta name="description" content="一、简介  Linux，全称GNU&#x2F;Linux，是一套免费使用和自由传播的类UNIX操作系统，其内核由林纳斯·本纳第克特·托瓦兹于1991年第一次释出，它主要受到Minix和Unix思想的启发，是一个基于POSIX和Unix的多用户、多任务、支持多线程和多CPU的操作系统。它能运行主要的Unix工具软件、应用程序和网络协议。它支持32位和64位硬件。Linux继承了Unix以网络为核心的设计思想">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux学习笔记（上）">
 <meta property="og:url" content="https://vsouild.github.io/linux-learn-part1/index.html">
 <meta property="og:site_name" content="Lv.0">
-<meta property="og:description" content="一、简介  Linux，全称GNU&#x2F;Linux，是一套免费使用和自由传播的类UNIX操作系统，其内核由林纳斯·本纳第克特·托瓦兹于1991年第一次释出，它主要受到Minix和Unix思想的启发，是一个基于POSIX和Unix的多用户、多任务、支持多线程和多CPU的操作系统。它能运行主要的Unix工具软件、应用程序和网络协议。它支持32位和64位硬件。Linux继承了Unix以网络为核心的设计思想，">
+<meta property="og:description" content="一、简介  Linux，全称GNU&#x2F;Linux，是一套免费使用和自由传播的类UNIX操作系统，其内核由林纳斯·本纳第克特·托瓦兹于1991年第一次释出，它主要受到Minix和Unix思想的启发，是一个基于POSIX和Unix的多用户、多任务、支持多线程和多CPU的操作系统。它能运行主要的Unix工具软件、应用程序和网络协议。它支持32位和64位硬件。Linux继承了Unix以网络为核心的设计思想">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://vsouild.github.io/linux-learn-part1/1511849829609658.jpg">
 <meta property="og:image" content="https://vsouild.github.io/linux-learn-part1/3197843091.jpg">
@@ -177,7 +177,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E7%AE%80%E4%BB%8B"><span class="nav-text">一、简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81Linux%E5%8F%91%E8%A1%8C%E7%89%88"><span class="nav-text">1、Linux发行版</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81CentOS"><span class="nav-text">2、CentOS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%AE%89%E8%A3%85"><span class="nav-text">二、安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="nav-text">1、虚拟机</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD"><span class="nav-text">下载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%A6%E7%BB%86%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4"><span class="nav-text">详细安装步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%99%BB%E5%BD%95"><span class="nav-text">登录</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-text">2、云服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B4%AD%E4%B9%B0"><span class="nav-text">购买</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E7%BB%84"><span class="nav-text">安全组</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95"><span class="nav-text">3、远程登录</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%9F%BA%E6%9C%AC%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="nav-text">三、基本目录结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E6%96%87%E4%BB%B6%E4%B8%8E%E7%9B%AE%E5%BD%95%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4"><span class="nav-text">四、文件与目录相关命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E6%94%B9%E5%8F%98%EF%BC%88%E5%88%87%E6%8D%A2%EF%BC%89%E7%9B%AE%E5%BD%95"><span class="nav-text">1、改变（切换）目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E5%88%97%E5%87%BA%E7%9B%AE%E5%BD%95%E5%86%85%E5%AE%B9"><span class="nav-text">2、列出目录内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E6%98%BE%E7%A4%BA%E5%BD%93%E5%89%8D%E7%9B%AE%E5%BD%95"><span class="nav-text">3、显示当前目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%E3%80%81%E5%88%9B%E5%BB%BA%E7%9B%AE%E5%BD%95"><span class="nav-text">4、创建目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E3%80%81%E5%88%A0%E9%99%A4%E7%9B%AE%E5%BD%95"><span class="nav-text">5 、删除目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6%E3%80%81%E5%A4%8D%E5%88%B6"><span class="nav-text">6、复制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7%E3%80%81%E5%88%A0%E9%99%A4"><span class="nav-text">7、删除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8%E3%80%81%E7%A7%BB%E5%8A%A8%E5%92%8C%E9%87%8D%E5%91%BD%E5%90%8D"><span class="nav-text">8、移动和重命名</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E6%96%87%E4%BB%B6%E5%B1%9E%E6%80%A7%E4%B8%8E%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86"><span class="nav-text">五、文件属性与权限管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E5%9F%BA%E6%9C%AC%E5%B1%9E%E6%80%A7"><span class="nav-text">1、基本属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E6%96%87%E4%BB%B6%E4%BB%8E%E5%B1%9E"><span class="nav-text">2、文件从属</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-%E6%94%B9%E5%8F%98%E5%B1%9E%E7%BB%84"><span class="nav-text">2.1 改变属组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-%E6%94%B9%E5%8F%98%E5%B1%9E%E4%B8%BB"><span class="nav-text">2.2 改变属主</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E6%9D%83%E9%99%90%E6%9B%B4%E6%94%B9"><span class="nav-text">3、权限更改</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9"><span class="nav-text">六、查看文件内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E6%96%87%E4%BB%B6%E9%93%BE%E6%8E%A5"><span class="nav-text">七、文件链接</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E7%A1%AC%E9%93%BE%E6%8E%A5"><span class="nav-text">1、硬链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E7%AC%A6%E5%8F%B7%E9%93%BE%E6%8E%A5"><span class="nav-text">2、符号链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6%E9%93%BE%E6%8E%A5"><span class="nav-text">3、创建文件链接</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AB%E3%80%81Vim%E7%BC%96%E8%BE%91%E5%99%A8"><span class="nav-text">八、Vim编辑器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E4%BB%8B%E7%BB%8D-2"><span class="nav-text">1、介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E4%BD%BF%E7%94%A8"><span class="nav-text">2、使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F"><span class="nav-text">3、命令模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%E3%80%81%E8%BE%93%E5%85%A5%E6%A8%A1%E5%BC%8F"><span class="nav-text">4、输入模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5%E3%80%81%E5%BA%95%E7%BA%BF%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F"><span class="nav-text">5、底线命令模式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%9D%E3%80%81%E6%89%A9%E5%B1%95%E8%B5%84%E6%96%99"><span class="nav-text">九、扩展资料</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E7%AE%80%E4%BB%8B"><span class="nav-text"> 一、简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-linux%E5%8F%91%E8%A1%8C%E7%89%88"><span class="nav-text"> 1、Linux发行版</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-centos"><span class="nav-text"> 2、CentOS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E5%AE%89%E8%A3%85"><span class="nav-text"> 二、安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="nav-text"> 1、虚拟机</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD"><span class="nav-text"> 下载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%A6%E7%BB%86%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4"><span class="nav-text"> 详细安装步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%99%BB%E5%BD%95"><span class="nav-text"> 登录</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-text"> 2、云服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B4%AD%E4%B9%B0"><span class="nav-text"> 购买</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E7%BB%84"><span class="nav-text"> 安全组</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95"><span class="nav-text"> 3、远程登录</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-%E5%9F%BA%E6%9C%AC%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="nav-text"> 三、基本目录结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B-%E6%96%87%E4%BB%B6%E4%B8%8E%E7%9B%AE%E5%BD%95%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4"><span class="nav-text"> 四、文件与目录相关命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%94%B9%E5%8F%98%E5%88%87%E6%8D%A2%E7%9B%AE%E5%BD%95"><span class="nav-text"> 1、改变（切换）目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%88%97%E5%87%BA%E7%9B%AE%E5%BD%95%E5%86%85%E5%AE%B9"><span class="nav-text"> 2、列出目录内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%98%BE%E7%A4%BA%E5%BD%93%E5%89%8D%E7%9B%AE%E5%BD%95"><span class="nav-text"> 3、显示当前目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%88%9B%E5%BB%BA%E7%9B%AE%E5%BD%95"><span class="nav-text"> 4、创建目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%88%A0%E9%99%A4%E7%9B%AE%E5%BD%95"><span class="nav-text"> 5 、删除目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E5%A4%8D%E5%88%B6"><span class="nav-text"> 6、复制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E5%88%A0%E9%99%A4"><span class="nav-text"> 7、删除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-%E7%A7%BB%E5%8A%A8%E5%92%8C%E9%87%8D%E5%91%BD%E5%90%8D"><span class="nav-text"> 8、移动和重命名</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94-%E6%96%87%E4%BB%B6%E5%B1%9E%E6%80%A7%E4%B8%8E%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86"><span class="nav-text"> 五、文件属性与权限管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%9F%BA%E6%9C%AC%E5%B1%9E%E6%80%A7"><span class="nav-text"> 1、基本属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%96%87%E4%BB%B6%E4%BB%8E%E5%B1%9E"><span class="nav-text"> 2、文件从属</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#21-%E6%94%B9%E5%8F%98%E5%B1%9E%E7%BB%84"><span class="nav-text"> 2.1 改变属组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#22-%E6%94%B9%E5%8F%98%E5%B1%9E%E4%B8%BB"><span class="nav-text"> 2.2 改变属主</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%9D%83%E9%99%90%E6%9B%B4%E6%94%B9"><span class="nav-text"> 3、权限更改</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD-%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9"><span class="nav-text"> 六、查看文件内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83-%E6%96%87%E4%BB%B6%E9%93%BE%E6%8E%A5"><span class="nav-text"> 七、文件链接</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%A1%AC%E9%93%BE%E6%8E%A5"><span class="nav-text"> 1、硬链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%AC%A6%E5%8F%B7%E9%93%BE%E6%8E%A5"><span class="nav-text"> 2、符号链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6%E9%93%BE%E6%8E%A5"><span class="nav-text"> 3、创建文件链接</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AB-vim%E7%BC%96%E8%BE%91%E5%99%A8"><span class="nav-text"> 八、Vim编辑器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%BB%8B%E7%BB%8D"><span class="nav-text"> 1、介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E4%BD%BF%E7%94%A8"><span class="nav-text"> 2、使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F"><span class="nav-text"> 3、命令模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E8%BE%93%E5%85%A5%E6%A8%A1%E5%BC%8F"><span class="nav-text"> 4、输入模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%BA%95%E7%BA%BF%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F"><span class="nav-text"> 5、底线命令模式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%9D-%E6%89%A9%E5%B1%95%E8%B5%84%E6%96%99"><span class="nav-text"> 九、扩展资料</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -314,80 +314,80 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="一、简介">一、简介</h2>
+        <h2 id="一-简介"><a class="markdownIt-Anchor" href="#一-简介"></a> 一、简介</h2>
 <blockquote>
 <p>Linux，全称GNU/Linux，是一套免费使用和自由传播的类UNIX操作系统，其内核由林纳斯·本纳第克特·托瓦兹于1991年第一次释出，它主要受到Minix和Unix思想的启发，是一个基于POSIX和Unix的<strong>多用户</strong>、<strong>多任务</strong>、支持<strong>多线程</strong>和<strong>多CPU</strong>的操作系统。它能运行主要的Unix工具软件、应用程序和网络协议。它支持32位和64位硬件。Linux继承了Unix<strong>以网络为核心</strong>的设计思想，是一个性能稳定的<strong>多用户网络操作系统</strong>。</p>
 </blockquote>
 <span id="more"></span>
 <p>Linux也是<code>Linux is not Unix</code>的递归缩写。</p>
 <p>本文基于Linux的发行版之一：CentOS来介绍，所以先了解下什么是Linux的发行版</p>
-<h3 id="1、Linux发行版">1、Linux发行版</h3>
+<h3 id="1-linux发行版"><a class="markdownIt-Anchor" href="#1-linux发行版"></a> 1、Linux发行版</h3>
 <blockquote>
 <p>Linux 主要作为Linux发行版（distro）的一部分而使用。这些发行版由个人，松散组织的团队，以及商业机构和志愿者组织编写。它们通常包括了其他的系统软件和应用软件，以及一个用来简化系统初始安装的安装工具，和让软件安装升级的集成管理器。大多数系统还包括了像提供GUI界面的XFree86之类的曾经运行于BSD的程序。 一个典型的Linux发行版包括：Linux内核，一些GNU程序库和工具，命令行shell，图形界面的X Window系统和相应的桌面环境，如KDE或GNOME，并包含数千种从办公套件，编译器，文本编辑器到科学工具的应用软件。</p>
 </blockquote>
 <p>简单来说发行版就是把Linux内核与一些应用软件做的一个打包集合</p>
-<p><img src="1511849829609658.jpg" alt=""></p>
+<p><img src="1511849829609658.jpg" alt="" /></p>
 <blockquote>
 <p>Linux有上百种不同的发行版，如基于社区开发的debian、archlinux，和基于商业开发的Red Hat Enterprise Linux、SUSE、oracle linux等。</p>
 </blockquote>
-<p><img src="3197843091.jpg" alt=""></p>
-<h3 id="2、CentOS">2、CentOS</h3>
+<p><img src="3197843091.jpg" alt="" /></p>
+<h3 id="2-centos"><a class="markdownIt-Anchor" href="#2-centos"></a> 2、CentOS</h3>
 <blockquote>
 <p>CentOS（Community Enterprise Operating System，社区企业操作系统）是Linux发行版之一，它是来自于Red Hat Enterprise Linux依照开放源代码规定释出的源代码所编译而成。由于出自同样的源代码，因此有些要求高度稳定性的服务器以CentOS替代商业版的Red Hat Enterprise Linux使用。两者的不同，在于CentOS完全开源。</p>
 </blockquote>
-<h2 id="二、安装">二、安装</h2>
+<h2 id="二-安装"><a class="markdownIt-Anchor" href="#二-安装"></a> 二、安装</h2>
 <p>因为Linux是操作系统，我们很难抛弃个人电脑原来使用的Windows系统而去重装一个不熟悉的Linux系统，而装双系统操作较繁琐，所以可选方案是将Linux装进虚拟机或者是直接购买云服务器（推荐，更接近实际工作场景）</p>
-<h3 id="1、虚拟机">1、虚拟机</h3>
-<h4 id="下载">下载</h4>
+<h3 id="1-虚拟机"><a class="markdownIt-Anchor" href="#1-虚拟机"></a> 1、虚拟机</h3>
+<h4 id="下载"><a class="markdownIt-Anchor" href="#下载"></a> 下载</h4>
 <p>虚拟机：使用的是VMware14Pro，如何下载安装自行了解，这里不另行说明</p>
 <p>CentOS：在<a target="_blank" rel="noopener" href="https://www.centos.org/download/">官网下载</a>或者是使用<a target="_blank" rel="noopener" href="https://developer.aliyun.com/mirror/centos">阿里云的镜像站</a>，这里使用的是版本7，路径在<code>/centos/7.8.2003/isos/x86_64/</code>，各iso文件的区别在<code>0_README.txt</code>文件里有说明，点击<code>CentOS-7-x86_64-DVD-2003.iso</code>下载</p>
-<h4 id="详细安装步骤">详细安装步骤</h4>
-<p><img src="image-20200704175752098.png" alt="image-20200704175752098"></p>
-<p><img src="image-20200704175806688.png" alt="image-20200704175806688"></p>
+<h4 id="详细安装步骤"><a class="markdownIt-Anchor" href="#详细安装步骤"></a> 详细安装步骤</h4>
+<p><img src="image-20200704175752098.png" alt="image-20200704175752098" /></p>
+<p><img src="image-20200704175806688.png" alt="image-20200704175806688" /></p>
 <p>选择下载好的iso文件</p>
-<p><img src="image-20200704175918620.png" alt="image-20200704175918620"></p>
+<p><img src="image-20200704175918620.png" alt="image-20200704175918620" /></p>
 <p>选择安装位置</p>
-<p><img src="image-20200704180039490.png" alt="image-20200704180039490"></p>
+<p><img src="image-20200704180039490.png" alt="image-20200704180039490" /></p>
 <p>1核1G即可</p>
-<p><img src="image-20200704180100845.png" alt="image-20200704180100845"></p>
-<p><img src="image-20200704180121953.png" alt="image-20200704180121953"></p>
+<p><img src="image-20200704180100845.png" alt="image-20200704180100845" /></p>
+<p><img src="image-20200704180121953.png" alt="image-20200704180121953" /></p>
 <p>选择网络类型</p>
-<p><img src="image-20200704180151612.png" alt="image-20200704180151612"></p>
+<p><img src="image-20200704180151612.png" alt="image-20200704180151612" /></p>
 <p>默认推荐的即可</p>
-<p><img src="image-20200704180231145.png" alt="image-20200704180231145"></p>
-<p><img src="image-20200704180241883.png" alt="image-20200704180241883"></p>
-<p><img src="image-20200704180306754.png" alt="image-20200704180306754"></p>
+<p><img src="image-20200704180231145.png" alt="image-20200704180231145" /></p>
+<p><img src="image-20200704180241883.png" alt="image-20200704180241883" /></p>
+<p><img src="image-20200704180306754.png" alt="image-20200704180306754" /></p>
 <p>安装完后实际占用空间大概1.6G，这里决定的是磁盘最大空间。不经常移动虚拟机文件可以选择存储为单个文件</p>
-<p><img src="image-20200704180358585.png" alt="image-20200704180358585"></p>
+<p><img src="image-20200704180358585.png" alt="image-20200704180358585" /></p>
 <p>选择自定义硬件，把CPU虚拟化引擎的第一项打开</p>
-<p><img src="image-20200704180656187.png" alt="image-20200704180656187"></p>
-<p><img src="image-20200704180735179.png" alt="image-20200704180735179"></p>
+<p><img src="image-20200704180656187.png" alt="image-20200704180656187" /></p>
+<p><img src="image-20200704180735179.png" alt="image-20200704180735179" /></p>
 <p>最后点击完成，自动启动虚拟机，使用方向键选择第一项按回车开始安装</p>
-<p><img src="image-20200704180901840.png" alt="image-20200704180901840"></p>
+<p><img src="image-20200704180901840.png" alt="image-20200704180901840" /></p>
 <p>进入初始化界面，鼠标拉到最下方选择中文，点击继续</p>
-<p><img src="image-20200704181229093.png" alt="image-20200704181229093"></p>
+<p><img src="image-20200704181229093.png" alt="image-20200704181229093" /></p>
 <p>点<strong>安装位置</strong>，其它都不用动，默认自动分区即可，左上角点击完成</p>
-<p><img src="image-20200704181426905.png" alt="image-20200704181426905"></p>
+<p><img src="image-20200704181426905.png" alt="image-20200704181426905" /></p>
 <p>然后选择<strong>网络和主机名</strong>，打开网络连接，可以选择设置主机名</p>
-<p><img src="image-20200704181656266.png" alt="image-20200704181656266"></p>
+<p><img src="image-20200704181656266.png" alt="image-20200704181656266" /></p>
 <p>然后开始安装，此时可以设置root账号的密码，如果设置简单的密码需要点两次完成来确认。</p>
 <p>最后点击完成配置，补充配置完成后点击重启，自动重启虚拟机</p>
-<p><img src="image-20200704181928071.png" alt="image-20200704181928071"></p>
-<h4 id="登录">登录</h4>
+<p><img src="image-20200704181928071.png" alt="image-20200704181928071" /></p>
+<h4 id="登录"><a class="markdownIt-Anchor" href="#登录"></a> 登录</h4>
 <p>此时进入命令行操作界面，输入管理员账号<code>root</code>和之前设置的密码来登录。<strong>输入密码时不会显示字符</strong></p>
-<p><img src="image-20200704182950392.png" alt="image-20200704182950392"></p>
-<h3 id="2、云服务器">2、云服务器</h3>
-<h4 id="购买">购买</h4>
+<p><img src="image-20200704182950392.png" alt="image-20200704182950392" /></p>
+<h3 id="2-云服务器"><a class="markdownIt-Anchor" href="#2-云服务器"></a> 2、云服务器</h3>
+<h4 id="购买"><a class="markdownIt-Anchor" href="#购买"></a> 购买</h4>
 <p>国内云服务器大厂：<a target="_blank" rel="noopener" href="https://cloud.tencent.com/">腾讯云</a>和<a target="_blank" rel="noopener" href="https://www.aliyun.com/">阿里云</a>。可以在最新活动里看到比较优惠的套装</p>
 <p>个人使用的，目前比较推荐腾讯云</p>
-<p><img src="image-20200704221034338.png" alt="image-20200704221034338"></p>
+<p><img src="image-20200704221034338.png" alt="image-20200704221034338" /></p>
 <p>购买后会给你注册时的邮箱发送通知邮件，里面有初始密码和ip信息</p>
-<p><img src="image-20200704222000888.png" alt="image-20200704222000888"></p>
+<p><img src="image-20200704222000888.png" alt="image-20200704222000888" /></p>
 <p>可以在腾讯云的控制台→云服务器→实例里修改密码，同时也会发送通知邮件</p>
-<p><img src="image-20200704222255499.png" alt="image-20200704222255499"></p>
-<h4 id="安全组">安全组</h4>
+<p><img src="image-20200704222255499.png" alt="image-20200704222255499" /></p>
+<h4 id="安全组"><a class="markdownIt-Anchor" href="#安全组"></a> 安全组</h4>
 <blockquote>
-<p>安全组是一种虚拟防火墙，具备有状态的数据包过滤功能，用于设置云服务器、负载均衡、云数据库等实例的网络访问控制，控制实例级别的出入流量，是重要的网络安全隔离手段。<br>
+<p>安全组是一种虚拟防火墙，具备有状态的数据包过滤功能，用于设置云服务器、负载均衡、云数据库等实例的网络访问控制，控制实例级别的出入流量，是重要的网络安全隔离手段。<br />
 您可以通过配置安全组规则，允许或禁止安全组内的实例的出流量和入流量。</p>
 </blockquote>
 <p>需要注意的是：默认的安全组</p>
@@ -398,20 +398,20 @@
 <p>同时安全组的优先级是从上到下</p>
 <p><s>不怕被攻击的话默认的安全组设置就行了</s></p>
 <p>具体介绍在<a target="_blank" rel="noopener" href="https://cloud.tencent.com/document/product/213/12446">安全组帮助文档</a>都有说明，不同供应商的设置都是大同小异的</p>
-<h3 id="3、远程登录">3、远程登录</h3>
+<h3 id="3-远程登录"><a class="markdownIt-Anchor" href="#3-远程登录"></a> 3、远程登录</h3>
 <p>本地虚拟机的命令行操作多有不便，而云服务器又不可能去实地操作，所以就需要使用SSH来进行远程登录</p>
 <blockquote>
 <p>SSH 为 Secure Shell 的缩写，由 IETF 的网络小组（Network Working Group）所制定；SSH 为建立在应用层基础上的安全协议。SSH 是较可靠，专为远程登录会话和其他网络服务提供安全性的协议。</p>
 </blockquote>
 <p>在Windows系统上，这里使用的是Xshell。设置好登录之后会话界面如下</p>
-<p><img src="image-20200704231827351.png" alt="image-20200704231827351"></p>
+<p><img src="image-20200704231827351.png" alt="image-20200704231827351" /></p>
 <p>登录后，光标闪烁前默认的字符类似这样<code>[root@VM-0-7-centos ~]#</code></p>
 <p>其中@符号前表示当前登录的用户名，后面表示主机名，空格后面是当前的位置，<code>~</code>表示用户目录，对于root用户来说是<code>/root</code>，相当于Windows系统的<code>C:\Users\Administrator</code>。<code>#</code>是命令提示符，非root用户是<code>$</code></p>
-<h2 id="三、基本目录结构">三、基本目录结构</h2>
+<h2 id="三-基本目录结构"><a class="markdownIt-Anchor" href="#三-基本目录结构"></a> 三、基本目录结构</h2>
 <p>Linux是基于文件的操作系统，万物皆文件（<code>Anything Is File</code>）。它的根目录用<code>/</code>表示，使用<code>ls /</code>命令查看根目录下的文件夹</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@VM-0-7-centos ~]<span class="comment"># ls /</span></span><br><span class="line">bin   data  etc   lib    lost+found  mnt  proc  run   srv  tmp  var</span><br><span class="line">boot  dev   home  lib64  media       opt  root  sbin  sys  usr</span><br></pre></td></tr></table></figure>
 <p>一些主要目录的说明</p>
-<p><img src="u=623782861,4176840120&amp;fm=26&amp;gp=0.jpg" alt="img"></p>
+<p><img src="u=623782861,4176840120&amp;fm=26&amp;gp=0.jpg" alt="img" /></p>
 <p>其它目录：</p>
 <ul>
 <li><strong>/data</strong>：通常用来存放数据</li>
@@ -423,49 +423,49 @@
 <li><strong>/opt</strong>：额外安装软件所存放的目录</li>
 <li><strong>/sys</strong>：sysfs文件系统，可以理解成硬件设备的驱动程序信息</li>
 </ul>
-<h2 id="四、文件与目录相关命令">四、文件与目录相关命令</h2>
-<h3 id="1、改变（切换）目录">1、改变（切换）目录</h3>
+<h2 id="四-文件与目录相关命令"><a class="markdownIt-Anchor" href="#四-文件与目录相关命令"></a> 四、文件与目录相关命令</h2>
+<h3 id="1-改变切换目录"><a class="markdownIt-Anchor" href="#1-改变切换目录"></a> 1、改变（切换）目录</h3>
 <ul>
 <li>
 <p>cd：（Change Directory）目录名可以使用绝对路径（在linux中以<code>/</code>开头）或相对路径，当前目录<code>.</code>上级目录<code>..</code>用户目录<code>~</code></p>
 <blockquote>
-<p>cd    进入用户主目录；<br>
-cd ~  进入用户主目录；<br>
-cd -  返回进入此目录之前所在的目录；<br>
-cd …  返回上级目录（若当前目录为“/“，则执行完后还在“/&quot;）；<br>
-cd …/…  返回上两级目录；<br>
+<p>cd    进入用户主目录；<br />
+cd ~  进入用户主目录；<br />
+cd -  返回进入此目录之前所在的目录；<br />
+cd …  返回上级目录（若当前目录为“/“，则执行完后还在“/&quot;）；<br />
+cd …/…  返回上两级目录；<br />
 cd !$  把上个命令的参数作为cd参数使用。</p>
 </blockquote>
 </li>
 </ul>
-<h3 id="2、列出目录内容">2、列出目录内容</h3>
+<h3 id="2-列出目录内容"><a class="markdownIt-Anchor" href="#2-列出目录内容"></a> 2、列出目录内容</h3>
 <ul>
 <li>
 <p>ls：（list）用来显示目标列表，在Linux中是使用率较高的命令。它的输出信息可以进行彩色加亮显示，以区分不同类型的文件（夹）</p>
 <p>一些选项：</p>
 <blockquote>
-<p>-a：显示所有档案及目录（ls内定将档案名或目录名称为“.”的视为隐藏，不会列出）；<br>
--A：显示除隐藏文件“.”和“…”以外的所有文件列表；<br>
--C：多列显示输出结果。这是默认选项；<br>
--d：仅显示目录名，而不显示目录下的内容列表。显示符号链接文件本身，而不显示其所指向的目录列表；<br>
--k：以KB（千字节）为单位显示文件大小；<br>
--l：以长格式显示目录下的内容列表。（详细信息）<br>
--m：用“,”号区隔每个文件和目录的名称；<br>
--r：以文件名反序排列并输出目录内容列表；<br>
--s：显示文件和目录的大小，以区块为单位；<br>
--t：用文件和目录的更改时间排序；<br>
--L：如果遇到性质为符号链接的文件或目录，直接列出该链接所指向的原始文件或目录；<br>
--R：递归处理，将指定目录下的所有文件及子目录一并处理；<br>
+<p>-a：显示所有档案及目录（ls内定将档案名或目录名称为“.”的视为隐藏，不会列出）；<br />
+-A：显示除隐藏文件“.”和“…”以外的所有文件列表；<br />
+-C：多列显示输出结果。这是默认选项；<br />
+-d：仅显示目录名，而不显示目录下的内容列表。显示符号链接文件本身，而不显示其所指向的目录列表；<br />
+-k：以KB（千字节）为单位显示文件大小；<br />
+-l：以长格式显示目录下的内容列表。（详细信息）<br />
+-m：用“,”号区隔每个文件和目录的名称；<br />
+-r：以文件名反序排列并输出目录内容列表；<br />
+-s：显示文件和目录的大小，以区块为单位；<br />
+-t：用文件和目录的更改时间排序；<br />
+-L：如果遇到性质为符号链接的文件或目录，直接列出该链接所指向的原始文件或目录；<br />
+-R：递归处理，将指定目录下的所有文件及子目录一并处理；<br />
 –full-time：列出完整的日期与时间；</p>
 </blockquote>
 </li>
 </ul>
-<h3 id="3、显示当前目录">3、显示当前目录</h3>
+<h3 id="3-显示当前目录"><a class="markdownIt-Anchor" href="#3-显示当前目录"></a> 3、显示当前目录</h3>
 <ul>
 <li>pwd：（Print working directory）以绝对路径的方式显示用户当前工作目录</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@VM-0-7-centos ~]<span class="comment"># pwd</span></span><br><span class="line">/root</span><br></pre></td></tr></table></figure>
-<h3 id="4、创建目录">4、创建目录</h3>
+<h3 id="4-创建目录"><a class="markdownIt-Anchor" href="#4-创建目录"></a> 4、创建目录</h3>
 <ul>
 <li>
 <p>mkdir：（Make directory）用来创建目录。如果在目录名的前面没有加任何路径名，则在当前目录下创建指定的目录；如果给出了一个已经存在的路径，将会在该目录下创建一个指定的目录。在创建目录时，应保证新建的目录与它所在目录下的文件没有重名。</p>
@@ -474,7 +474,7 @@ cd !$  把上个命令的参数作为cd参数使用。</p>
 </blockquote>
 </li>
 </ul>
-<h3 id="5-、删除目录">5 、删除目录</h3>
+<h3 id="5-删除目录"><a class="markdownIt-Anchor" href="#5-删除目录"></a> 5 、删除目录</h3>
 <ul>
 <li>
 <p>rmdir：（Remove directory）用来删除空目录，可以从一个目录中删除一个或多个空的子目录</p>
@@ -483,7 +483,7 @@ cd !$  把上个命令的参数作为cd参数使用。</p>
 </blockquote>
 </li>
 </ul>
-<h3 id="6、复制">6、复制</h3>
+<h3 id="6-复制"><a class="markdownIt-Anchor" href="#6-复制"></a> 6、复制</h3>
 <ul>
 <li>
 <p>cp：（Copy）用来将一个或多个源文件或者目录复制到指定的目的文件或目录。它可以将单个源文件复制成一个指定文件名的具体的文件或一个已经存在的目录下。cp命令还支持同时复制多个文件，当一次复制多个文件时，目标文件参数必须是一个已经存在的目录，否则将出现错误。</p>
@@ -495,14 +495,14 @@ cd !$  把上个命令的参数作为cd参数使用。</p>
 </blockquote>
 </li>
 </ul>
-<h3 id="7、删除">7、删除</h3>
+<h3 id="7-删除"><a class="markdownIt-Anchor" href="#7-删除"></a> 7、删除</h3>
 <ul>
 <li>
 <p>rm：（Remove）删除一个目录中的一个或多个文件或目录，也可以将某个目录及其下属的所有文件及其子目录均删除掉</p>
 <p>选项：</p>
 <blockquote>
-<p>-f：强制删除文件或目录<br>
--i：删除已有文件或目录之前先询问用户<br>
+<p>-f：强制删除文件或目录<br />
+-i：删除已有文件或目录之前先询问用户<br />
 -r或-R：递归处理，将指定目录下的所有文件与子目录一并处理</p>
 </blockquote>
 </li>
@@ -512,21 +512,21 @@ cd !$  把上个命令的参数作为cd参数使用。</p>
 <p>注意：使用rm命令要格外小心。<strong>因为一旦删除了一个文件，就无法再恢复它</strong>。所以，在删除文件之前，最好再看一下文件的内容，确定是否真要删除。rm命令可以用-i选项，这个选项在使用文件扩展名字符删除多个文件时特别有用。使用这个选项，系统会要求你逐一确定是否要删除。这时，必须输入y并按Enter键，才能删除文件。如果仅按Enter键或其他字符，文件不会被删除。</p>
 </blockquote>
 <p><s><code>rm -rf /*</code>删库跑路</s></p>
-<h3 id="8、移动和重命名">8、移动和重命名</h3>
+<h3 id="8-移动和重命名"><a class="markdownIt-Anchor" href="#8-移动和重命名"></a> 8、移动和重命名</h3>
 <ul>
 <li>
 <p>mv：（Move）用来对文件或目录重新命名，或者将文件从一个目录移到另一个目录中</p>
 <p>选项：</p>
 <blockquote>
-<p>-b：当文件存在时，覆盖前，为其创建一个备份<br>
--f：若目标文件或目录与现有的文件或目录重复，则直接覆盖现有的文件或目录；<br>
--i：交互式操作，覆盖前先行询问用户，如果源文件与目标文件或目标目录中的文件同名，则询问用户是否覆盖目标文件。用户输入”y”，表示将覆盖目标文件；输入”n”，表示取消对源文件的移动。这样可以避免误将文件覆盖。<br>
+<p>-b：当文件存在时，覆盖前，为其创建一个备份<br />
+-f：若目标文件或目录与现有的文件或目录重复，则直接覆盖现有的文件或目录；<br />
+-i：交互式操作，覆盖前先行询问用户，如果源文件与目标文件或目标目录中的文件同名，则询问用户是否覆盖目标文件。用户输入”y”，表示将覆盖目标文件；输入”n”，表示取消对源文件的移动。这样可以避免误将文件覆盖。<br />
 -u：当源文件比目标文件新或者目标文件不存在时，才执行移动操作。</p>
 </blockquote>
 </li>
 </ul>
-<h2 id="五、文件属性与权限管理">五、文件属性与权限管理</h2>
-<h3 id="1、基本属性">1、基本属性</h3>
+<h2 id="五-文件属性与权限管理"><a class="markdownIt-Anchor" href="#五-文件属性与权限管理"></a> 五、文件属性与权限管理</h2>
+<h3 id="1-基本属性"><a class="markdownIt-Anchor" href="#1-基本属性"></a> 1、基本属性</h3>
 <blockquote>
 <p>Linux系统是一种典型的多用户系统，不同的用户处于不同的地位，拥有不同的权限。为了保护系统的安全性，Linux系统对不同的用户访问同一文件（包括目录文件）的权限做了不同的规定。</p>
 </blockquote>
@@ -534,7 +534,7 @@ cd !$  把上个命令的参数作为cd参数使用。</p>
 <p>基本属性、文件硬链接数（包含的文件数量）、从属用户、从属组、文件所占用的空间(以字节为单位)、文件（目录）最近访问（修改）时间、文件名（如果是符号链接，那么会用<code>-&gt;</code>指向实际的文件路径，类似Windows的快捷方式）</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@VM-0-7-centos /]<span class="comment"># ls -l</span></span><br><span class="line">total 72</span><br><span class="line">lrwxrwxrwx.  1 root root     7 Mar  7  2019 bin -&gt; usr/bin</span><br><span class="line">dr-xr-xr-x.  5 root root  4096 Jul  5 01:27 boot</span><br><span class="line">……</span><br></pre></td></tr></table></figure>
 <p>第一列的属性有10个字符长度，分为了4个区域</p>
-<p><img src="363003_1227493859FdXT.png" alt="img"></p>
+<p><img src="363003_1227493859FdXT.png" alt="img" /></p>
 <p>第一个字符有下面几类</p>
 <ul>
 <li>[ <strong>d</strong> ]表示目录</li>
@@ -544,24 +544,24 @@ cd !$  把上个命令的参数作为cd参数使用。</p>
 <li>[ <strong>c</strong> ]表示设备文件里面的串行端口设备，例如键盘、鼠标(一次性读取装置)。</li>
 </ul>
 <p>后面字符以三个为一组，且均为<code>rwx</code>三个参数的组合。[ r ]代表可读(read)、[ w ]代表可写(write)、[ x ]代表可执行(execute)，减号[ - ]表示没有相应权限。 要注意的是，这三个权限的位置不会改变。</p>
-<h3 id="2、文件从属">2、文件从属</h3>
+<h3 id="2-文件从属"><a class="markdownIt-Anchor" href="#2-文件从属"></a> 2、文件从属</h3>
 <blockquote>
-<p>对于文件来说，它都有一个特定的所有者，也就是对该文件具有所有权的用户。<br>
-同时，在Linux系统中，用户是按组分类的，一个用户属于一个或多个组。<br>
-文件所有者以外的用户又可以分为文件所有者的同组用户和其他用户。<br>
-因此，Linux系统按文件所有者(属主)、文件所有者同组用户（属组）和其他用户来规定了不同的文件访问权限。<br>
+<p>对于文件来说，它都有一个特定的所有者，也就是对该文件具有所有权的用户。<br />
+同时，在Linux系统中，用户是按组分类的，一个用户属于一个或多个组。<br />
+文件所有者以外的用户又可以分为文件所有者的同组用户和其他用户。<br />
+因此，Linux系统按文件所有者(属主)、文件所有者同组用户（属组）和其他用户来规定了不同的文件访问权限。<br />
 对于 root 用户来说，一般情况下，文件的权限对其不起作用（最高权限者可以修改权限）。</p>
 </blockquote>
 <p>以下三个命令通用的选项：-R或–recursive：递归处理，将指令目录下的所有文件及子目录一并处理</p>
-<h4 id="2-1-改变属组">2.1 改变属组</h4>
+<h4 id="21-改变属组"><a class="markdownIt-Anchor" href="#21-改变属组"></a> 2.1 改变属组</h4>
 <ul>
 <li>chgrp：（Change group）该命令用来改变指定文件所属的用户组。如果用户不是该文件的文件主或超级用户(root)，则不能改变该文件的组。</li>
 </ul>
-<h4 id="2-2-改变属主">2.2 改变属主</h4>
+<h4 id="22-改变属主"><a class="markdownIt-Anchor" href="#22-改变属主"></a> 2.2 改变属主</h4>
 <ul>
 <li>chown：（Change owner）改变某个文件或目录的所有者和所属的组，只有文件主和超级用户才可以便用该命令。</li>
 </ul>
-<h3 id="3、权限更改">3、权限更改</h3>
+<h3 id="3-权限更改"><a class="markdownIt-Anchor" href="#3-权限更改"></a> 3、权限更改</h3>
 <ul>
 <li>chmod（Change mode）变更文件或目录的权限</li>
 </ul>
@@ -569,14 +569,14 @@ cd !$  把上个命令的参数作为cd参数使用。</p>
 <p>在UNIX系统家族里，文件或目录权限的控制分别以读取、写入、执行3种一般权限来区分，另有3种特殊权限可供运用。用户可以使用chmod指令去变更文件与目录的权限，设置方式采用文字或数字代号皆可。符号连接的权限无法变更，如果用户对符号连接修改权限，其改变会作用在被连接的原始文件。</p>
 </blockquote>
 <p>权限范围的表示法如下：</p>
-<p><code>u</code> User，文件或目录的拥有者；<br>
-<code>g</code> Group，文件或目录的所属群组；<br>
-<code>o</code> Other，除了文件或目录拥有者或所属群组之外，其他用户皆属于这个范围；<br>
-<code>a</code> All，全部的用户，包含拥有者，所属群组以及其他用户；<br>
-<code>r</code> 读取权限，数字代号为“4”;<br>
-<code>w</code> 写入权限，数字代号为“2”；<br>
-<code>x</code> 执行或切换权限，数字代号为“1”；<br>
-<code>-</code> 不具任何权限，数字代号为“0”；<br>
+<p><code>u</code> User，文件或目录的拥有者；<br />
+<code>g</code> Group，文件或目录的所属群组；<br />
+<code>o</code> Other，除了文件或目录拥有者或所属群组之外，其他用户皆属于这个范围；<br />
+<code>a</code> All，全部的用户，包含拥有者，所属群组以及其他用户；<br />
+<code>r</code> 读取权限，数字代号为“4”;<br />
+<code>w</code> 写入权限，数字代号为“2”；<br />
+<code>x</code> 执行或切换权限，数字代号为“1”；<br />
+<code>-</code> 不具任何权限，数字代号为“0”；<br />
 <code>s</code> 特殊功能说明：变更文件或目录的权限。</p>
 <p>常用数字代号表示，每种身份(owner/group/others)各自的三个权限(r/w/x)分数是累加的，例如当权限为： [-rwxrwx—] 时分数则是：</p>
 <ul>
@@ -584,14 +584,14 @@ cd !$  把上个命令的参数作为cd参数使用。</p>
 <li>group = rwx = 4+2+1 = 7</li>
 <li>others= — = 0+0+0 = 0</li>
 </ul>
-<h2 id="六、查看文件内容">六、查看文件内容</h2>
+<h2 id="六-查看文件内容"><a class="markdownIt-Anchor" href="#六-查看文件内容"></a> 六、查看文件内容</h2>
 <ul>
 <li>
 <p>cat：（concatenate）按从上到下的循序显示全部文件内容，本意是连接文件并打印到标准输出设备上</p>
 <p>使用例子：</p>
 <blockquote>
-<p>cat m1 （在屏幕上显示文件ml的内容）<br>
-cat m1 m2 （同时显示文件ml和m2的内容）<br>
+<p>cat m1 （在屏幕上显示文件ml的内容）<br />
+cat m1 m2 （同时显示文件ml和m2的内容）<br />
 cat m1 m2 &gt; file （将文件ml和m2合并后放入文件file中）</p>
 </blockquote>
 </li>
@@ -614,13 +614,13 @@ cat m1 m2 &gt; file （将文件ml和m2合并后放入文件file中）</p>
 <p>tail：和head类似，用于显示文件的尾部内容，默认也是10行</p>
 </li>
 </ul>
-<h2 id="七、文件链接">七、文件链接</h2>
+<h2 id="七-文件链接"><a class="markdownIt-Anchor" href="#七-文件链接"></a> 七、文件链接</h2>
 <p>Linux具有为一个文件起多个名字的功能，称为链接。被链接的文件可以存放在相同的目录下，但是必须有不同的文件名，而不用在硬盘上为同样的数据重复备份。另外，被链接的文件也可以有相同的文件名，但是存放在不同的目录下，这样只要对一个目录下的该文件进行修改，就可以完成对所有目录下同名链接文件的修改。对于某个文件的各链接文件，我们可以给它们指定不同的存取权限，以控制对信息的共享和增强安全性。</p>
 <blockquote>
 <p>Linux 的文件链接分为两种，一种是硬链接（Hard Link），另一种是符号链接（Symbolic Link），也叫软链接</p>
 </blockquote>
-<p><img src="ln.jpg" alt="img"></p>
-<h3 id="1、硬链接">1、硬链接</h3>
+<p><img src="ln.jpg" alt="img" /></p>
+<h3 id="1-硬链接"><a class="markdownIt-Anchor" href="#1-硬链接"></a> 1、硬链接</h3>
 <p>建立硬链接时，在另外的目录或本目录中增加目标文件的一个目录项，这样，一个文件就登记在多个目录中。如上图所示的m2.c文件就在目录mub1和liu中都建立了目录项。</p>
 <p>创建硬链接后，己经存在的文件的I节点号（Inode）会被多个目录文件项使用。一个文件的硬链接数可以在目录的长列表格式的第二列中看到，无额外链接的文件的链接数为l。</p>
 <p>硬链接有如下限制：</p>
@@ -628,7 +628,7 @@ cat m1 m2 &gt; file （将文件ml和m2合并后放入文件file中）</p>
 <li>不能对目录文件做硬链接。</li>
 <li>不能在不同的文件系统之间做硬链接。就是说，链接文件和被链接文件必须位于同一个文件系统中。</li>
 </ul>
-<h3 id="2、符号链接">2、符号链接</h3>
+<h3 id="2-符号链接"><a class="markdownIt-Anchor" href="#2-符号链接"></a> 2、符号链接</h3>
 <p>符号链接也称为软链接，是将一个路径名链接到一个文件。这些文件是一种特别类型的文件。事实上，它只是一个文本文件（如图中的abc文件），其中包含它提供链接的另一个文件的路径名，如图中虚线箭头所示。另一个文件是实际包含所有数据的文件。所有读、写文件内容的命令被用于符号链接时，将沿着链接方向前进来访问实际的文件。</p>
 <blockquote>
 <p>符号链接的机制基本上类似于Windows的快捷方式</p>
@@ -641,14 +641,14 @@ cat m1 m2 &gt; file （将文件ml和m2合并后放入文件file中）</p>
 <li>在目录长列表中，符号链接作为一种特殊的文件类型显示出来，其第一个字母是l。</li>
 <li>符号链接的大小是其链接文件的路径名中的字节数。</li>
 </ul>
-<h3 id="3、创建文件链接">3、创建文件链接</h3>
+<h3 id="3-创建文件链接"><a class="markdownIt-Anchor" href="#3-创建文件链接"></a> 3、创建文件链接</h3>
 <p>使用命令<code>ln</code>（link）创建文件链接，默认的连接类型是硬连接。如果要创建符号连接需要使用<code>-s</code>（soft）选项。</p>
 <p><code>ln</code>命令会增加链接数，<code>rm</code>命令会减少链接数。一个文件除非链接数为0，否则不会从文件系统中被物理地删除。</p>
 <p>用<code>ln -s</code>命令建立符号链接时，源文件最好用绝对路径名。这样可以在任何工作目录下进行符号链接。而当源文件用相对路径时，如果当前的工作路径与要创建的符号链接文件所在路径不同，就不能进行链接。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost home]<span class="comment"># touch f1</span></span><br><span class="line">[root@localhost home]<span class="comment"># ls</span></span><br><span class="line">f1</span><br><span class="line">[root@localhost home]<span class="comment"># ln f1 f2</span></span><br><span class="line">[root@localhost home]<span class="comment"># ls</span></span><br><span class="line">f1  f2</span><br><span class="line">[root@localhost home]<span class="comment"># ln -s f1 f3</span></span><br><span class="line">[root@localhost home]<span class="comment"># ll</span></span><br><span class="line">total 0</span><br><span class="line">-rw-r--r--. 2 root root 0 7月   5 23:37 f1</span><br><span class="line">-rw-r--r--. 2 root root 0 7月   5 23:37 f2</span><br><span class="line">lrwxrwxrwx. 1 root root 2 7月   5 23:38 f3 -&gt; f1</span><br></pre></td></tr></table></figure>
 <p>使用<code>ls -l</code>或<code>ll</code>命令时，可以看到符号链接名后有一个箭头指向源文件或目录</p>
-<h2 id="八、Vim编辑器">八、Vim编辑器</h2>
-<h3 id="1、介绍-2">1、介绍</h3>
+<h2 id="八-vim编辑器"><a class="markdownIt-Anchor" href="#八-vim编辑器"></a> 八、Vim编辑器</h2>
+<h3 id="1-介绍"><a class="markdownIt-Anchor" href="#1-介绍"></a> 1、介绍</h3>
 <p>学Linux就不得不提到vim，而vim又来自于vi</p>
 <blockquote>
 <p>Vi编辑器是所有Unix及Linux系统下标准的编辑器，由美国加州大学伯克利分校的Bill Joy所创立。对Unix及Linux系统的任何版本，vi编辑器是完全相同的。Vi也是Linux中最基本的文本编辑器，学会它后，您将在Linux的世界里畅行无阻。</p>
@@ -667,12 +667,12 @@ cat m1 m2 &gt; file （将文件ml和m2合并后放入文件file中）</p>
 </ul>
 </blockquote>
 <p>类比Windows的话，vi相当于记事本，而vim则相当于notepad++</p>
-<h3 id="2、使用">2、使用</h3>
+<h3 id="2-使用"><a class="markdownIt-Anchor" href="#2-使用"></a> 2、使用</h3>
 <p>输入命令<code>vim 文件名</code>，当文件名存在时打开文件，不存在时则创建并打开，可以使用绝对路径或相对路径表达式</p>
 <p>打开后，便进入了命令模式（一般模式），像下面这样，光标会在第一行，<code>~</code>表示此行没有任何内容（包括换行符），左下角是文件名，此时还不能编辑文件，任何操作都会被视为命令</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">~</span><br><span class="line">~</span><br><span class="line">~</span><br><span class="line"><span class="string">&quot;test.txt&quot;</span> [New File]                                                                  0,0-1         All</span><br></pre></td></tr></table></figure>
 <p>vi/vim的操作中常用的有三种模式，分别是命令模式（Command mode），输入模式（Insert mode）和底线命令模式（Last line mode）。 这三种模式的工作流程如下：</p>
-<p><img src="vim-vi-workmodel.png" alt="img"></p>
+<p><img src="vim-vi-workmodel.png" alt="img" /></p>
 <p>模式切换：</p>
 <ul>
 <li>创建或者打开后便进入了命令模式，按下<code>i</code>、<code>a</code>、<code>o</code>键(大小写均可)进入输入模式，常用<code>i</code></li>
@@ -680,7 +680,7 @@ cat m1 m2 &gt; file （将文件ml和m2合并后放入文件file中）</p>
 <li>命令模式下输入冒号<code>:</code>进入底线命令模式，退格键删除冒号回到命令模式，或者输入命令回车执行</li>
 </ul>
 <p>底线命令模式可以视作对命令模式功能的扩展</p>
-<h3 id="3、命令模式">3、命令模式</h3>
+<h3 id="3-命令模式"><a class="markdownIt-Anchor" href="#3-命令模式"></a> 3、命令模式</h3>
 <p>命令模式下一些常用的操作</p>
 <ul>
 <li>按下<code>h</code>、<code>j</code>、<code>k</code>、<code>l</code>键分别可以使光标向左、下、上、右移动，当然也可以使用方向键，这样的设计意图是为了在编辑文件同时切换位置时，减少手移动的距离，提高操作效率（<s>Windows使用鼠标操作移动距离最大</s>）</li>
@@ -696,11 +696,11 @@ cat m1 m2 &gt; file （将文件ml和m2合并后放入文件file中）</p>
 <li><code>u</code>撤销，<code>ctrl</code>+<code>r</code>重做（分别相当于Windows的ctrl+z和ctrl+y）</li>
 <li><code>ZZ</code>（大写）若文件没有改变，则不储存离开，若文件已经被改变，则储存后离开</li>
 </ul>
-<h3 id="4、输入模式">4、输入模式</h3>
+<h3 id="4-输入模式"><a class="markdownIt-Anchor" href="#4-输入模式"></a> 4、输入模式</h3>
 <p>按下<code>i</code>或<code>insert</code>键进入输入模式后，左下角会有个INSERT字样的提示，说明当前是输入模式</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">~</span><br><span class="line">~</span><br><span class="line">~</span><br><span class="line">-- INSERT --                                                                           0,1           All</span><br></pre></td></tr></table></figure>
 <p>输入模式下可以使用一切常规的操作，键盘上的字符即输入字符，命令即执行命令</p>
-<h3 id="5、底线命令模式">5、底线命令模式</h3>
+<h3 id="5-底线命令模式"><a class="markdownIt-Anchor" href="#5-底线命令模式"></a> 5、底线命令模式</h3>
 <p>底线命令模式可以使用一些额外的命令，比如保存文件、退出vim</p>
 <ul>
 <li><code>:q</code>退出编辑器</li>
@@ -709,7 +709,7 @@ cat m1 m2 &gt; file （将文件ml和m2合并后放入文件file中）</p>
 <li>在上面的命令后加<code>!</code>可以强制执行，特别的是，强制写入与当前用户对文件的权限有关</li>
 <li><code>:set nu</code>在每一行的前面显示该行的行号，<code>:set nonu</code>取消行号显示</li>
 </ul>
-<h2 id="九、扩展资料">九、扩展资料</h2>
+<h2 id="九-扩展资料"><a class="markdownIt-Anchor" href="#九-扩展资料"></a> 九、扩展资料</h2>
 <p><a target="_blank" rel="noopener" href="https://man.linuxde.net/">Linux命令大全</a></p>
 <p>以游戏的方式学习vim：<a target="_blank" rel="noopener" href="http://vim-adventures.com/">vim冒险</a>(英文)</p>
 <p><a target="_blank" rel="noopener" href="https://vimhelp.org/">vim在线帮助文件</a>(英文)</p>
