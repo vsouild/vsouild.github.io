@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="5mokCk2SPXiw6YIG9Mrc-y6E8ZKqdN5kakogn-vGlP0">
+  <meta name="baidu-site-verification" content="code-WNIl6AzuqB">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"vsouild.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":220},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Oracle JDK Windows版的Oracle JDK从11开始有单独的压缩包可以作为便携版使用，但是JDK8仅提供了exe安装包。可以使用以下两种方法之一来制作便携版的JDK8：  安装后保留安装好的文件夹重新打包 从exe安装文件中进行提取">
+<meta property="og:type" content="article">
+<meta property="og:title" content="各种开发软件便携版的获取、制作与配置">
+<meta property="og:url" content="https://vsouild.github.io/portable-software/index.html">
+<meta property="og:site_name" content="Lv.0">
+<meta property="og:description" content="Oracle JDK Windows版的Oracle JDK从11开始有单独的压缩包可以作为便携版使用，但是JDK8仅提供了exe安装包。可以使用以下两种方法之一来制作便携版的JDK8：  安装后保留安装好的文件夹重新打包 从exe安装文件中进行提取">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://vsouild.github.io/portable-software/image-20210221232511793.png">
+<meta property="og:image" content="https://vsouild.github.io/portable-software/image-20210221234656138.png">
+<meta property="og:image" content="https://vsouild.github.io/portable-software/image-20210221235302216.png">
+<meta property="og:image" content="https://vsouild.github.io/portable-software/image-20210222000146760.png">
+<meta property="og:image" content="https://vsouild.github.io/portable-software/image-20210314162820229.png">
+<meta property="og:image" content="https://vsouild.github.io/portable-software/image-20210314164043666.png">
+<meta property="og:image" content="https://vsouild.github.io/portable-software/image-20210314171719460.png">
+<meta property="og:image" content="https://vsouild.github.io/portable-software/image-20210314175450902.png">
+<meta property="og:image" content="https://vsouild.github.io/portable-software/image-20210314184820364.png">
+<meta property="og:image" content="https://vsouild.github.io/portable-software/image-20210314193617632.png">
+<meta property="og:image" content="https://vsouild.github.io/portable-software/image-20210314194009754.png">
+<meta property="article:published_time" content="2021-03-15T10:55:00.000Z">
+<meta property="article:modified_time" content="2021-03-15T10:55:00.000Z">
+<meta property="article:author" content="Vsouild">
+<meta property="article:tag" content="java,spring,springMVC,springboot,mybatis,shiro,linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://vsouild.github.io/portable-software/image-20210221232511793.png">
+
+
+<link rel="canonical" href="https://vsouild.github.io/portable-software/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://vsouild.github.io/portable-software/","path":"portable-software/","title":"各种开发软件便携版的获取、制作与配置"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>各种开发软件便携版的获取、制作与配置 | Lv.0</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Lv.0</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">talk is cheap, show me the code</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Oracle-JDK"><span class="nav-text">Oracle JDK</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VS-code"><span class="nav-text">VS code</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="nav-text">配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git-For-Windows"><span class="nav-text">Git For Windows</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8"><span class="nav-text">如何使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#node-js%E4%B8%8Enpm"><span class="nav-text">node.js与npm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%93%E5%AD%98%E8%B7%AF%E5%BE%84"><span class="nav-text">缓存路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E6%BA%90"><span class="nav-text">下载源</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JetBrains%E5%85%A8%E5%AE%B6%E6%A1%B6"><span class="nav-text">JetBrains全家桶</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE-2"><span class="nav-text">配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Visual-Studio"><span class="nav-text">Visual Studio</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Vsouild"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Vsouild</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="http://wpa.qq.com/msgrd?v=3&uin=360301524&site=qq&menu=yes" title="QQ → http:&#x2F;&#x2F;wpa.qq.com&#x2F;msgrd?v&#x3D;3&amp;uin&#x3D;360301524&amp;site&#x3D;qq&amp;menu&#x3D;yes" rel="noopener" target="_blank"><i class="fab fa-qq fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/vsouild" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;vsouild" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:360301524@qq.com" title="E-Mail → mailto:360301524@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://vsouild.github.io/portable-software/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Vsouild">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lv.0">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="各种开发软件便携版的获取、制作与配置 | Lv.0">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          各种开发软件便携版的获取、制作与配置
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-03-15 18:55:00" itemprop="dateCreated datePublished" datetime="2021-03-15T18:55:00+08:00">2021-03-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/software/" itemprop="url" rel="index"><span itemprop="name">software</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.9k</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="Oracle-JDK">Oracle JDK</h2>
+<p>Windows版的Oracle JDK从11开始有单独的压缩包可以作为便携版使用，但是JDK8仅提供了exe安装包。可以使用以下两种方法之一来制作便携版的JDK8：</p>
+<ul>
+<li>安装后保留安装好的文件夹重新打包</li>
+<li>从exe安装文件中进行提取</li>
+</ul>
+<span id="more"></span>
+<p>下面就第二种方法的制作过程进行介绍</p>
+<p>首先从<a target="_blank" rel="noopener" href="https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html">Oracle官网</a>下载jdk-8u281-windows-x64.exe或者jdk-8u281-windows-i586.exe（需要注册账户），然后将其视为压缩包解压出来</p>
+<p><img src="image-20210221232511793.png" alt="image-20210221232511793"></p>
+<p>在目录<code>\.rsrc\1033</code>下JAVA_CAB9文件夹中的是源码，JAVA_CAB10中的则是JDK（已包含JRE），再次将其视为压缩包进行解压，tools.zip中的文件即为我们所需要的，继续解压</p>
+<p><img src="image-20210221234656138.png" alt="image-20210221234656138"></p>
+<p>把源码包放进来</p>
+<p><img src="image-20210221235302216.png" alt="image-20210221235302216"></p>
+<p>此时还不能直接使用，需要将包中的一些pack文件进行处理转换为jar。在命令行中执行如下命令即可</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> /r %x <span class="keyword">in</span> (*.pack) <span class="keyword">do</span> .\bin\unpack200 -r <span class="string">&quot;%x&quot;</span> <span class="string">&quot;%~dx%~px%~nx.jar&quot;</span></span><br></pre></td></tr></table></figure>
+<p>最后将其放到环境变量中已设置的**%JAVA_HOME%**位置，在命令行中确认一下版本无误后便制作完成了</p>
+<p><img src="image-20210222000146760.png" alt="image-20210222000146760"></p>
+<h2 id="VS-code">VS code</h2>
+<p>微软官方提供了<a target="_blank" rel="noopener" href="https://code.visualstudio.com/#alt-downloads">zip版的下载</a>，选择64位或32位的即可（ARM是提供给ARM内核cpu的）</p>
+<p><img src="image-20210314162820229.png" alt="image-20210314162820229"></p>
+<h3 id="配置">配置</h3>
+<p><a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/editor/portable">便携模式</a>的使用方法：在解压后的与<em>Code.exe</em>同级目录中新建一个data文件夹即可，如下图</p>
+<p><img src="image-20210314164043666.png" alt="image-20210314164043666"></p>
+<p>此后使用时的用户数据与安装的扩展都会放置于其中，还可以在data文件夹里增加一个tmp文件夹作为其临时文件目录<br>
+注意：<strong>此方法不适用于安装版</strong></p>
+<p>附安装版的data存放位置：</p>
+<ul>
+<li>用户数据：<code>%APPDATA%\Code</code>（一般来说%APPDATA%在C:\Users\Administrator\AppData\Roaming）</li>
+<li>扩展：<code>%USERPROFILE%\.vscode\extensions</code>（一般来说%USERPROFILE%在C:\Users\Administrator）</li>
+</ul>
+<h2 id="Git-For-Windows">Git For Windows</h2>
+<p>在<a target="_blank" rel="noopener" href="https://github.com/git-for-windows/git/releases">git官方的github仓库发行页</a>中提供了Portable版的，虽然是exe文件，但仅作为自解压脚本，既可双击运行，也可以直接解压</p>
+<p><img src="image-20210314171719460.png" alt="image-20210314171719460"></p>
+<h3 id="如何使用">如何使用</h3>
+<p>其中的<em>README.portable</em>文件说明了便携版的使用方法：</p>
+<ul>
+<li>双击运行选择解压位置完成后即可使用；如果选择手动解压，则需要运行<em>post-install.bat</em>文件，否则无法正常使用Git</li>
+<li>与安装版的区别：不会向右键菜单中植入<code>Git GUI Here</code>和<code>Git Bash Here</code>，因为这是需要在注册表中添加项的</li>
+<li>要全局使用Git命令，需要在环境变量中配置Git的路径，例如：<br>
+<img src="image-20210314175450902.png" alt="image-20210314175450902"></li>
+</ul>
+<p>配置个人设置和SSH连接与安装版相同，执行相关命令即可</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 个人信息设置</span></span><br><span class="line">git config --global user.name <span class="string">&quot;Your Name&quot;</span></span><br><span class="line">git config --global user.email <span class="string">&quot;youremail@example.com&quot;</span></span><br><span class="line"><span class="comment"># 生成ssh</span></span><br><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;youremail@example.com&quot;</span></span><br><span class="line"><span class="comment"># 测试连接</span></span><br><span class="line">ssh -T git@github.com</span><br><span class="line"><span class="comment"># 设置socks5代理（通过V2ray加速下载时使用）</span></span><br><span class="line">git config --global http.proxy socks5://127.0.0.1:10808</span><br><span class="line">git config --global https.proxy socks5://127.0.0.1:10808</span><br></pre></td></tr></table></figure>
+<h2 id="node-js与npm">node.js与npm</h2>
+<p>直接在<a target="_blank" rel="noopener" href="https://nodejs.org/zh-cn/download/">官网</a>选择32位或者64位的Windows二进制文件下载。将解压后的路径配置到环境变量PATH中即可全局使用node和npm命令</p>
+<h3 id="配置文件">配置文件</h3>
+<p>默认情况下，<a target="_blank" rel="noopener" href="https://docs.npmjs.com/cli/v7/configuring-npm/npmrc">配置文件npmrc</a>有如下4个方式与路径，按从上到下的优先级进行解析：</p>
+<ul>
+<li>每个项目根目录的<code>.npmrc</code></li>
+<li>每个用户的<code>%USERPROFILE%/.npmrc</code></li>
+<li>全局配置文件<code>$PREFIX/etc/npmrc</code>（$PREFIX默认值为node.exe的根目录）</li>
+<li>npm内置配置文件<code>/path/to/npm/npmrc</code></li>
+</ul>
+<p>可以使用<code>npm config list</code>命令查看当前配置或<code>npm config ls -l</code>查看所有可配置内容（包括默认配置）</p>
+<p><img src="image-20210314184820364.png" alt="image-20210314184820364"></p>
+<p>所以按照如上规则，可以在node根目录新建<em>etc</em>文件夹，然后将用户目录的*.npmrc<em>文件移动到此处并重命名为</em>npmrc*</p>
+<h3 id="缓存路径">缓存路径</h3>
+<p>默认设置中缓存路径为<code>cache = &quot;C:\\Users\\Administrator\\AppData\\Roaming\\npm-cache&quot;</code>，可以通过修改配置达到转移缓存目录的目的</p>
+<p>在npmrc文件中新增键值对，如：<code>cache=E:\Environment\node\npm-cache</code><br>
+或执行命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config <span class="built_in">set</span> cache=yourpath</span><br></pre></td></tr></table></figure>
+<h3 id="下载源">下载源</h3>
+<p>默认的下载源为<code>registry = &quot;https://registry.npmjs.org/&quot;</code>，因为是国外地址，所以<code>npm install</code>时会十分缓慢，可以替换为淘宝的镜像地址来加速下载</p>
+<p>同样在npmrc文件中新增键值对：<code>registry=https://registry.npm.taobao.org</code><br>
+或执行命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config <span class="built_in">set</span> registry=https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
+<h2 id="JetBrains全家桶">JetBrains全家桶</h2>
+<p>这里以IntelliJ IDEA为例：下载时选择zip版的</p>
+<p><img src="image-20210314193617632.png" alt="image-20210314193617632"></p>
+<h3 id="配置-2">配置</h3>
+<p>在根目录下的bin文件夹中，以文本方式打开<em>idea.properties</em>文件，如下黑字部分<br>
+将配置、插件、日志、系统数据目录设置到自己想要的位置</p>
+<p><img src="image-20210314194009754.png" alt="image-20210314194009754"></p>
+<h2 id="Visual-Studio">Visual Studio</h2>
+<p>这个有大佬制作了现成的，下载地址：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1sldAQmD">https://pan.baidu.com/s/1sldAQmD</a></p>
+<p>需要注意的是win7以上需要使用win7兼容模式安装</p>
+<p>参考<a target="_blank" rel="noopener" href="http://theoractice.github.io/">制作过程</a>，还是挺复杂的</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Vsouild
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://vsouild.github.io/portable-software/" title="各种开发软件便携版的获取、制作与配置">https://vsouild.github.io/portable-software/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/springboot-swagger/" rel="prev" title="Springboot与Swagger的入门和使用">
+                  <i class="fa fa-chevron-left"></i> Springboot与Swagger的入门和使用
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/java-base/" rel="next" title="Java基础整理与查漏补缺">
+                  Java基础整理与查漏补缺 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user-circle"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vsouild</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">129k</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.0/katex.min.css" integrity="sha256-uik/hNqHWZldXh/0K35nqOSCff9F61/ZOFReqNOBgB0=" crossorigin="anonymous">
+
+
+
+</body>
+</html>

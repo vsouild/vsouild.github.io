@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="5mokCk2SPXiw6YIG9Mrc-y6E8ZKqdN5kakogn-vGlP0">
+  <meta name="baidu-site-verification" content="code-WNIl6AzuqB">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"vsouild.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":220},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="在之前的文章里，介绍了shiro的基础以及如何与springboot中基于web项目的整合，并同时结合了mybatis的使用。 此文将着重讲解其中潜藏问题的处理，以及后续功能的扩展完善。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="springboot整合shiro（续）">
+<meta property="og:url" content="https://vsouild.github.io/springboot-shiro-continue/index.html">
+<meta property="og:site_name" content="Lv.0">
+<meta property="og:description" content="在之前的文章里，介绍了shiro的基础以及如何与springboot中基于web项目的整合，并同时结合了mybatis的使用。 此文将着重讲解其中潜藏问题的处理，以及后续功能的扩展完善。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://vsouild.github.io/springboot-shiro-continue/image-20200829175633678.png">
+<meta property="og:image" content="https://vsouild.github.io/springboot-shiro-continue/image-20200829225526950.png">
+<meta property="og:image" content="https://vsouild.github.io/springboot-shiro-continue/image-20200830004811803.png">
+<meta property="article:published_time" content="2020-08-30T05:41:00.000Z">
+<meta property="article:modified_time" content="2020-08-30T05:41:00.000Z">
+<meta property="article:author" content="Vsouild">
+<meta property="article:tag" content="springboot">
+<meta property="article:tag" content="shiro">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://vsouild.github.io/springboot-shiro-continue/image-20200829175633678.png">
+
+
+<link rel="canonical" href="https://vsouild.github.io/springboot-shiro-continue/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://vsouild.github.io/springboot-shiro-continue/","path":"springboot-shiro-continue/","title":"springboot整合shiro（续）"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>springboot整合shiro（续） | Lv.0</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Lv.0</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">talk is cheap, show me the code</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%B2%A1%E6%9C%89%E8%A2%ABBPP%E5%A4%84%E7%90%86%E7%9A%84Beans"><span class="nav-text">一、没有被BPP处理的Beans</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E9%97%AE%E9%A2%98%E5%A4%8D%E7%8E%B0"><span class="nav-text">1、问题复现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E6%88%90%E5%9B%A0%E7%AE%80%E6%9E%90"><span class="nav-text">2、成因简析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E5%BD%BB%E5%BA%95%E6%B6%88%E9%99%A4%E5%BD%B1%E5%93%8D"><span class="nav-text">3、彻底消除影响</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E4%BD%BF%E7%94%A8%E5%8A%A0%E5%AF%86%E7%9A%84%E5%AF%86%E7%A0%81"><span class="nav-text">二、使用加密的密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E4%BF%9D%E5%AD%98%E4%BC%9A%E8%AF%9D"><span class="nav-text">三、保存会话</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E8%AE%B0%E4%BD%8F%E6%88%91"><span class="nav-text">1、记住我</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-%E5%BC%80%E5%90%AF%E5%8A%9F%E8%83%BD"><span class="nav-text">1.1 开启功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-%E8%AE%BE%E7%BD%AE%E6%97%B6%E6%95%88"><span class="nav-text">1.2 设置时效</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E5%BD%93%E5%89%8D%E4%BC%9A%E8%AF%9D%EF%BC%88session%EF%BC%89"><span class="nav-text">2、当前会话（session）</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Vsouild"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Vsouild</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="http://wpa.qq.com/msgrd?v=3&uin=360301524&site=qq&menu=yes" title="QQ → http:&#x2F;&#x2F;wpa.qq.com&#x2F;msgrd?v&#x3D;3&amp;uin&#x3D;360301524&amp;site&#x3D;qq&amp;menu&#x3D;yes" rel="noopener" target="_blank"><i class="fab fa-qq fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/vsouild" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;vsouild" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:360301524@qq.com" title="E-Mail → mailto:360301524@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://vsouild.github.io/springboot-shiro-continue/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Vsouild">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lv.0">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="springboot整合shiro（续） | Lv.0">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          springboot整合shiro（续）
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-08-30 13:41:00" itemprop="dateCreated datePublished" datetime="2020-08-30T13:41:00+08:00">2020-08-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/springboot/" itemprop="url" rel="index"><span itemprop="name">springboot</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.3k</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>在之前的文章里，介绍了shiro的基础以及如何与springboot中基于web项目的整合，并同时结合了mybatis的使用。</p>
+<p>此文将着重讲解其中潜藏问题的处理，以及后续功能的扩展完善。</p>
+<span id="more"></span>
+<h2 id="一、没有被BPP处理的Beans">一、没有被BPP处理的Beans</h2>
+<p>BPP即<code>BeanPostProcessor</code></p>
+<blockquote>
+<p>BeanPostProcessor是Spring中Bean工厂的钩子（Hook），允许Spring框架在新创建Bean实例时对其进行定制化修改。它本身也是一个Bean，在通常情况下，其实例化顺序要优先于普通的Bean。因为有时BeanPostProcessor也会依赖一些Bean，所以，会存在一些普通Bean的实例化早于BeanPostProcessor的情况，因此就会造成一些问题。</p>
+</blockquote>
+<h3 id="1、问题复现">1、问题复现</h3>
+<p>按照shiro官方的例子<a target="_blank" rel="noopener" href="https://github.com/apache/shiro/tree/master/samples/spring-boot-web">spring-boot-web</a>配置shiro即可复现（以及大多数springboot整合shiro的教程）。启动日志中，会有数个类似如下消息的提示</p>
+<blockquote>
+<p>Bean ‘securityManager’ of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</p>
+</blockquote>
+<p>对于spring来说，这是<code>info</code>级别的日志输出，因为此现象对程序运行不会产生影响，但对于使用功能上来说是会出问题的，例如：事务失效、缓存失效、数据源失效等权限框架涉及的数据处理可能会出问题，所以需要解决。</p>
+<h3 id="2、成因简析">2、成因简析</h3>
+<p>详细的分析可以参考这篇文章：<a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_37962779/article/details/78605478">BeanPostProcessor加载次序及其对Bean造成的影响分析</a></p>
+<p>简单来说大概是因为shiro一系列bean的初始化要早于数据访问层的bean，而又在Realm中注入了DAO等数据访问层的类，导致数据访问层相关的bean被提前初始化，没有被后续的BeanPostProcessor处理。</p>
+<p>这对于shiro来说没什么影响，而对于需要事务、缓存等功能的数据访问层来说就很致命了。目前百度的结果大多数处理方法都无法完全解决问题，比较简单有效的方法是在Realm中注入的DAO加个<code>@Lazy</code>注解将其延后，例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Resource</span></span><br><span class="line"><span class="meta">@Lazy</span></span><br><span class="line"><span class="keyword">private</span> UserDao userDao;</span><br></pre></td></tr></table></figure>
+<p>这样会使shiro的bean等待数据层的bean初始化完成后再执行。如果仅处理数据层的问题，现在已经完成了，再次启动项目，上述info级的日志仅剩下<code>securityManager</code>、<code>realm</code>、<code>shiroConfig</code>（后两个是自己项目中定义的Realm类和shiro配置类）</p>
+<h3 id="3、彻底消除影响">3、彻底消除影响</h3>
+<p>最无奈的莫过于知道问题如何产生的，但不知道如何解决。百度无果后，尝试谷歌，使用关键词<em>shiro BeanPostProcessor</em>搜索终于在stackoverflow上找到了答案。</p>
+<p>其中一篇是<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/15922559/spring-is-ignoring-transactional-annotations-in-apache-shiro-realm-class">Spring is ignoring @Transactional annotations in Apache Shiro Realm class</a>。给出的处理方案是在<code>securityManager</code>中不要setRealm，而是继承<code>ServletContextListener</code>接口，在<code>contextInitialized</code>方法中把<code>Realm</code>设置到<code>securityManager</code>中：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">contextInitialized</span><span class="params">(ServletContextEvent sce)</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">//Initialize realms</span></span><br><span class="line">        <span class="keyword">final</span> <span class="type">MainRealm</span> <span class="variable">mainRealm</span> <span class="operator">=</span> (MainRealm)ctx.getBean(<span class="string">&quot;mainRealm&quot;</span>);</span><br><span class="line">        <span class="keyword">final</span> <span class="type">DefaultWebSecurityManager</span> <span class="variable">sm</span> <span class="operator">=</span> (DefaultWebSecurityManager)ctx.getBean(<span class="string">&quot;securityManager&quot;</span>);</span><br><span class="line">        sm.setRealm(mainRealm);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Error loading: &quot;</span> + e.getMessage());</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&quot;Critical system error&quot;</span>, e);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>实践后发现与使用<code>@Lazy</code>注解的方式相差不大，倒是启动速度好像快了一点点，感觉这种方式比使用<code>@Lazy</code>注解更符合程序逻辑。</p>
+<hr>
+<p>另外一篇是<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/31388445/apache-shiro-jdbcrealm-with-javaconfig-and-spring-boot">Apache Shiro JdbcRealm with JavaConfig and Spring Boot</a>，高赞回答的大佬剖析的更深了：</p>
+<blockquote>
+<p>最简单的解决方案是确保任何与基础设施相关的bean都是用静态方法定义的。这告诉Spring它不需要初始化整个配置类（即WebSecurityConfig）。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> LifecycleBeanPostProcessor <span class="title function_">lifecycleBeanPostProcessor</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">LifecycleBeanPostProcessor</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但这似乎没有完全解决，因为<code>ShiroFilterFactoryBean</code>也实现了<code>BeanPostProcessor</code>，和数据源造成了冲突导致无法初始化。</p>
+<blockquote>
+<p>不幸的是，你不能简单地将ShiroFilterFactoryBean定义为静态的，因为它依赖于其他bean定义。幸运的是，在这个实例中确实不需要BeanPostProcessor。这意味着你可以更改代码以返回factory bean的结果，该bean相当于移除了BeanPostProcessor</p>
+</blockquote>
+<p>示例如下，只是把返回值类型改成了<code>AbstractShiroFilter</code>，它是<code>ShiroFilterFactoryBean</code>的抽象父类，返回值转换类型即可</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="keyword">public</span> AbstractShiroFilter <span class="title function_">shiroFilter</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    <span class="type">ShiroFilterFactoryBean</span> <span class="variable">filter</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ShiroFilterFactoryBean</span>();</span><br><span class="line">    filter.setLoginUrl(<span class="string">&quot;/admin/login&quot;</span>);</span><br><span class="line">    filter.setSecurityManager(securityManager);</span><br><span class="line">    <span class="comment">// 过滤规则，注意顺序</span></span><br><span class="line">    Map&lt;String, String&gt; map = filter.getFilterChainDefinitionMap();</span><br><span class="line">    <span class="comment">// 无需权限：前台、登录页面、静态资源</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">anon</span> <span class="operator">=</span> DefaultFilter.anon.name();</span><br><span class="line">    map.put(<span class="string">&quot;/&quot;</span>, anon);</span><br><span class="line">    map.put(<span class="string">&quot;/admin/login&quot;</span>, anon);</span><br><span class="line">    map.put(<span class="string">&quot;/admin/css/**&quot;</span>, anon);</span><br><span class="line">    map.put(<span class="string">&quot;/admin/js/**&quot;</span>, anon);</span><br><span class="line">    <span class="comment">// 需要验证角色</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">roleAdmin</span> <span class="operator">=</span> String.format(<span class="string">&quot;%s[%s]&quot;</span>, DefaultFilter.roles.name(), ConstVal.USERS_ADMIN);</span><br><span class="line">    map.put(<span class="string">&quot;/admin/**&quot;</span>, roleAdmin);</span><br><span class="line">    <span class="comment">// 退出</span></span><br><span class="line">    map.put(<span class="string">&quot;/admin/logout&quot;</span>, DefaultFilter.logout.name());</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> (AbstractShiroFilter) filter.getObject();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>注意：如果要改为如上处理方式，不能使用shiro-spring-boot-web-starter依赖，而是shiro-spring</strong></p>
+<p>现在启动程序，“not eligible for getting processed by all BeanPostProcessors”相关的提示已经完全消失了。</p>
+<h2 id="二、使用加密的密码">二、使用加密的密码</h2>
+<p>shiro提供了一些简单的基础<a target="_blank" rel="noopener" href="http://shiro.apache.org/cryptography-features.html">加密功能</a>，接口类是<code>CredentialsMatcher</code>，默认使用的实现类是<code>SimpleCredentialsMatcher</code>，即直接明文比对，可以使用的实现类如下：</p>
+<p><img src="image-20200829175633678.png" alt="image-20200829175633678"></p>
+<p>虽然哈希类型的加密算法（也称消息摘要）是不可逆的，也就是无法通过解密来获取原文。但原文和密文有唯一对应关系，比如常用的MD5，<code>123456</code>对应密文为<code>e10adc3949ba59abbe56e057f20f883e</code>。这样的话可以通过类似<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%BD%A9%E8%99%B9%E8%A1%A8">彩虹表</a>的方式破解，密码的安全性就变低了。所以需要使用更安全的算法（例如<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Bcrypt">bcrypt</a>）来代替MD5。</p>
+<hr>
+<p>shiro没有bcrypt算法的实现，需要引入额外的依赖：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>at.favre.lib<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>bcrypt<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.9.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这是一个基于<a target="_blank" rel="noopener" href="https://github.com/djmdjm/jBCrypt">JBcrypt</a>，但是经过了大量的重构、更新和增强的一个<a target="_blank" rel="noopener" href="https://github.com/patrickfav/bcrypt">Bcrypt Java Library and CLI Tool</a>。使用方法很简单，在Realm实例里<code>setCredentialsMatcher</code>使用lamda表达式设置，返回比对结果true or false即可</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="keyword">public</span> UserRealm <span class="title function_">userRealm</span><span class="params">()</span>&#123;</span><br><span class="line">	<span class="type">UserRealm</span> <span class="variable">realm</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">UserRealm</span>();</span><br><span class="line">	realm.setCredentialsMatcher((token, info) -&gt; &#123;</span><br><span class="line">		<span class="type">UsernamePasswordToken</span> <span class="variable">userToken</span> <span class="operator">=</span> (UsernamePasswordToken) token;</span><br><span class="line">		<span class="comment">// 传入的密码明文</span></span><br><span class="line">		<span class="type">char</span>[] plaintext = userToken.getPassword();</span><br><span class="line">		<span class="comment">// 数据库中的密文</span></span><br><span class="line">		<span class="type">String</span> <span class="variable">ciphertext</span> <span class="operator">=</span> info.getCredentials().toString();</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> BCrypt.verifyer().verify(plaintext, ciphertext).verified;</span><br><span class="line">	&#125;);</span><br><span class="line">	<span class="keyword">return</span> realm;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>token</code>是在认证(authentication)期间获得的认证令牌，也就是<code>doGetAuthenticationInfo</code>方法中的参数<code>AuthenticationToken</code>；<code>info</code>即<code>AuthenticationInfo</code>是在认证(authentication)期间的返回值，它是储存于系统（通常是数据库）的认证信息</p>
+<h2 id="三、保存会话">三、保存会话</h2>
+<h3 id="1、记住我">1、记住我</h3>
+<p>大多数网站的登录都会有个“记住我”的功能选项，像下面这样：</p>
+<p><img src="image-20200829225526950.png" alt="image-20200829225526950"></p>
+<h4 id="1-1-开启功能">1.1 开启功能</h4>
+<p>在前端，使用<code>input:checkbox</code>即可，name在后端对应参数接收，value为true即可</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">name</span>=<span class="string">&quot;remember-me&quot;</span> <span class="attr">value</span>=<span class="string">&quot;true&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>七天内免登录<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>因为在未勾选时是不会传值的，所以在controller中需要设置一个非必须的标记（默认为true）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestParam(value = &quot;remember-me&quot;, required = false)</span> Boolean rememberMe</span><br></pre></td></tr></table></figure>
+<p>然后就可以设置了</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Subject</span> <span class="variable">subject</span> <span class="operator">=</span> SecurityUtils.getSubject();</span><br><span class="line"><span class="type">UsernamePasswordToken</span> <span class="variable">token</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">UsernamePasswordToken</span>(username, password);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 是否记住我（必须在subject.login(token)前，否则不会产生cookie）</span></span><br><span class="line"><span class="keyword">if</span> (rememberMe != <span class="literal">null</span>) &#123;</span><br><span class="line">    token.setRememberMe(rememberMe);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="1-2-设置时效">1.2 设置时效</h4>
+<p>默认的“记住我”时效为一年，这是在<code>CookieRememberMeManager</code>中的构造函数设置的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="title function_">CookieRememberMeManager</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">Cookie</span> <span class="variable">cookie</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SimpleCookie</span>(DEFAULT_REMEMBER_ME_COOKIE_NAME);</span><br><span class="line">    cookie.setHttpOnly(<span class="literal">true</span>);</span><br><span class="line">    <span class="comment">//One year should be long enough - most sites won&#x27;t object to requiring a user to log in if they haven&#x27;t visited</span></span><br><span class="line">    <span class="comment">//in a year:</span></span><br><span class="line">    cookie.setMaxAge(Cookie.ONE_YEAR);</span><br><span class="line">    <span class="built_in">this</span>.cookie = cookie;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>shiro在注释中给出了一年时长的理由。如果我们确实有需求改变这个值也可以，在<code>securityManager</code>中即可设置：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Cookie</span> <span class="variable">cookie</span> <span class="operator">=</span> ((CookieRememberMeManager) securityManager.getRememberMeManager()).getCookie();</span><br><span class="line">cookie.setMaxAge(<span class="number">60</span> * <span class="number">60</span> * <span class="number">24</span> * <span class="number">7</span>); <span class="comment">// 记住我七天</span></span><br></pre></td></tr></table></figure>
+<p>这个是shiro实现的Cookie不是servlet的Cookie，但设置方式和后者无异。注意是先将<code>getRememberMeManager</code>获得的对象转换为<code>CookieRememberMeManager</code>，然后再<code>getCookie</code></p>
+<h3 id="2、当前会话（session）">2、当前会话（session）</h3>
+<p>默认情况下，启动应用程序第一次访问时，会在URL后面加冒号跟一个参数<code>JSESSIONID</code>与值，在springboot-web环境下会直接跳转到400错误页，去掉参数后再次访问就正常了，此时<code>JSESSIONID</code>保存在了cookie里</p>
+<p><img src="image-20200830004811803.png" alt="image-20200830004811803"></p>
+<p>要避免这样的情况，依旧是在<code>securityManager</code>设置：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sessionManager.setSessionIdUrlRewritingEnabled(<span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
+<p>要想修改这个cookie的名字也可以：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Cookie</span> <span class="variable">sessionIdCookie</span> <span class="operator">=</span> sessionManager.getSessionIdCookie();</span><br><span class="line">sessionIdCookie.setName(<span class="string">&quot;SESSIONID&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>改值的话会稍微麻烦点，这里使用了lamda表达式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">MemorySessionDAO</span> <span class="variable">sessionDAO</span> <span class="operator">=</span> (MemorySessionDAO) sessionManager.getSessionDAO();</span><br><span class="line">sessionDAO.setSessionIdGenerator(session -&gt; UUID.randomUUID().toString().replaceAll(<span class="string">&quot;-&quot;</span>, <span class="string">&quot;&quot;</span>));</span><br></pre></td></tr></table></figure>
+<p>shiro默认的sessionID生成方法<code>JavaUuidSessionIdGenerator</code>如下，仅仅只是返回了一个随机的UUID</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JavaUuidSessionIdGenerator</span> <span class="keyword">implements</span> <span class="title class_">SessionIdGenerator</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> Serializable <span class="title function_">generateId</span><span class="params">(Session session)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> UUID.randomUUID().toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Vsouild
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://vsouild.github.io/springboot-shiro-continue/" title="springboot整合shiro（续）">https://vsouild.github.io/springboot-shiro-continue/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/springboot/" rel="tag"><i class="fa fa-tag"></i> springboot</a>
+              <a href="/tags/shiro/" rel="tag"><i class="fa fa-tag"></i> shiro</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/mybatisplus-use/" rel="prev" title="MybatisPlus使用笔记">
+                  <i class="fa fa-chevron-left"></i> MybatisPlus使用笔记
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/jwt-java/" rel="next" title="JWT入门以及在java中的使用">
+                  JWT入门以及在java中的使用 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user-circle"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vsouild</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">129k</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.0/katex.min.css" integrity="sha256-uik/hNqHWZldXh/0K35nqOSCff9F61/ZOFReqNOBgB0=" crossorigin="anonymous">
+
+
+
+</body>
+</html>

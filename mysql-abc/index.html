@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="5mokCk2SPXiw6YIG9Mrc-y6E8ZKqdN5kakogn-vGlP0">
+  <meta name="baidu-site-verification" content="code-WNIl6AzuqB">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"vsouild.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":220},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="一、介绍 MySQL是最流行的开源关系数据库管理系统（RDBMS，Relational Database Management System），最初由瑞典的MySQL AB公司开发，后被Sun公司收购，Sun公司又被Oracle公司收购，所以现在MySQL为Oracle旗下的产品，Oracle对其继续开发、发布和提供支持。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL入门">
+<meta property="og:url" content="https://vsouild.github.io/mysql-abc/index.html">
+<meta property="og:site_name" content="Lv.0">
+<meta property="og:description" content="一、介绍 MySQL是最流行的开源关系数据库管理系统（RDBMS，Relational Database Management System），最初由瑞典的MySQL AB公司开发，后被Sun公司收购，Sun公司又被Oracle公司收购，所以现在MySQL为Oracle旗下的产品，Oracle对其继续开发、发布和提供支持。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://vsouild.github.io/mysql-abc/image-20210515165954537.png">
+<meta property="og:image" content="https://vsouild.github.io/mysql-abc/image-20210515170731937.png">
+<meta property="og:image" content="https://vsouild.github.io/mysql-abc/image-20210519023708289.png">
+<meta property="og:image" content="https://vsouild.github.io/mysql-abc/image-20210521171317504.png">
+<meta property="og:image" content="https://vsouild.github.io/mysql-abc/image-20210521184730728.png">
+<meta property="og:image" content="https://vsouild.github.io/mysql-abc/image-20210521233245018.png">
+<meta property="og:image" content="https://vsouild.github.io/mysql-abc/image-20210521235026006.png">
+<meta property="og:image" content="https://vsouild.github.io/mysql-abc/image-20210522175955126.png">
+<meta property="og:image" content="https://vsouild.github.io/mysql-abc/image-20210523012055644.png">
+<meta property="og:image" content="https://vsouild.github.io/mysql-abc/image-20210523015144369.png">
+<meta property="og:image" content="https://vsouild.github.io/mysql-abc/image-20210524022123018.png">
+<meta property="og:image" content="https://vsouild.github.io/mysql-abc/image-20210524022742154.png">
+<meta property="og:image" content="https://vsouild.github.io/mysql-abc/image-20210524011031140.png">
+<meta property="og:image" content="https://vsouild.github.io/mysql-abc/image-20210524161118644.png">
+<meta property="og:image" content="https://vsouild.github.io/mysql-abc/image-20210524165904542.png">
+<meta property="og:image" content="https://vsouild.github.io/mysql-abc/image-20210525015437404.png">
+<meta property="og:image" content="https://vsouild.github.io/mysql-abc/image-20210525015654564.png">
+<meta property="og:image" content="https://vsouild.github.io/mysql-abc/image-20210525033957560.png">
+<meta property="og:image" content="https://vsouild.github.io/mysql-abc/image-20210525210124379.png">
+<meta property="og:image" content="https://vsouild.github.io/mysql-abc/image-20210525210608607.png">
+<meta property="og:image" content="https://vsouild.github.io/mysql-abc/image-20210525212157388.png">
+<meta property="og:image" content="https://vsouild.github.io/mysql-abc/image-20210531000429608.png">
+<meta property="og:image" content="https://vsouild.github.io/mysql-abc/image-20210531235336076.png">
+<meta property="og:image" content="https://vsouild.github.io/mysql-abc/image-20210531181655501.png">
+<meta property="og:image" content="https://vsouild.github.io/mysql-abc/image-20210531232811923.png">
+<meta property="og:image" content="https://vsouild.github.io/mysql-abc/image-20210531234358859.png">
+<meta property="og:image" content="https://vsouild.github.io/mysql-abc/image-20210523155044157.png">
+<meta property="article:published_time" content="2021-06-17T10:46:00.000Z">
+<meta property="article:modified_time" content="2021-06-17T10:46:00.000Z">
+<meta property="article:author" content="Vsouild">
+<meta property="article:tag" content="java,spring,springMVC,springboot,mybatis,shiro,linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://vsouild.github.io/mysql-abc/image-20210515165954537.png">
+
+
+<link rel="canonical" href="https://vsouild.github.io/mysql-abc/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://vsouild.github.io/mysql-abc/","path":"mysql-abc/","title":"MySQL入门"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>MySQL入门 | Lv.0</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Lv.0</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">talk is cheap, show me the code</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E4%BB%8B%E7%BB%8D-2"><span class="nav-text">一、介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%8E%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-text">1、关系型数据库与非关系型数据库</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE"><span class="nav-text">二、安装与配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E4%B8%8B%E8%BD%BD-2"><span class="nav-text">1、下载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E9%85%8D%E7%BD%AE"><span class="nav-text">2、配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-%E5%88%9B%E5%BB%BA%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">2.1 创建配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-%E5%88%9D%E5%A7%8B%E5%8C%96%E6%95%B0%E6%8D%AE%E7%9B%AE%E5%BD%95"><span class="nav-text">2.2 初始化数据目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-%E5%90%AF%E5%8A%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B6%E4%BF%AE%E6%94%B9%E5%AF%86%E7%A0%81"><span class="nav-text">2.3 启动服务器并修改密码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-%E6%B7%BB%E5%8A%A0%E5%88%B0%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89"><span class="nav-text">2.4 添加到环境变量（可选）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-%E9%85%8D%E7%BD%AE%E4%B8%BA%E6%9C%8D%E5%8A%A1%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89"><span class="nav-text">2.5 配置为服务（可选）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-6-%E7%B2%BE%E7%AE%80%E6%96%87%E4%BB%B6%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89"><span class="nav-text">2.6 精简文件（可选）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E8%AF%AD%E5%8F%A5%E7%BB%93%E6%9E%84%E4%B8%8E%E8%AF%AD%E6%B3%95"><span class="nav-text">三、语句结构与语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E5%AD%97%E9%9D%A2%E5%80%BC"><span class="nav-text">1、字面值</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-%E6%95%B0%E5%AD%97"><span class="nav-text">1.1 数字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-text">1.2 字符串</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E6%A0%87%E8%AF%86%E7%AC%A6"><span class="nav-text">2、标识符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E5%85%B3%E9%94%AE%E5%AD%97%E4%B8%8E%E4%BF%9D%E7%95%99%E5%AD%97"><span class="nav-text">3、关键字与保留字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%E3%80%81%E5%8F%98%E9%87%8F"><span class="nav-text">4、变量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-%E7%94%A8%E6%88%B7%E5%8F%98%E9%87%8F"><span class="nav-text">4.1 用户变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-%E7%B3%BB%E7%BB%9F%E5%8F%98%E9%87%8F"><span class="nav-text">4.2 系统变量</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5%E3%80%81%E6%B3%A8%E9%87%8A"><span class="nav-text">5、注释</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-text">四、数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E5%85%B3%E4%BA%8ENULL%E5%80%BC"><span class="nav-text">1、关于NULL值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E6%95%B0%E5%AD%97%E7%B1%BB%E5%9E%8B"><span class="nav-text">2、数字类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4"><span class="nav-text">3、日期和时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%E3%80%81%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-text">4、字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-char%E3%80%81text%E5%92%8Cblob"><span class="nav-text">4.1 char、text和blob</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-%E6%9E%9A%E4%B8%BE"><span class="nav-text">4.2 枚举</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-%E9%9B%86%E5%90%88"><span class="nav-text">4.3 集合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4-JSON"><span class="nav-text">4.4 JSON</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5%E3%80%81%E5%90%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E9%BB%98%E8%AE%A4%E5%80%BC"><span class="nav-text">5、各数据类型的默认值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-text">五、运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E6%AF%94%E8%BE%83%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-text">1、比较运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E9%80%BB%E8%BE%91%E4%B8%8E%E4%BD%8D%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-text">2、逻辑与位运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E7%AE%97%E6%9C%AF%E4%B8%8E%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-text">3、算术与赋值运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%E3%80%81%E5%85%B6%E5%AE%83%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-text">4、其它运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5%E3%80%81%E8%BF%90%E7%AE%97%E7%AC%A6%E4%BC%98%E5%85%88%E7%BA%A7"><span class="nav-text">5、运算符优先级</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%AD%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="nav-text">六、命令行中的操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E6%93%8D%E7%BA%B5%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-text">七、操纵数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E5%88%9B%E5%BB%BA%E4%B8%8E%E4%BD%BF%E7%94%A8%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-text">1、创建与使用数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-text">2、删除数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E4%BF%AE%E6%94%B9%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-text">3、修改数据库</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E6%93%8D%E7%BA%B5%E8%A1%A8"><span class="nav-text">八、操纵表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E5%88%9B%E5%BB%BA%E4%B8%8E%E6%9F%A5%E8%AF%A2%E8%A1%A8"><span class="nav-text">1、创建与查询表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E6%93%8D%E7%BA%B5%E8%A1%A8%E6%95%B0%E6%8D%AE"><span class="nav-text">2、操纵表数据</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE"><span class="nav-text">2.1 插入数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE"><span class="nav-text">2.2 查询数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-%E4%BF%AE%E6%94%B9%E6%95%B0%E6%8D%AE"><span class="nav-text">2.3 修改数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE"><span class="nav-text">2.4 删除数据</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E4%BF%AE%E6%94%B9%E8%A1%A8"><span class="nav-text">3、修改表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-%E9%87%8D%E5%91%BD%E5%90%8D%E8%A1%A8"><span class="nav-text">3.1 重命名表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-%E6%93%8D%E7%BA%B5%E5%88%97"><span class="nav-text">3.2 操纵列</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-1-%E8%BF%BD%E5%8A%A0%E5%88%97"><span class="nav-text">3.2.1 追加列</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-2-%E4%BF%AE%E6%94%B9%E5%88%97"><span class="nav-text">3.2.2 修改列</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-3-%E5%88%A0%E9%99%A4%E5%88%97"><span class="nav-text">3.2.3 删除列</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%E3%80%81%E5%88%A0%E9%99%A4%E8%A1%A8"><span class="nav-text">4、删除表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%9D%E3%80%81%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2"><span class="nav-text">九、连接查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E5%86%85%E8%BF%9E%E6%8E%A5"><span class="nav-text">1、内连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E5%B7%A6%E8%BF%9E%E6%8E%A5"><span class="nav-text">2、左连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E5%8F%B3%E8%BF%9E%E6%8E%A5"><span class="nav-text">3、右连接</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E3%80%81%E6%95%B0%E6%8D%AE%E5%BA%93-%E8%A1%A8-%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E"><span class="nav-text">十、数据库(表)存储引擎</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Vsouild"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Vsouild</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="http://wpa.qq.com/msgrd?v=3&uin=360301524&site=qq&menu=yes" title="QQ → http:&#x2F;&#x2F;wpa.qq.com&#x2F;msgrd?v&#x3D;3&amp;uin&#x3D;360301524&amp;site&#x3D;qq&amp;menu&#x3D;yes" rel="noopener" target="_blank"><i class="fab fa-qq fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/vsouild" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;vsouild" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:360301524@qq.com" title="E-Mail → mailto:360301524@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://vsouild.github.io/mysql-abc/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Vsouild">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lv.0">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="MySQL入门 | Lv.0">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MySQL入门
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-06-17 18:46:00" itemprop="dateCreated datePublished" datetime="2021-06-17T18:46:00+08:00">2021-06-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">mysql</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>15k</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="一、介绍-2">一、介绍</h2>
+<p><a target="_blank" rel="noopener" href="https://www.mysql.com/">MySQL</a>是最流行的开源关系数据库管理系统（RDBMS，Relational Database Management System），最初由瑞典的MySQL AB公司开发，后被Sun公司收购，Sun公司又被Oracle公司收购，所以现在MySQL为Oracle旗下的产品，Oracle对其继续开发、发布和提供支持。</p>
+<span id="more"></span>
+<p>其特点有：</p>
+<ul>
+<li>支持多种操作系统。并且为许多编程语言提供了API，包括C、C++、C#、<a target="_blank" rel="noopener" href="http://VB.NET">VB.NET</a>、Delphi、Eiffel、Java、Perl、PHP、Python、Ruby等等。</li>
+<li>使用高度优化的类库实现SQL函数，该类库应尽可能快。通常在查询初始化之后根本没有内存分配。</li>
+<li>既能够作为一个单独的应用程序在客户端服务器网络环境中运行，也能够作为一个程序库而嵌入到其他的软件中。</li>
+<li>提供多语言支持，常见的编码如中文的GB 2312、BIG5，日文的Shift JIS等都可以用作数据表名和数据列名。</li>
+<li>提供TCP/IP、ODBC和JDBC等多种数据库连接途径。</li>
+<li>采用具有独立模块的多层服务设计。</li>
+<li>提供事务性和非事务性存储引擎。</li>
+<li>使用非常快速的B树磁盘表（MyISAM）和索引压缩。</li>
+<li>使用非常快速的基于线程的内存分配系统。支持多线程与多用户。</li>
+</ul>
+<p>MySQL语句可以分为以下四种：</p>
+<ul>
+<li>数据定义语言（DDL）：create，drop，alter</li>
+<li>数据操作语言（DML）：insert，delete，update</li>
+<li>数据查询语言（DQL）：select</li>
+<li>数据控制语言（DCL）：grant，revoke。主要是控制用户访问权限</li>
+</ul>
+<h3 id="1、关系型数据库与非关系型数据库">1、关系型数据库与非关系型数据库</h3>
+<p>关系型数据库即创建在关系模型基础上的数据库，借助于集合代数等数学概念和方法来处理数据库中的数据，现实世界中的各种实体以及实体之间的各种联系均使用关系模型来表示。关系模型由<strong>关系数据结构</strong>、<strong>关系操作集合</strong>和<strong>关系完整性约束</strong>三部分组成。常见的RDBMS有MySQL、Microsoft SQL Server、Oracle、PostgreSQL、SQLite、Apache Derby、HSQLDB、H2等等</p>
+<blockquote>
+<p>标准数据查询语言SQL就是一种基于关系数据库的语言，这种语言执行对关系数据库中数据的检索和操作。</p>
+</blockquote>
+<p>既然有关系型数据库，那就有非关系型数据库（NoSQL，最初表示Non-SQL，后被另解为Not only SQL），这是对不同于传统的RDBMS的统称。具体分类有用于文档存储的MongoDB，用于图形数据的Neo4j、JanusGraph，以键值对方式存储Redis、memcached、LevelDB、BigTable。非关系型数据库可以作为关系型数据库的缓存使用</p>
+<blockquote>
+<p>当代典型的关系数据库在一些数据敏感的应用中表现了糟糕的性能，例如为巨量文档创建索引、高流量网站的网页服务，以及发送流式媒体。关系型数据库的典型实现主要被调整用于执行规模小而读写频繁，或者大批量读而极少写访问的事务。</p>
+</blockquote>
+<h2 id="二、安装与配置">二、安装与配置</h2>
+<p>MySQL分为免费的社区版与收费的标准版、企业版。一般情况下使用社区版（Community）即可。</p>
+<h3 id="1、下载-2">1、下载</h3>
+<p>这里以MySQL 5.7免安装版（Windows）为例，在<a target="_blank" rel="noopener" href="https://downloads.mysql.com/archives/community/">版本存档页</a>中选择32位或者64位（对应操作系统）压缩包下载，然后解压到需要的位置。可以查阅官方<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/index.html">参考手册</a>中2.3.4 Installing MySQL on Microsoft Windows Using a noinstall ZIP Archive的说明。</p>
+<p><img src="image-20210515165954537.png" alt="image-20210515165954537"></p>
+<h3 id="2、配置">2、配置</h3>
+<p>免安装版解压后还不能直接使用，需要做一些配置</p>
+<h4 id="2-1-创建配置文件">2.1 创建配置文件</h4>
+<p>在根目录中新建一个<code>my.ini</code>文件，参考配置：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[mysqld]</span></span><br><span class="line"><span class="attr">basedir</span>=E:\\Environment\\mysql</span><br><span class="line"><span class="attr">datadir</span>=E:\\Environment\\mysql\\data</span><br><span class="line"><span class="attr">character-set-server</span>=utf8</span><br></pre></td></tr></table></figure>
+<p><code>basedir</code>和<code>datadir</code>为必选项，其分别指向mysql的根目录和数据文件目录，在Windows中路径分隔符使用斜杠<code>/</code>或者双反斜杠<code>\\</code></p>
+<p><strong>注意此时不要去新建data文件夹</strong></p>
+<blockquote>
+<p>在Windows中，MySQL按下述从上到下指定的顺序读取启动选项文件（先ini再cnf）：</p>
+<ul>
+<li>%WINDIR%\my.ini, %WINDIR%\my.cnf</li>
+<li>C:\my.ini, C:\my.cnf</li>
+<li>BASEDIR\my.ini, BASEDIR\my.cnf</li>
+<li>通过命令参数–defaults-extra-file指定</li>
+<li>%APPDATA%\MySQL\.mylogin.cnf，登录路径（仅客户端）</li>
+</ul>
+</blockquote>
+<h4 id="2-2-初始化数据目录">2.2 初始化数据目录</h4>
+<p>在bin目录中以管理员模式打开cmd，使用以下命令进行初始化，默认情况下超级用户名为<code>root</code>，会随机生成一个临时密码，或者使用<code>--initialize-insecure</code>不生成密码</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqld --initialize</span><br></pre></td></tr></table></figure>
+<p>增加<code>--console</code>选项来查看过程日志，最后一行<code>root@localhost:</code>后即为随机生成的密码</p>
+<h4 id="2-3-启动服务器并修改密码">2.3 启动服务器并修改密码</h4>
+<p>还是在bin目录，执行<code>mysqld --console</code>命令，出现如下字样即为启动成功。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysqld: ready for connections.</span><br><span class="line">Version: &#x27;5.7.33&#x27;  socket: &#x27;&#x27;  port: 3306  MySQL Community Server (GPL)</span><br></pre></td></tr></table></figure>
+<p>此时可以打开一个新的控制台窗口用来运行客户端程序进行连接，或者使用<code>start mysqld</code>在新窗口中启动。在部分版本运行mysqld会一直显示控制台窗口，可以使用<a target="_blank" rel="noopener" href="https://github.com/wenshui2008/RunHiddenConsole">RunHiddenConsole</a>使mysqld后台运行</p>
+<blockquote>
+<p>如果省略<code>--console</code>选项，则MySQL服务器会将日志输出到数据目录下带有.err扩展名的文本文件中，可以使用<code>--log-error</code>选项另行指定日志保存路径。</p>
+</blockquote>
+<p>使用<code>mysql -u root -p</code>命令登录mysql客户端，输入生成的密码，显示<code>mysql&gt;</code>与一个闪烁的光标时，便进入了mysql客户端，使用下面这条命令来修改密码（初始化时mysql将随机密码标记为已过期，所以必须修改）。注意单引号以及最后的分号</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">USER</span> <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> IDENTIFIED <span class="keyword">BY</span> <span class="string">&#x27;new password&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p>显示<code>Query OK, 0 rows affected (0.00 sec)</code>即为修改成功，然后输入<code>exit</code>或者<code>quit</code>或者<code>\q</code>退出（无需分号）</p>
+<p>如果使用<code>--initialize-insecure</code>选项进行的初始化，首次登录时使用下面这条命令</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql <span class="operator">-</span>u root <span class="comment">--skip-password</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-4-添加到环境变量（可选）">2.4 添加到环境变量（可选）</h4>
+<p>为了便于在所有路径都能使用mysql，可以在环境变量中添加变量<code>%MYSQL_HOME%</code>，值指向mysql的根目录。然后在<strong>PATH</strong>变量中添加<code>%MYSQL_HOME%\bin</code>（与其它值之间使用分号分隔）</p>
+<h4 id="2-5-配置为服务（可选）">2.5 配置为服务（可选）</h4>
+<p>更方便的形式是将mysql安装到Windows服务当作，安装前需要先关闭mysql服务器。安装命令不会启动服务器</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysqld --install</span><br><span class="line">mysqld --install-manual #安装服务为手动启动</span><br></pre></td></tr></table></figure>
+<p>在命令后可以指定安装服务的名称，默认服务名为<code>MySQL</code>；还可以使用<code>--defaults-file=file_name</code>指定配置文件（的路径）</p>
+<ul>
+<li>启动服务：<code>net start MySQL</code></li>
+<li>停止服务：<code>net stop MySQL</code></li>
+<li>卸载服务：<code>sc delete MySQL</code>或者<code>mysqld --remove</code></li>
+</ul>
+<h4 id="2-6-精简文件（可选）">2.6 精简文件（可选）</h4>
+<p><img src="image-20210515170731937.png" alt="image-20210515170731937"></p>
+<p>如上图，考虑压缩率，解压后有1G以上的大小，可以删除其中部分不影响运行的文件来精简大小（不推荐生产环境这样做）</p>
+<ul>
+<li>lib文件夹</li>
+<li>bin目录下的pdb文件（调试用），带有embedded、test字样的文件（嵌入以及测试用）</li>
+</ul>
+<hr>
+<p>这里我制作了一个批处理脚本文件便于上述配置命令的使用，下载后放入mysql根目录即可。点击下载：<a href="mysql.bat">mysql.bat</a></p>
+<h2 id="三、语句结构与语法">三、语句结构与语法</h2>
+<h3 id="1、字面值">1、字面值</h3>
+<p>字符串、不同进制的数字、布尔值、空值等被称为字面值。其中布尔值使用<code>true</code>和<code>false</code>表示（不区分大小写）</p>
+<h4 id="1-1-数字">1.1 数字</h4>
+<p>数字同一般程序语言中的数字表示，额外的，16进制数字可以用<code>X'val'</code>表示（val为16进制数，X区分大小写），此表示法需要注意的是数字位数必须为偶数，可以在前面添加0来避免此问题。同时，使用<code>0xval</code>表示（区分大小写）的值数字位数为奇数时将会被添加额外的前导0。<code>X''</code>表示0</p>
+<p>二进制值使用<code>b'01'</code>（不区分大小写）或者<code>0b01</code>（区分大小写）表示</p>
+<h4 id="1-2-字符串">1.2 字符串</h4>
+<p>字符串使用单引号或双引号括起来，彼此相邻的带引号的字符串将会被串联为单个字符串，与c语言相似，mysql也具有转义字符：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">转义序列</th>
+<th style="text-align:left">表示含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>\0</code></td>
+<td style="text-align:left">ASCII码0（不是数字0）NUL，表示空字符</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\'</code></td>
+<td style="text-align:left">单引号</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\&quot;</code></td>
+<td style="text-align:left">双引号</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\b</code></td>
+<td style="text-align:left">退格符</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\n</code></td>
+<td style="text-align:left">换行符</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\r</code></td>
+<td style="text-align:left">回车符</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\t</code></td>
+<td style="text-align:left">制表符</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\Z</code></td>
+<td style="text-align:left">ASCII码26，SUB，表示代替</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\\</code></td>
+<td style="text-align:left">反斜杠</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\%</code></td>
+<td style="text-align:left">百分号符</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\_</code></td>
+<td style="text-align:left">下划线</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2、标识符">2、标识符</h3>
+<p>MySQL中的数据库，表，列，索引，别名，视图，存储过程等对象的名称被称为标识符。使用规则：</p>
+<ul>
+<li>标识符可以带引号（特指反引号）或不带引号表示，如果包含特殊字符或为保留字，则在使用时必须使用引号；</li>
+<li>特别的，因为限定名点号后的字符必须是标识符，所以即使使用保留字也无需带引号（限定名即，<code>表名.列名</code>或<code>数据库.表名</code>或<code>数据库.表名.列名</code>表示的形式）；</li>
+<li>标识符可以以数字开头，但除非加引号，否则不能仅由数字组成；</li>
+<li>数据库，表和列的名称不能以空格结尾；</li>
+<li>标识符的字符最大长度为64，例外的，别名为256，复合语句标签为16</li>
+<li>在mysql内部，标识符被转换并使用UTF-8编码存储，其具有以下限制：
+<ul>
+<li>不带引号表示的标识符可以使用的字符范围：ASCII:码的[0-9,a-z,A-Z$_]，Unicode码的U+0080到U+FFFF；</li>
+<li>带引号表示的标识符可以使用的字符范围：ASCII码的U+0001到U+007F，Unicode码的U+0080到U+FFFF；</li>
+<li>无法使用ASCII码0，即NUL空字符和补充字符（U+10000即以上）</li>
+</ul>
+</li>
+</ul>
+<p>因为数据库、表与data目录中的文件(夹)相对应，所以mysql中的标识符是否区分大小写取决于文件储存系统类型，在Linux中区分大小写，在Windows中不区分大小写。列、列的别名、索引、存储过程和事件名称在任何平台上都不区分大小写</p>
+<blockquote>
+<p>为了保证一致性、可移植性和易用性，建议始终使用小写字母、反引号表示的标识符</p>
+</blockquote>
+<h3 id="3、关键字与保留字">3、关键字与保留字</h3>
+<p>参考<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/keywords.html#keywords-in-current-series">MySQL5.7的关键字与保留字</a>列表。关键字是指在SQL语句中具有特殊含义的单词，其中又分为保留关键字和非保留关键字，保留关键字是mysql从关键字中保留使用的标识符，需要特殊处理才能用作表名和列名等标识符。关键字不区分大小写</p>
+<p>允许使用非保留关键字作为标识符而无需引号，如果要使用保留关键字作为标识符，则必须加引号。</p>
+<h3 id="4、变量">4、变量</h3>
+<p>MySQL中的变量分为局部变量、用户变量和系统变量，其中系统变量又分为全局系统变量和会话系统变量。</p>
+<p>直接使用标识符(不以@为前缀)声明的就是局部变量，它是强类型的，并且被限定在被声明并存储的程序块中，局部变量不能在函数或存储过程以外访问。</p>
+<h4 id="4-1-用户变量">4.1 用户变量</h4>
+<p>用户变量是以<code>@</code>为前缀表示变量名，限定于会话中的一种变量（一个客户端中定义的用户变量不能被其他客户端读写）。变量名可以使用字母、数字、<code>.</code>、<code>_</code>或<code>$</code>，如果使用字符串或标识符表示，则可以使用其它字符。变量名对大小写不敏感，最大长度为64个字符。变量值可以为整数、实数、字符串或者NULL。</p>
+<p>使用<code>SET</code>语句和<code>=</code>或<code>:=</code>符号来赋值，后者区别在于永远不会被视为比较运算符</p>
+<blockquote>
+<p>变量最开始被赋值的数据类型会被作为变量的类型</p>
+</blockquote>
+<p><img src="image-20210519023708289.png" alt="image-20210519023708289"></p>
+<p>如上图所示，使用十六进制或bit值分配给用户变量时将会被视为二进制字符串。要将十六进制或bit值作为数字分配给用户变量，则需要与0进行计算或使用CAST函数（后面介绍）</p>
+<ul>
+<li>没有初始化的变量，值为NULL</li>
+<li>在SELECT语句中，每个SELECT表达式仅在发送到客户端后才进行计算</li>
+<li>用户变量不能在语句中直接用作标识符或作为标识符的一部分</li>
+</ul>
+<blockquote>
+<p>不要在语句中为用户变量分配值后在同一语句的其它部分使用此变量，因为涉及用户变量的表达式的求值顺序是不确定的，所以可能会得到非预期的结果。所以建议只使用<code>SET</code>语句进行赋值</p>
+</blockquote>
+<h4 id="4-2-系统变量">4.2 系统变量</h4>
+<p><a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/server-system-variable-reference.html">系统变量</a>分为能影响整个服务器的全局系统变量，也可以是影响当前会话的会话系统变量，或者两者都是。</p>
+<ul>
+<li>许多系统变量是动态的，即可以在运行时修改，用于操作当前运行的MySQL服务器（要使全局系统变量永久设置，需要在配置文件中进行设置，并重启服务器）</li>
+<li>会话系统变量值的更改仅在当前会话中有效，对其他会话没有影响。</li>
+<li>当前会话仅能更改自己的会话系统变量，不能更改其它会话的会话系统变量。</li>
+<li>如果更改全局系统变量，则会保存该值并用于应用于新会话。更改的值不会影响任何当前客户端会话的值（包括更改此值的会话）</li>
+</ul>
+<p>使用如下语法来更改全局系统变量；</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SET</span> <span class="keyword">GLOBAL</span> 全局变量名 <span class="operator">=</span> 新值;</span><br><span class="line"><span class="keyword">SET</span> @<span class="variable">@GLOBAL</span>.全局变量名 <span class="operator">=</span> 新值;</span><br></pre></td></tr></table></figure>
+<p>使用如下语法来更改会话系统变量。<code>LOCAL</code>等同于<code>SESSION</code></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SET</span> SESSION 会话变量名 <span class="operator">=</span> 新值;</span><br><span class="line"><span class="keyword">SET</span> @<span class="variable">@SESSION</span>.会话变量名 <span class="operator">=</span> 新值;</span><br><span class="line"><span class="keyword">SET</span> @@会话变量名 <span class="operator">=</span> 新值;</span><br><span class="line"><span class="keyword">SET</span> 会话变量名 <span class="operator">=</span> 新值;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>如果SET语句中的任何变量赋值失败，则整个语句都会失败，并且不会更改任何变量。</p>
+</li>
+<li>
+<p>使用<code>SHOW VARIABLES </code>来显示所有系统变量值。</p>
+</li>
+<li>
+<p>不指定GLOBAL.、SESSION.或者LOCAL时，如果存在则返回SESSION值，否则返回GLOBAL值。</p>
+</li>
+</ul>
+<h3 id="5、注释">5、注释</h3>
+<p>MySQL中有三种格式的注释：</p>
+<ul>
+<li>单行注释使用<code>#</code>开头</li>
+<li>以<code>--</code>开始并结尾的注释，要求在第二个破折号后必须有一个空格或控制字符</li>
+<li>与c语言相同的，使用<code>/*</code>开始<code>*/</code>结尾的多行注释</li>
+</ul>
+<p>关于第三种注释，有一种变体：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*! MySQL-specific code */</span></span><br></pre></td></tr></table></figure>
+<p>这种注释用来编写MySQL扩展、可移植的代码，其中的代码仅供MySQL使用。还可以在<code>!</code>后添加版本号，仅当MySQL版本大于或等于指定的版本号时，才会执行注释中的语句</p>
+<h2 id="四、数据类型">四、数据类型</h2>
+<p>MySQL支持多种数据类型，按大类分有数字类型、日期和时间类型、字符串类型、空间（地理位置）类型。其下又分有各种子类型</p>
+<p>MySQL中没有真正的布尔类型，类似C语言，0和空字符串表示false，1和其他表示true</p>
+<p>关于空间类型比较复杂，不是很常用，可以参考MySQL手册<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/spatial-types.html">11.4 Spatial Data Types</a></p>
+<h3 id="1、关于NULL值">1、关于NULL值</h3>
+<p>在MySQL中，<code>NULL</code>是一个特殊的数据类型，具有以下特征</p>
+<ul>
+<li><code>NULL</code>不代表空字符串，与大多数算术、比较运算符以及函数中的运算结果均为<code>NULL</code></li>
+<li><code>NULL</code>表示false</li>
+<li>在排序中<code>NULL</code>被视为最小值，在分组中两个<code>NULL</code>值被视为相等的</li>
+<li><code>UNKNOWN</code>为<code>NULL</code>的同义词</li>
+<li>特殊日期0/0/0是NULL</li>
+</ul>
+<h3 id="2、数字类型">2、数字类型</h3>
+<p>数字类型有：</p>
+<ul>
+<li>整数：tinyint、smallint、mediumint、int、bigint。存储长度分别为1、2、3、4、8字节
+<ul>
+<li>二进制：bit</li>
+</ul>
+</li>
+<li>小数
+<ul>
+<li>浮点数：float、double。存储长度分别为4、8字节</li>
+<li>定点数：decimal</li>
+</ul>
+</li>
+</ul>
+<p>其中整数和定点数又被称为精准数值类型，浮点数被称为近似数值类型。整数和小数都支持无符号类型，但是后者的无符号类型不会增加其最大范围</p>
+<p>可以使用附加参数来指定显示的位数，不影响实际的取值范围。其中整数字段存储超出指定范围的数字时，MySQL会根据允许范围从最接近它的一端截短后再进行存储；小数的附加参数包括总的显示位数和几位小数，小数点后面的位数允许超过指定范围的值，MySQL会自动将它四舍五入为最接近的值。定点数的显示位数不能超过65，小数位数不能超过30</p>
+<p>关于越界和溢出的处理参考MySQL手册<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/out-of-range-and-overflow.html">11.1.7 Out-of-Range and Overflow Handling</a></p>
+<h3 id="3、日期和时间">3、日期和时间</h3>
+<p>日期与时间类型包括date、time、datetime、timestamp和year</p>
+<ul>
+<li>date表示日期，格式为<code>YYYY-MM-DD</code>，3字节长度，范围1000-01-01到9999-12-31</li>
+<li>time表示时间或时间间隔，格式为<code>hh:mm:ss</code>，3字节长度，范围-838:59:59到838:59:59</li>
+<li>datetime表示日期和时间，格式为<code>YYYY-MM-DD hh:mm:ss</code>，5字节长度（MySQL 5.6.4以后），范围1000-01-01 00:00:00到9999-12-31 23:59:59</li>
+<li>timestamp表示时间戳，即从UTC时间1970年1月1日0时0分0秒开始经过的秒数。4字节长。范围1970-01-01 00:00:01 UTC到2038-01-19 03:14:07 UTC。不包括第0秒，因为0表示<code>0000-00-00 00:00:00</code></li>
+<li>year表示年，格式<code>YYYY</code>，1字节长，范围1901到2155或者0000</li>
+</ul>
+<p>time、datetime和timestamp的存储长度还包括分秒，其根据精度有所不同，最多3字节</p>
+<h3 id="4、字符串">4、字符串</h3>
+<p>字符串类型包括</p>
+<ul>
+<li>字符串：char、varchar</li>
+<li>文本：tinytext、text、mediumtext、longtext<br>
+最大存储长度分别为255、65535、16777215、4294967295，以及1、2、3、4个字节用于存储长度值</li>
+<li>二进制数据：tinyblob、blob、mediumblob、longblob<br>
+最大存储长度同文本类型</li>
+<li>枚举：enum</li>
+<li>集合：set</li>
+<li>JSON</li>
+</ul>
+<h4 id="4-1-char、text和blob">4.1 char、text和blob</h4>
+<p>char使用固定长度存储，最多255个字符，在存储时比指定长度大的值将被截掉，比指定长度小的值将会用空格填充到末尾，检索时将删除尾部的空格。<br>
+varchar即character varying，可变长度字符串，最多存储65535个字符，实际长度是所存储字符串长度，再加上1或2字节（如果指定最大长度&lt;255则为1字节）用于存储字符串长度。</p>
+<p>text和blob的区别：</p>
+<ul>
+<li>两者存储方式不同，text以文本存储，blob以二进制方式存储</li>
+<li>text区分大小写，blob不区分大小写</li>
+<li>text可以指定字符集，blob不用指定字符集</li>
+<li>两者都不能指定默认值，但是和varchar一样都是可变长度</li>
+</ul>
+<h4 id="4-2-枚举">4.2 枚举</h4>
+<p>枚举属于字符串对象，其值只允许从表创建时的列中指定的集合中选择一个，类似于单选项。枚举可以使用空值。字段中插入非预定义的值都会使 MySQL插入一个空字符串。如果插入值的大小写与集合中的值的大小写不匹配，MySQL则将插入值的大小写转换为集合中大小写一致的值。一个枚举类型最多可以包含65535个不同的元素（实际小于3000），其中一个元素被保留用作存储错误信息，这个错误值用一个空字符串表示，其索引为0。</p>
+<p>枚举的限制：</p>
+<ol>
+<li>枚举值不能是表达式，即使是值为字符串的表达式</li>
+<li>不能将用户变量用作枚举值</li>
+<li>使用数字值作为枚举时，建议使用引号。如果省略引号，该数字将被视为索引</li>
+</ol>
+<h4 id="4-3-集合">4.3 集合</h4>
+<p>set集合与枚举相似，但是是从指定的集合中取得0个或多个值。同样的，任何试图在set类型字段中插入非指定的值都会变成空字符串。如果插入一个即含有指定元素又含有非指定元素的值，MySQL将会保留指定元素，除去非指定的元素。set类型最多可以有64个不同的元素，不能存在任何相同的元素。</p>
+<h4 id="4-4-JSON">4.4 JSON</h4>
+<p>从MySQL 5.7.8开始，MySQL支持原生JSON的数据类型，该类型还支持对JSON中数据的访问。通常情况下，JSON类型的存储范围与longtext/longblob大致相同。JSON类型不能有非空的默认值。与存储为JSON格式的字符串相比，JSON数据类型具有以下优势：</p>
+<ul>
+<li>自动验证存储在JSON列中的JSON数据。无效数据会产生错误</li>
+<li>优化的存储格式。存储为JSON数据类型的值被转换为允许对JSON元素进行快速读取访问的内部格式</li>
+</ul>
+<h3 id="5、各数据类型的默认值">5、各数据类型的默认值</h3>
+<p>默认值分为显式默认值与隐式默认值。显式默认值即在定义时指定默认值，除TIMESTAMP和DATETIME外，显式指定的默认值必须为字面值，不能是函数或表达式，BLOB、TEXT、GEOMETRY和JSON不能指定默认值。</p>
+<p>没有显式指定默认值时使用隐式默认值，如果该字段可以为<code>NULL</code>，则使用<code>NULL</code>，如果不能为<code>NULL</code>，则</p>
+<ul>
+<li>对于数字类型，默认值为0（指定了自增的除外）</li>
+<li>对于除TIMESTAMP以外的日期和时间类型，默认值为该类型对应的“零值”；TIMESTAMP则为当前日期与时间值</li>
+<li>对于除枚举以外的字符串类型，默认值为空字符串，对于枚举，则为枚举的第一个值</li>
+</ul>
+<h2 id="五、运算符">五、运算符</h2>
+<p>运算符，以及操作符，通常用于表达式，以及常量值、变量值、列名等。</p>
+<h3 id="1、比较运算符">1、比较运算符</h3>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&gt;、&lt;、&gt;=、&lt;=、</td>
+<td>大于、小于、大于或等于、小于或等于</td>
+</tr>
+<tr>
+<td>&lt;&gt;、!=</td>
+<td>不等于</td>
+</tr>
+<tr>
+<td>=、&lt;=&gt;</td>
+<td>等于、空值安全的等于</td>
+</tr>
+<tr>
+<td>BETWEEN 值1 AND 值2、NOT BETWEEN 值1 AND 值2</td>
+<td>值是否在两者之间、值是否不在两者之间。前者闭区间，后者相反</td>
+</tr>
+<tr>
+<td>IS、IS NOT、IS NULL、IS NOT NULL</td>
+<td>是否为某个值、是否不为某个值、是否为空、是否非空</td>
+</tr>
+<tr>
+<td>LIKE、NOT LIKE</td>
+<td>用于简单的模式匹配</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>通常这些操作适用于数字和字符串，字符串会自动转换为数字，数字会根据需要转换为字符串。</li>
+<li>字符串比较默认不区分大小写，并使用定义的校对集作为排序规则（默认为latin1/ISO-8859-1，兼容ASCII，支持中文）</li>
+<li>在MySQL中任何与NULL的运算结果都为NULL，但额外的<code>&lt;=&gt;</code>会考虑空值，即<code>1 &lt;=&gt; NULL</code>的结果为假。没有空值安全的不等于比较运算符，可以使用<code>NOT (1 &lt;=&gt; NULL)</code>的方式</li>
+</ul>
+<h3 id="2、逻辑与位运算符">2、逻辑与位运算符</h3>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AND、&amp;&amp;</td>
+<td>逻辑与</td>
+</tr>
+<tr>
+<td>NOT、!</td>
+<td>逻辑非</td>
+</tr>
+<tr>
+<td>OR、||</td>
+<td>逻辑或</td>
+</tr>
+<tr>
+<td>XOR</td>
+<td>逻辑异或</td>
+</tr>
+<tr>
+<td>&amp;</td>
+<td>按位与</td>
+</tr>
+<tr>
+<td>|</td>
+<td>按位或</td>
+</tr>
+<tr>
+<td>^</td>
+<td>按位异或</td>
+</tr>
+<tr>
+<td>~</td>
+<td>按位取反</td>
+</tr>
+<tr>
+<td>&gt;&gt;、&lt;&lt;</td>
+<td>右移、左移</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>MySQL中，所有非0，非空值都被视为真，0被视为假</li>
+<li>与：如果所有操作数均为非零且不为空，则结果为1；如果一个或多个操作数为0，则结果为0，否则为空</li>
+<li>非：如果操作数为0，则结果为1；如果操作数非零，则结果为0，<code>NOT NULL</code>结果为<code>NULL</code></li>
+<li>或：当两个操作数都非空时，且非零时，结果为1，否则为0。对于空值，如果另一个操作数不为零，则结果为1，否则为空。如果两个操作数都为空，则结果为空</li>
+<li>异或：如果任一操作数为空，则返回空。对于非空操作数，如果两个操作数不同（一真一假）则结果为1，否则为0。a与b的异或在数学上相当于<code>a AND (NOT b))</code>或者<code>((NOT a) and b)</code></li>
+<li>位运算的结果都将返回无符号的64位整数，对于移位操作，如果超过64位整数的上限，则结果为0</li>
+</ul>
+<h3 id="3、算术与赋值运算符">3、算术与赋值运算符</h3>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>%、MOD</td>
+<td>取模、取余、求余数</td>
+</tr>
+<tr>
+<td>+、-</td>
+<td>加和减，也可作为更改数值的符号</td>
+</tr>
+<tr>
+<td>*、/</td>
+<td>乘和除</td>
+</tr>
+<tr>
+<td>DIV</td>
+<td>整除</td>
+</tr>
+<tr>
+<td>=</td>
+<td>赋值</td>
+</tr>
+<tr>
+<td>:=</td>
+<td>同上，但永远是赋值运算，不会被解释为比较操作</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>对于加减乘法，如果两边均为整数，则以bigint的精度作计算结果</li>
+<li>进行运算时，如果两边均为整数且其中至少一个是无符号类型，则结果也为无符号整数</li>
+<li>加减乘除和取余操作对于实数和字符串，结果的精度以其中最大范围的为准</li>
+<li>除法中，结果的保留小数位数为第一个操作数的小数位数加上系统变量<code>div_precision_increment</code>的值（默认为4）</li>
+<li>0作为除数会产生NULL值</li>
+<li>=仅在SET语句和UPDATE语句中作为赋值操作，在任何其它地方会被视为比较操作</li>
+</ul>
+<h3 id="4、其它运算符">4、其它运算符</h3>
+<ul>
+<li><code>LIKE</code>和<code>NOT LIKE</code>：用于基于模式匹配的字符串比较</li>
+<li><code>BINARY</code>：通常用于在字符串比较中，转换为二进制字符串进行比较，即区分大小写</li>
+<li><code>REGEXP</code>：用于基于正则表达式的字符串匹配，同义的是<code>RLIKE</code>，相反的有<code>NOT REGEXP</code>、<code>NOT RLIKE</code></li>
+</ul>
+<h3 id="5、运算符优先级">5、运算符优先级</h3>
+<p>各运算符的优先级如下，上面最高下面最低，对于在表达式中以相同优先级出现的运算符，将按从左到右的顺序，赋值运算则是从右至左。可以使用括号来改变优先级</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">BINARY</span></span><br><span class="line"><span class="operator">!</span></span><br><span class="line"><span class="operator">-</span> (作为一元运算符时), <span class="operator">~</span></span><br><span class="line"><span class="operator">^</span></span><br><span class="line"><span class="operator">*</span>, <span class="operator">/</span>, DIV, <span class="operator">%</span>, MOD</span><br><span class="line"><span class="operator">-</span>, <span class="operator">+</span></span><br><span class="line"><span class="operator">&lt;&lt;</span>, <span class="operator">&gt;&gt;</span></span><br><span class="line"><span class="operator">&amp;</span></span><br><span class="line"><span class="operator">|</span></span><br><span class="line"><span class="operator">=</span> (作为比较操作符时), <span class="operator">&lt;=&gt;</span>, <span class="operator">&gt;=</span>, <span class="operator">&gt;</span>, <span class="operator">&lt;=</span>, <span class="operator">&lt;</span>, <span class="operator">&lt;&gt;</span>, <span class="operator">!=</span>, <span class="keyword">IS</span>, <span class="keyword">LIKE</span>, REGEXP</span><br><span class="line"><span class="keyword">BETWEEN</span></span><br><span class="line"><span class="keyword">NOT</span></span><br><span class="line"><span class="keyword">AND</span>, <span class="operator">&amp;&amp;</span></span><br><span class="line">XOR</span><br><span class="line"><span class="keyword">OR</span>, <span class="operator">||</span></span><br><span class="line"><span class="operator">=</span> (作为赋值运算符时), :<span class="operator">=</span></span><br></pre></td></tr></table></figure>
+<h2 id="六、命令行中的操作">六、命令行中的操作</h2>
+<p>除了前面配置过程中使用的命令外，这节介绍MySQL命令行的使用。之后的操作默认已登录MySQL客户端</p>
+<p><img src="image-20210521171317504.png" alt="image-20210521171317504"></p>
+<p>使用<code>SELECT</code>可以进行查询或者计算，输出以表格形式显示，第一行为表头，之后各行是结果。</p>
+<ul>
+<li>通常，表头是从数据库表中获取的列名。如上这样使用表达式时则会使用表达式本身作为表头。</li>
+<li>最后会显示返回了多少行以及查询执行了多长时间，但并不是精确值</li>
+<li>语句中的所有关键字均不区分大小写，所以<code>SELECT</code>和<code>select</code>是等效的</li>
+</ul>
+<p>大部分语句以分号结尾，所以MySQL能同时接收一条或多条语句的输入，也不限制一行中语句的数量，或者一条语句书写多行。以下是命令行中各提示的含义：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">提示符</th>
+<th style="text-align:left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>mysql&gt;</code></td>
+<td style="text-align:left">准备接收新的语句</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>-&gt;</code></td>
+<td style="text-align:left">等待多行语句中下一行的输入</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>'&gt;</code></td>
+<td style="text-align:left">等待下一行输入，以单引号开头的字符串的完成</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>&quot;&gt;</code></td>
+<td style="text-align:left">等待下一行输入，以双引号开头的字符串的完成</td>
+</tr>
+<tr>
+<td style="text-align:left">``&gt;`</td>
+<td style="text-align:left">等待下一行输入，以反引号开头的标识符的完成</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>/*&gt;</code></td>
+<td style="text-align:left">等待下一行输入，多行注释的完成</td>
+</tr>
+</tbody>
+</table>
+<p>使用<code>\c</code>取消当前输入，需要注意的是，在上表后四种提示中使用<code>\c</code>时，要先完成之前的引号或注释，否则<code>\c</code>会被视为字符串。</p>
+<p>使用<code>\G</code>表示纵向显示输出结果，转义命令均区分大小写。更多命令参考<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/mysql-commands.html">mysql Client Commands</a></p>
+<h2 id="七、操纵数据库">七、操纵数据库</h2>
+<p><code>SHOW DATABASES</code>：显示当前用户可查看的所有数据库，注意是复数，初始化时已有以下4个系统数据库。<strong>切勿随意编辑系统数据库</strong></p>
+<p><img src="image-20210521184730728.png" alt="image-20210521184730728"></p>
+<ul>
+<li>information_schema：主要存储了系统中的一些数据库对象信息，比如用户表信息、列信息、权限信息、字符集信息和分区信息等</li>
+<li>mysql：核心数据库，主要用于存储数据库用户、用户访问权限等控制和管理信息</li>
+<li>performance_schema：主要用于收集数据库服务器性能参数</li>
+<li>sys：MySQL5.7开始，提供了一些数据来自于performation_schema的视图，主要是使开发者和使用者更方便地查看性能问题。</li>
+</ul>
+<h3 id="1、创建与使用数据库">1、创建与使用数据库</h3>
+<p>使用<code>CREATE DATABASE 数据库名</code>创建数据库，因为创建数据库后不会选择使用该数据库，所以还需要<code>use 数据库名</code>来切换数据库（可不加分号），或者在登录客户端时使用<code>-D 数据库名</code>选项</p>
+<p><img src="image-20210521233245018.png" alt="image-20210521233245018"></p>
+<blockquote>
+<p>与Windows系统不同，在Linux系统中，数据库名称是区分大小写的，所以建议SQL关键字使用大写，其它名称使用小写。</p>
+</blockquote>
+<p>如果创建数据库时数据库已存在，则会报错，可以增加<code>IF NOT EXISTS</code>选项，如<code>CREATE DATABASE IF NOT EXISTS my_db;</code>。同时在语句末尾可以增加<code>CHARACTER SET 字符集名称</code>指定字符集，增加<code>COLLATE 校对规则名</code>指定校对规则。使用<code>SHOW CHARACTER SET</code>命令来查看所有可用的字符集，<code>SHOW COLLATION</code>查看所有校对规则。未指定时，系统变量<code>character_set_database</code>和<code>collation_database</code>的值为默认值</p>
+<blockquote>
+<p>字符集定义MySQL存储字符串的方式，校对规则定义比较字符串的方式。</p>
+</blockquote>
+<p>使用<code>SELECT DATABASE()</code>查看当前使用的数据库</p>
+<p><img src="image-20210521235026006.png" alt="image-20210521235026006"></p>
+<h3 id="2、删除数据库">2、删除数据库</h3>
+<p><code>DROP DATABASE 数据库名</code>用于删除数据库，可以使用<code>IF EXISTS</code>防止数据库不存在时报错，如果删除当前使用的数据库，则会将使用标记取消，即<code>SELECT DATABASE()</code>返回NULL。删除数据库操作是物理删除，即会删除data文件夹中的相应文件</p>
+<h3 id="3、修改数据库">3、修改数据库</h3>
+<p><code>ALTER DATABASE 数据库名 选项=值</code>用于修改数据库使用的字符集和校对规则，可以省略数据库名，但必须已通过<code>use 数据库名</code>指定数据库。</p>
+<p>MySQL不能直接复制数据库以及更改数据库名</p>
+<h2 id="八、操纵表">八、操纵表</h2>
+<p>创建和使用数据库后，使用<code>SHOW TABLES</code>查看库中的表<img src="image-20210522175955126.png" alt="image-20210522175955126">当然此时是没有任何表的</p>
+<h3 id="1、创建与查询表">1、创建与查询表</h3>
+<p><img src="image-20210523012055644.png" alt="image-20210523012055644"></p>
+<p>简明语法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> [IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>] 表名 (</span><br><span class="line">    列名 数据类型 [列定义],</span><br><span class="line">   [创建定义]</span><br><span class="line">) 表选项</span><br></pre></td></tr></table></figure>
+<p><code>[]</code>为可选项，<code>|</code>表示多选一；多个定义、表选项之间使用逗号分割，最后一个定义后不加逗号；表选项的中<code>=</code>符号可省略</p>
+<p>列定义包括：</p>
+<ul>
+<li><code>ZEROFILL</code>：0填充，此选项会将不足显示位数的部分使用0填充（默认为空格），如果是数字类型，则会自动添加无符号属性</li>
+<li><code>NOT NULL</code>或者<code>NULL</code>：不为空或者可为空值，不指定时默认可为空</li>
+<li><code>DEFAULT 值</code>：显式指定默认值</li>
+<li><code>AUTO_INCREMENT</code>：自增，整数和浮点数可指定，其值从1开始，每次插入的值为表中当前列的最大值+1。每个表只能有一个自增值字段，不能指定默认值</li>
+<li><code>INDEX | KEY</code>：普通索引</li>
+<li><code>[PRIMARY] KEY</code>：主键，默认不能为空（隐式的），不能有重复值，一张表只能有一个主键，但可以定义多列主键</li>
+<li><code>UNIQUE [KEY]</code>：唯一索引，不能有重复值，可以为空，可以定义多个</li>
+<li><code>FOREIGN KEY</code>：外键</li>
+<li><code>COMMENT</code>：注释，后跟字符串</li>
+<li><code>COLLATE</code>：排序规则</li>
+</ul>
+<p>除了列以外的创建定义：</p>
+<ul>
+<li><code>FOREIGN KEY</code>：外键（允许跨表交叉引用相关数据）</li>
+<li>索引，后面需用括号指定单列或多列，多列之间使用逗号分割
+<ul>
+<li><code>INDEX | KEY</code>：普通索引</li>
+<li><code>PRIMARY KEY</code>：主键索引</li>
+<li><code>UNIQUE [INDEX | KEY]</code>：唯一索引</li>
+<li><code>FULLTEXT [INDEX | KEY]</code>：全文索引</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>考虑到与其他数据库系统的兼容性，MySQL将<code>KEY</code>作为<code>INDEX</code>的同义词，在列定义中主键也可以仅使用<code>KEY</code>指定</p>
+</blockquote>
+<p>常用的表选项：</p>
+<ul>
+<li><code>ENGINE</code>：指定数据库表的存储引擎。未指定时，使用系统变量<code>default_storage_engine</code>的值。可以对不同的表使用不同的存储引擎</li>
+<li><code>AUTO_INCREMENT</code>：指定自增初始值</li>
+<li><code>[DEFAULT] CHARACTER SET</code>或<code>[DEFAULT] CHARSET</code>：指定默认字符集，未指定时，使用数据库的值</li>
+<li><code>[DEFAULT] COLLATE</code>：指定默认校对规则，未指定时，使用数据库的值</li>
+<li><code>COMMENT</code>：注释，说明当前表的含义，最多2048个字符</li>
+</ul>
+<p>使用<code>DESCRIBE 表名</code>或<code>DESC 表名</code>或<code>SHOW COLUMNS FROM 表名</code>可以查看表的信息</p>
+<p><img src="image-20210523015144369.png" alt="image-20210523015144369"></p>
+<p>或者<code>SHOW CREATE TABLE 表名</code>查看如何创建表</p>
+<p><img src="image-20210524022123018.png" alt="image-20210524022123018"></p>
+<h3 id="2、操纵表数据">2、操纵表数据</h3>
+<h4 id="2-1-插入数据">2.1 插入数据</h4>
+<p><img src="image-20210524022742154.png" alt="image-20210524022742154"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> [<span class="keyword">INTO</span>] 表名 [(字段<span class="number">1</span>, 字段<span class="number">2</span>,... 字段n)] &#123;<span class="keyword">VALUES</span> <span class="operator">|</span> <span class="keyword">VALUE</span>&#125; (值列表) [, (值列表)]</span><br></pre></td></tr></table></figure>
+<p>未指定字段时默认所有字段都需要指定值，且按创建表时声明的顺序；值列表必须与字段数量/类型相匹配；可以使用关键字<code>DEFAULT</code>显式设置为默认值；<code>VALUES</code>等同于<code>VALUE</code>，既不表示字段的数量，也不表示每个字段中值的数量。无论是单条数据还是多条数据，每条数据值的数量是多少，都是一样的；可以插入多条值，每条值列表之间使用逗号分隔；如果字段列表和值列表均为空，则会将每个字段都设置为默认值</p>
+<h4 id="2-2-查询数据">2.2 查询数据</h4>
+<p><img src="image-20210524011031140.png" alt="image-20210524011031140"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> [<span class="keyword">DISTINCT</span>] 查询表达式 <span class="keyword">FROM</span> 表名 [查询条件]</span><br></pre></td></tr></table></figure>
+<p><code>SELECT</code>语句用于查询一个或多个表中选择的行数据，也可用于计算表达式。<code>DISTINCT</code>用于从结果中删除重复的行数据；必须至少有一个查询表达式以及一个或多个表名；查询表达式的规则如下：</p>
+<ul>
+<li>通常使用列名或者通配符<code>*</code>表示所有列，也可以使用<code>表名.*</code>的方式</li>
+<li>可以使用<code>列名 AS 别名</code>来命名列的显示名称
+<ul>
+<li>不允许在<code>WHERE</code>中引用列的别名，但可以在<code>GROUP BY</code>，<code>ORDER BY</code>或<code>HAVING</code>中使用</li>
+<li>在查询表达式中别名既可以使用反引号，也可以单/双引号，而在其它地方则必须使用反引号</li>
+<li>可以用同样的方式对表使用别名，此时列名的引用方式是<code>表别名.列名</code>，可用于处理多表联查时不同表中列名相同的情况</li>
+</ul>
+</li>
+</ul>
+<p>关于查询条件，同时使用时必须严格按照从上到下的顺序给出：</p>
+<ul>
+<li><code>WHERE</code>：需要满足一个或多个条件表达式，可以使用除聚合函数以外的任何函数和运算符。后面可跟<code>LIKE</code>或<code>REGEXP</code>的模式匹配或正则表达式</li>
+<li><code>GROUP BY</code>：分组查询处理，通过一定的规则将所有行数据通过一列或多列分组，然后可以对若干个分组进行数据处理</li>
+<li><code>HAVING</code>：与<code>WHERE</code>类似，指定条件，通常用于对<code>GROUP BY</code>的分组进行过滤，可以使用聚合函数</li>
+<li><code>ORDER BY</code>：用于排序，可以指定列名或列的序号，也可以使用表达式，默认为<code>ASC</code>（升序），降序为<code>DESC</code>（使用在列名后）。字符串排序不区分大小写，可以在列名前增加<code>BINARY</code>关键字强制区分大小写</li>
+<li><code>LIMIT</code>：用于分页处理，限制返回结果的行数，也可以指定从哪行开始和指定数量的行（使用逗号或者<code>OFFSET</code>关键字分隔），首行编号为0</li>
+</ul>
+<blockquote>
+<p>MySQL提供了标准SQL的模式匹配，以及基于扩展正则表达式的模式匹配。模式匹配的规则：</p>
+<ul>
+<li>使用单/双引号将匹配规则括起来，即作为字符串</li>
+<li>默认不区分大小写比较，如果要强制区分大小写，需要使用<code>BINARY</code>关键字修饰其中一边字符串</li>
+<li>使用<code>_</code>匹配任意单个字符</li>
+<li>使用<code>%</code>匹配任意数量的字符</li>
+<li>此时使用转义符<code>\_</code>和<code>\%</code>来匹配<code>_</code>和<code>%</code></li>
+</ul>
+</blockquote>
+<p>除了条件查询，还有比较复杂的子查询，此处不再详解，参考MySQL手册<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/subqueries.html">13.2.10 Subqueries</a></p>
+<h4 id="2-3-修改数据">2.3 修改数据</h4>
+<p><img src="image-20210524161118644.png" alt="image-20210524161118644"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> 表名 <span class="keyword">SET</span> 列名<span class="operator">=</span>新值 [<span class="keyword">WHERE</span> 更新条件] [<span class="keyword">ORDER</span> <span class="keyword">BY</span>] [LIMIT 行数]</span><br></pre></td></tr></table></figure>
+<p><code>UPDATE</code>语句可以进行多表修改，此时只能使用<code>WHERE</code>，可以使用<code>DEFAULT</code>关键字指定默认值，如果不使用<code>WHERE</code>指定更新条件，那么将修改所有行的指定值，使用<code>ORDER BY</code>可以在修改前先排序，使用<code>LIMIT</code>只修改指定数量的行。</p>
+<h4 id="2-4-删除数据">2.4 删除数据</h4>
+<p><img src="image-20210524165904542.png" alt="image-20210524165904542"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> 表名 [<span class="keyword">WHERE</span> 删除条件] [<span class="keyword">ORDER</span> <span class="keyword">BY</span>] [LIMIT 行数]</span><br></pre></td></tr></table></figure>
+<p><code>DELETE</code>语句用于删除表中数据，和更新语句一样，可以进行多表删除，此时只能使用<code>WHERE</code>，不指定<code>WHERE</code>时则删除表的所有数据，也可以使用<code>ORDER BY</code>在删除前排序，使用<code>LIMIT</code>只删除指定数量的行。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">TRUNCATE</span> [<span class="keyword">TABLE</span>] 表名</span><br></pre></td></tr></table></figure>
+<p><code>TRUNCATE</code>用于清空表，类似于不带条件的<code>DELETE</code>语句，但其不同之处在于<code>TRUNCATE</code>：</p>
+<ul>
+<li>直接删除并重建表，相比于<code>DELETE</code>逐个删除要快得多，特别是对于大型表</li>
+<li>不会返回删除了多少行。一般为0，表示无信息</li>
+<li>会初始化任何自增值</li>
+<li>属于DDL而不是DML</li>
+</ul>
+<h3 id="3、修改表">3、修改表</h3>
+<p>表的修改可以分为修改表的属性和修改表中列的属性</p>
+<p><img src="image-20210525015437404.png" alt="image-20210525015437404"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 表选项<span class="operator">=</span>新值 [, 表选项<span class="operator">=</span>新值]</span><br></pre></td></tr></table></figure>
+<p>上述语法允许修改任何在建表时可使用的表选项，如ENGINE、CHARSET、AUTO_INCREMENT、COMMENT等等；修改自增值时，不能将值设置为小于或等于当前使用的值，否则会重置为当前使用的最大值；修改表的<strong>存储引擎</strong>时需要注意：</p>
+<ul>
+<li>表会重建</li>
+<li>尝试更改引擎的结果受所需的存储引擎是否可用以及SQL模式设置的影响</li>
+<li>为防止意外丢失数据，不能更改为MERGE或BLACKHOLE</li>
+</ul>
+<h4 id="3-1-重命名表">3.1 重命名表</h4>
+<p><img src="image-20210525015654564.png" alt="image-20210525015654564"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">RENAME <span class="keyword">TABLE</span> 旧表名 <span class="keyword">TO</span> 新表名 [, 旧表名 <span class="keyword">TO</span> 新表名];</span><br><span class="line">或</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 旧表名 RENAME [<span class="keyword">TO</span> <span class="operator">|</span> <span class="keyword">AS</span>] 新表名;</span><br></pre></td></tr></table></figure>
+<p><code>RENAME TABLE</code>可以重命名一个或多个表。重命名发生错误时，不会进行任何更改；也可以通过<code>库名.表名</code>和<code>其它库.表名</code>的方式将表移动到其它数据库（实际上修改了数据库）；重命名表后的外键约束名称将会自动更新，如果发生冲突则执行失败；<code>ALTER TABLE</code>也是一样的，<code>RENAME</code>后面可加<code>TO</code>或者<code>AS</code>，或者不加也不影响语义</p>
+<p>重命名表其实是对旧表执行<code>ALTER</code>和<code>DROP</code>操作，对新表执行<code>ALTER</code>、<code>CREATE</code>和<code>INSERT</code>操作</p>
+<blockquote>
+<p>表的重命名是原子性的，即表在重命名时被锁定，其它会话或操作无法访问正在重命名的表</p>
+</blockquote>
+<h4 id="3-2-操纵列">3.2 操纵列</h4>
+<h5 id="3-2-1-追加列">3.2.1 追加列</h5>
+<p><img src="image-20210525033957560.png" alt="image-20210525033957560"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">ADD</span> 列名 列定义 [<span class="keyword">FIRST</span> <span class="operator">|</span> AFTER 列名];</span><br></pre></td></tr></table></figure>
+<p>列定义与创建表时的定义规则相同；可以使用<code>FIRST</code>或<code>AFTER 某列</code>来指定添加到最前面或者某列之后，默认添加到最后；新增的列对于表中已存在的所有行数据将设置为默认值</p>
+<h5 id="3-2-2-修改列">3.2.2 修改列</h5>
+<p><img src="image-20210525210124379.png" alt="image-20210525210124379"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 CHANGE 旧列名 新列名 列定义 [<span class="keyword">FIRST</span> <span class="operator">|</span> AFTER 列名];</span><br><span class="line">或</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 MODIFY 列名 列定义 [<span class="keyword">FIRST</span> <span class="operator">|</span> AFTER 列名];</span><br></pre></td></tr></table></figure>
+<p><code>CHANGE</code>用于重命名列并更改其定义，<code>MODIFY</code>用于更改列定义，但不能更改列名；列定义必须包括数据类型和所有应用于新列的属性；两者同样可以使用<code>FIRST</code>或<code>AFTER 某列</code>来改变列的位置；原始定义中存在但未在新定义中指定的属性不会继承</p>
+<h5 id="3-2-3-删除列">3.2.3 删除列</h5>
+<p><img src="image-20210525210608607.png" alt="image-20210525210608607"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">DROP</span> 列名;</span><br></pre></td></tr></table></figure>
+<p>如果表仅存在一列，则不能删除该列，可以直接删除表；<code>DROP PRIMARY KEY</code>可以删除主键</p>
+<h3 id="4、删除表">4、删除表</h3>
+<p><img src="image-20210525212157388.png" alt="image-20210525212157388"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> [IF <span class="keyword">EXISTS</span>] 表名</span><br></pre></td></tr></table></figure>
+<p>可以删除一个或多个表；为了避免报错，可以增加<code>IF EXISTS</code>在删除前判断表是否存在；和删除数据库一样，删除表是物理删除，将会删除表结构和表中的所有数据</p>
+<h2 id="九、连接查询">九、连接查询</h2>
+<p>MySQL中简单的查询可以使用<code>SELECT 列 FROM 表 WHERE 条件</code>的方式，这是单个表中的操作，对于多表联合查询，需要使用连接查询。</p>
+<p>Join连接是一种基于表之间公共列的值在一个或多个表之间连接数据的方法。关于SQL的连接查询，最被广泛引用的是来自C.L. Moffatt的文章<a target="_blank" rel="noopener" href="https://www.codeproject.com/Articles/33052/Visual-Representation-of-SQL-Joins">Visual Representation of SQL Joins</a>，其中的Venn图以集合形式简单明了的说明了SQL连接查询不同种类的关系</p>
+<p><img src="image-20210531000429608.png" alt="image-20210531000429608"></p>
+<p>图中中间的叫内连接，左上是左连接，右上是右连接，左下是全（外）连接，这四种为SQL中常见的连接查询，另外三种作为延伸用法在集合中分别是B关于A的补集、A关于B的补集以及互不包含的集合</p>
+<p>下面将以以下表和数据演示内连接、左连接和右连接的作用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> `chs` (</span><br><span class="line">  `tag` <span class="type">int</span>(<span class="number">11</span>),</span><br><span class="line">  `text` <span class="type">varchar</span>(<span class="number">20</span>)</span><br><span class="line">) COMMENT<span class="operator">=</span><span class="string">&#x27;简体中文&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> `cht` (</span><br><span class="line">  `tag` <span class="type">int</span>(<span class="number">11</span>),</span><br><span class="line">  `text` <span class="type">varchar</span>(<span class="number">20</span>)</span><br><span class="line">) COMMENT<span class="operator">=</span><span class="string">&#x27;繁体中文&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `chs` (`tag`, `text`) <span class="keyword">VALUES</span> (<span class="number">1</span>, <span class="string">&#x27;一&#x27;</span>), (<span class="number">2</span>, <span class="string">&#x27;二&#x27;</span>), (<span class="number">3</span>, <span class="string">&#x27;三&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `cht` (`tag`, `text`) <span class="keyword">VALUES</span> (<span class="number">2</span>, <span class="string">&#x27;貳&#x27;</span>), (<span class="number">3</span>, <span class="string">&#x27;叁&#x27;</span>), (<span class="number">4</span>, <span class="string">&#x27;肆&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>MySQL没有提供全（外）连接的方法，可以使用<code>UNION</code>子句进行替代</p>
+<p><img src="image-20210531235336076.png" alt="image-20210531235336076"></p>
+</blockquote>
+<h3 id="1、内连接">1、内连接</h3>
+<p><img src="image-20210531181655501.png" alt="image-20210531181655501"></p>
+<p>内连接即交集，两者的公共部分。</p>
+<ul>
+<li>在MySQL中<code>JOIN</code>，<code>CROSS JOIN</code>（笛卡尔积）和<code>INNER JOIN</code>是在语法上是等价的，而标准SQL中<code>INNER JOIN</code>与<code>ON</code>一起使用，<code>CROSS JOIN</code>则不需要</li>
+<li>如果仅有内连接，则连接表达式（FROM之后的语句）则可以省略括号</li>
+<li>为了避免列名相同的问题，通常会对表使用别名，或者使用完全限定名（表名.列名）</li>
+<li>单个连接中最多引用61个表</li>
+<li><code>ON</code>后面的条件是任何在<code>WHERE</code>子句中可以使用的条件表达式。</li>
+<li>通常情况，<code>ON</code>子句用于指定如何连接表的条件，而<code>WHERE</code>子句则用于限制结果中应该包括哪些数据</li>
+</ul>
+<h3 id="2、左连接">2、左连接</h3>
+<p><img src="image-20210531232811923.png" alt="image-20210531232811923"></p>
+<p>左连接会选取左表的全部数据，而右表无对应数据的行则会使用NULL标记。<code>LEFT JOIN</code>即作为右边的表向左连接，<code>FROM</code>的为左表</p>
+<h3 id="3、右连接">3、右连接</h3>
+<p><img src="image-20210531234358859.png" alt="image-20210531234358859"></p>
+<p>和左连接相反，右连接选取右表的全部数据，左表无对应数据的行使用NULL标记。<code>RIGHT JOIN</code>即作为左边的表向右连接，<code>FROM</code>的为右表</p>
+<blockquote>
+<p>为了使代码在数据库间保持可移植性，建议使用左连接而不是右连接</p>
+</blockquote>
+<h2 id="十、数据库-表-存储引擎">十、数据库(表)存储引擎</h2>
+<p>存储引擎是处理不同表类型的SQL操作的MySQL组件，目前<code>InnoDB</code>是MySQL默认的也是最通用的存储引擎。</p>
+<p>使用<code>SHOW ENGINES</code>查看所有存储引擎及信息</p>
+<p><img src="image-20210523155044157.png" alt="image-20210523155044157"></p>
+<p>其中<code>Transactions</code>表示是否支持事务，<code>XA</code>表示是否支持分布式事务，<code>Savepoints</code>表示是否支持事务保存点</p>
+<p>各存储引擎介绍：</p>
+<ul>
+<li><code>InnoDB</code>：MySQL5.7的默认存储引擎，兼顾了高可靠性和高性能。InnoDB是事务安全（符合ACID）的存储引擎，具有提交、回滚和崩溃恢复的功能以保护数据。InnoDB支持行级锁，提高了多用户并发性的性能。InnoDB将用户数据存储在聚簇索引中，以减少常见的基于主键查询的I/O操作。InnoDB还支持外键引用完整性约束来保证数据完整性。</li>
+<li><code>MyISAM</code>：早期MySQL使用较多的存储引擎，存储空间较小，<strong>不支持事务</strong>，使用表级锁定（限制了读写的性能）。通常用于只读或以读取为主的数据库</li>
+<li><code>Memory</code>：内存数据库，将数据存储在内存中，所以断电即失，也被称为堆引擎，因此只能用作临时工作区或从其他表的只读缓存。用于需要快速访问非关键数据的环境</li>
+<li><code>CSV</code>：即comma-separated values，将数据存储为以逗号作为分隔符的文本文件中，所以此引擎不会有索引</li>
+<li><code>Archive</code>：归档，用于生成专用表，这些表以非常小的占用空间存储大量未编制索引的数据</li>
+<li><code>Blackhole</code>：黑洞，顾名思义，接收但不存储数据，任何查询都将返回空</li>
+<li><code>Federated</code>：提供链接不同MySQL服务器的能力，从许多物理服务器创建一个逻辑数据库。适合分布式或数据市场环境</li>
+</ul>
+<p>关于存储引擎的详细内容参考MySQL手册第15章<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/storage-engines.html">Alternative Storage Engines</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Vsouild
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://vsouild.github.io/mysql-abc/" title="MySQL入门">https://vsouild.github.io/mysql-abc/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/java-base/" rel="prev" title="Java基础整理与查漏补缺">
+                  <i class="fa fa-chevron-left"></i> Java基础整理与查漏补缺
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/mysql-extension/" rel="next" title="MySQL扩展知识">
+                  MySQL扩展知识 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user-circle"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vsouild</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">129k</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.0/katex.min.css" integrity="sha256-uik/hNqHWZldXh/0K35nqOSCff9F61/ZOFReqNOBgB0=" crossorigin="anonymous">
+
+
+
+</body>
+</html>

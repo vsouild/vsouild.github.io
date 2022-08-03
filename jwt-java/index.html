@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="5mokCk2SPXiw6YIG9Mrc-y6E8ZKqdN5kakogn-vGlP0">
+  <meta name="baidu-site-verification" content="code-WNIl6AzuqB">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"vsouild.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":220},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="一、介绍  1、什么是JWT JWT即JSON Web Tokens，它是一种紧凑的、URL安全的方法，用于表示要在双方之间传输的声明（claims）。JWT中的声明被编码为一个JSON对象，该对象被用作JSON Web签名（Signature）（JWS）结构的有效载荷（payload）或JSON Web加密（JWE）结构的明文，从而能够使用消息认证码（MAC）和&#x2F;或加密算法对声明进行数字签名或完">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JWT入门以及在java中的使用">
+<meta property="og:url" content="https://vsouild.github.io/jwt-java/index.html">
+<meta property="og:site_name" content="Lv.0">
+<meta property="og:description" content="一、介绍  1、什么是JWT JWT即JSON Web Tokens，它是一种紧凑的、URL安全的方法，用于表示要在双方之间传输的声明（claims）。JWT中的声明被编码为一个JSON对象，该对象被用作JSON Web签名（Signature）（JWS）结构的有效载荷（payload）或JSON Web加密（JWE）结构的明文，从而能够使用消息认证码（MAC）和&#x2F;或加密算法对声明进行数字签名或完">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://vsouild.github.io/jwt-java/image-20200922172321041.png">
+<meta property="og:image" content="https://cdn.auth0.com/content/jwt/encoded-jwt3.png">
+<meta property="og:image" content="https://vsouild.github.io/jwt-java/image-20200924193627631.png">
+<meta property="article:published_time" content="2020-09-24T14:03:00.000Z">
+<meta property="article:modified_time" content="2020-09-24T14:03:00.000Z">
+<meta property="article:author" content="Vsouild">
+<meta property="article:tag" content="jwt">
+<meta property="article:tag" content="json">
+<meta property="article:tag" content="token">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://vsouild.github.io/jwt-java/image-20200922172321041.png">
+
+
+<link rel="canonical" href="https://vsouild.github.io/jwt-java/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://vsouild.github.io/jwt-java/","path":"jwt-java/","title":"JWT入门以及在java中的使用"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>JWT入门以及在java中的使用 | Lv.0</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Lv.0</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">talk is cheap, show me the code</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E4%BB%8B%E7%BB%8D"><span class="nav-text">一、介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AFJWT"><span class="nav-text">1、什么是JWT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E4%BD%BF%E7%94%A8JWT"><span class="nav-text">2、什么时候使用JWT</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81JWT%E7%9A%84%E7%BB%93%E6%9E%84"><span class="nav-text">二、JWT的结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E6%A0%87%E5%A4%B4"><span class="nav-text">1、标头</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E6%9C%89%E6%95%88%E8%B4%9F%E8%BD%BD"><span class="nav-text">2、有效负载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E7%AD%BE%E5%90%8D"><span class="nav-text">3、签名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%E3%80%81Base64Url"><span class="nav-text">4、Base64Url</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81Java-JWT"><span class="nav-text">三、Java-JWT</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E5%AE%89%E8%A3%85"><span class="nav-text">1、安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E5%88%9B%E5%BB%BA%E5%B9%B6%E7%AD%BE%E7%BD%B2%E4%BB%A4%E7%89%8C"><span class="nav-text">2、创建并签署令牌</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E9%AA%8C%E8%AF%81%E4%BB%A4%E7%89%8C"><span class="nav-text">3、验证令牌</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%E3%80%81%E8%A7%A3%E7%A0%81%E8%8E%B7%E5%8F%96%E4%BB%A4%E7%89%8C%E4%BF%A1%E6%81%AF"><span class="nav-text">4、解码获取令牌信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5%E3%80%81%E8%BF%90%E8%A1%8C%E6%B5%8B%E8%AF%95"><span class="nav-text">5、运行测试</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Vsouild"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Vsouild</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="http://wpa.qq.com/msgrd?v=3&uin=360301524&site=qq&menu=yes" title="QQ → http:&#x2F;&#x2F;wpa.qq.com&#x2F;msgrd?v&#x3D;3&amp;uin&#x3D;360301524&amp;site&#x3D;qq&amp;menu&#x3D;yes" rel="noopener" target="_blank"><i class="fab fa-qq fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/vsouild" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;vsouild" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:360301524@qq.com" title="E-Mail → mailto:360301524@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://vsouild.github.io/jwt-java/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Vsouild">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lv.0">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="JWT入门以及在java中的使用 | Lv.0">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JWT入门以及在java中的使用
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-09-24 22:03:00" itemprop="dateCreated datePublished" datetime="2020-09-24T22:03:00+08:00">2020-09-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2k</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="一、介绍">一、介绍</h2>
+<p><img src="/jwt-java/image-20200922172321041.png" alt="image-20200922172321041"></p>
+<h3 id="1、什么是JWT">1、什么是JWT</h3>
+<p><a target="_blank" rel="noopener" href="https://jwt.io/">JWT</a>即JSON Web Tokens，它是一种紧凑的、URL安全的方法，用于表示要在双方之间传输的声明（claims）。JWT中的声明被编码为一个JSON对象，该对象被用作JSON Web签名（Signature）（JWS）结构的有效载荷（payload）或JSON Web加密（JWE）结构的明文，从而能够使用消息认证码（MAC）和/或加密算法对声明进行数字签名或完整性保护。</p>
+<span id="more"></span>
+<p>JWT是一个开放标准（<a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc7519">RFC 7519</a>），它定义了一种紧凑且自包含的方式，用于在各方之间安全地将信息作为JSON对象传输。由于此信息是经过数字签名的，因此可以被验证和信任。可以使用密钥（通过<strong>HMAC</strong>算法）或<strong>RSA</strong>、<strong>ECDSA</strong>算法的公钥/私钥对JWT进行<strong>签名</strong>。</p>
+<p>简单来说，JWT定义了一种结构标准，其使用JSON的表达方式，通过编码为一段字符串来传递令牌信息。</p>
+<h3 id="2、什么时候使用JWT">2、什么时候使用JWT</h3>
+<ul>
+<li><strong>授权</strong>：这是使用JWT的最常见方案。一旦用户登录，每个后续请求将包括JWT，从而允许用户访问该令牌允许的路由，服务和资源。单点登录是当今广泛使用JWT的一项特点，因为它的开销很小并且可以在不同的域中轻松使用。</li>
+<li><strong>信息交换</strong>：JWT是在各方之间安全传输信息的好方法。因为可以对JWT进行签名（例如：使用公钥/私钥对），所以您可以确保发送者就是他们所说的那样。此外，由于签名是使用标头和有效负载计算的，因此还可以验证内容是否遭到篡改。</li>
+</ul>
+<h2 id="二、JWT的结构">二、JWT的结构</h2>
+<p>通过上面的介绍，也许你还无法完全理解JWT是什么，那么下面从JWT的结构来认识它。JWT结构是紧凑的，它由<code>.</code>分为三部分：</p>
+<ul>
+<li>标头（Header）</li>
+<li>有效负载（Payload）</li>
+<li>签名（Signature）</li>
+</ul>
+<p>类似下面这样（内容已被编码，以<code>.</code>分割没有换行符，仅展示用）</p>
+<p><img src="https://cdn.auth0.com/content/jwt/encoded-jwt3.png" alt="JWT structure"></p>
+<h3 id="1、标头">1、标头</h3>
+<p>标头通常由两部分组成：令牌的类型（即JWT）和使用的签名算法，如HMAC SHA256或RSA。例如</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;alg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;HS256&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;typ&quot;</span><span class="punctuation">:</span> <span class="string">&quot;JWT&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>然后，这个JSON被<a href="#4%E3%80%81Base64Url%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F">Base64Url</a>编码，作为JWT的第一部分。</p>
+<h3 id="2、有效负载">2、有效负载</h3>
+<p>这一部分包含声明（claims）。声明是有关实体（通常是用户）和其他数据的声明，其有以下三种类型：已注册的（官方定义），公共声明和私有声明。</p>
+<p>下面是JWT定义的7个官方字段，这是一组预定义的、推荐的非强制性的字段，以提供一组实用的、可互操作的声明。</p>
+<ul>
+<li>iss (issuer)：签发人</li>
+<li>exp (expiration time)：过期时间</li>
+<li>sub (subject)：主题</li>
+<li>aud (audience)：受众（JWT的接受者）</li>
+<li>nbf (Not Before)：生效时间</li>
+<li>iat (Issued At)：签发时间</li>
+<li>jti (JWT ID)：编号</li>
+</ul>
+<blockquote>
+<p>因为JWT紧凑的设计原则，所以字段名称简写为仅三个字母</p>
+</blockquote>
+<p>除了上面7个官方已注册的字段声明，还有一些公共的，参考<a target="_blank" rel="noopener" href="https://www.iana.org/assignments/jwt/jwt.xhtml">IANA JSON Web Token注册表</a>。</p>
+<p>除此以外，为了在使用JWT的各方之间共享信息而创建的，可以使用自定义字段的私有声明，这些声明既不是已注册的，也不是公共的。</p>
+<p>可能的示例：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;sub&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1234567890&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;John Doe&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;admin&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>然后同样被<a href="#4%E3%80%81Base64Url%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F">Base64Url</a>编码，作为JWT的第二部分</p>
+<h3 id="3、签名">3、签名</h3>
+<p>签名用于验证消息在此过程中没有被更改，并且对于使用私钥进行签名的令牌，它还可以验证JWT的发送者的身份是真实的。</p>
+<p>这一部分使用在<a href="#1%E3%80%81%E6%A0%87%E5%A4%B4">标头</a>指定的签名算法（默认是 HMAC SHA256），以及指定的密钥（secret）通过以下方式创建</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">HMACSHA256(</span><br><span class="line">  base64UrlEncode(header) + &quot;.&quot; +</span><br><span class="line">  base64UrlEncode(payload),</span><br><span class="line">  secret</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>注意：这里的<code>.</code>不是生成后的token里的<code>.</code>，而是用于校验签名解码时分割<code>header</code>和<code>payload</code>的。</p>
+<p>因为JWT使用的编码算法是可解码的。所以<strong>不要把敏感信息储存在JWT中</strong>（如密码）</p>
+<h3 id="4、Base64Url">4、Base64Url</h3>
+<blockquote>
+<p>JWT 作为一个令牌（token），有些场合可能会放到 URL 的参数中。原Base64编码有三个字符<code>+</code>、<code>/</code>和<code>=</code>，在 URL 里面有特殊含义不能直接使用，所以要稍作修改：<code>=</code>被省略、<code>+</code>替换成<code>-</code>，<code>/</code>替换成<code>_</code> 。这就是 Base64URL 算法。</p>
+</blockquote>
+<h2 id="三、Java-JWT">三、Java-JWT</h2>
+<p>因为JWT设计的特性，所以可以通过各种编程语言来实现<a target="_blank" rel="noopener" href="https://jwt.io/#libraries-io">用于令牌签名/验证的库</a>在不同的编程语言中使用JWT。</p>
+<p>这一节将介绍由java语言实现的JWT库：<a target="_blank" rel="noopener" href="https://github.com/auth0/java-jwt">java-jwt</a></p>
+<h3 id="1、安装">1、安装</h3>
+<p>新建一个普通的maven项目，不选择原型，导入依赖：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.auth0<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>java-jwt<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.10.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="2、创建并签署令牌">2、创建并签署令牌</h3>
+<p>先定义两个常量，分别是使用的算法类型（包含密钥）和签发人，便于后面验证时也能使用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Algorithm</span> <span class="variable">ALGORITHM</span> <span class="operator">=</span> Algorithm.HMAC256(<span class="string">&quot;secret&quot;</span>);</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">ISSUER</span> <span class="operator">=</span> <span class="string">&quot;system&quot;</span>;</span><br></pre></td></tr></table></figure>
+<p>通过<code>JWT.create()</code>静态方法来创建JWT构建对象，使用withXXX可链式调用的方法来添加字段，最后调用<code>sign(ALGORITHM)</code>创建一个给定算法的JWT字符串</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> String <span class="title function_">getToken</span><span class="params">()</span>&#123;</span><br><span class="line">	<span class="type">String</span> <span class="variable">token</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		token = JWT.create()</span><br><span class="line">				.withIssuer(ISSUER)</span><br><span class="line">				.withIssuedAt(<span class="keyword">new</span> <span class="title class_">Date</span>())</span><br><span class="line">				.withNotBefore(<span class="keyword">new</span> <span class="title class_">Date</span>())</span><br><span class="line">				.withExpiresAt(<span class="keyword">new</span> <span class="title class_">Date</span>(System.currentTimeMillis() + <span class="number">60000</span>))</span><br><span class="line">				.withSubject(<span class="string">&quot;admin&quot;</span>)</span><br><span class="line">				.withClaim(<span class="string">&quot;username&quot;</span>, <span class="string">&quot;admin&quot;</span>)</span><br><span class="line">				.sign(ALGORITHM);</span><br><span class="line">	&#125; <span class="keyword">catch</span> (JWTCreationException e)&#123;</span><br><span class="line">		System.err.println(<span class="string">&quot;Invalid Signing configuration / Couldn&#x27;t convert Claims.&quot;</span>);</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> token;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3、验证令牌">3、验证令牌</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">verifyToken</span><span class="params">(String token)</span>&#123;</span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		<span class="type">JWTVerifier</span> <span class="variable">verifier</span> <span class="operator">=</span> JWT.require(ALGORITHM)</span><br><span class="line">				.withIssuer(ISSUER)</span><br><span class="line">				.build(); <span class="comment">//Reusable verifier instance</span></span><br><span class="line"></span><br><span class="line">		verifier.verify(token);</span><br><span class="line">	&#125; <span class="keyword">catch</span> (JWTVerificationException e)&#123;</span><br><span class="line">		System.err.println(<span class="string">&quot;Invalid signature/claims&quot;</span>);</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用之前定义的两个常量，这里可以创建一个可重用的验证实例。然后调用<code>verify()</code>方法执行验证，无需返回值，验证失败时会抛出异常</p>
+<h3 id="4、解码获取令牌信息">4、解码获取令牌信息</h3>
+<p>使用<code>JWT.decode()</code>方法获取<code>DecodedJWT</code>对象即可，没有定义的字段会返回<code>null</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">printJwtInfo</span><span class="params">(String token)</span>&#123;</span><br><span class="line">	<span class="type">DecodedJWT</span> <span class="variable">jwt</span> <span class="operator">=</span> JWT.decode(token);</span><br><span class="line"></span><br><span class="line">	System.out.println(<span class="string">&quot;Header\t\t-&gt; &quot;</span> + jwt.getHeader());</span><br><span class="line">	System.out.println(<span class="string">&quot;Payload\t\t-&gt; &quot;</span> + jwt.getPayload());</span><br><span class="line">	System.out.println(<span class="string">&quot;Signature\t-&gt; &quot;</span> + jwt.getSignature());</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Header</span></span><br><span class="line">	System.out.println(jwt.getAlgorithm());</span><br><span class="line">	System.out.println(jwt.getType());</span><br><span class="line">	System.out.println(jwt.getContentType());</span><br><span class="line">	System.out.println(jwt.getKeyId());</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Payload</span></span><br><span class="line">	System.out.println(jwt.getIssuer());</span><br><span class="line">	System.out.println(jwt.getSubject());</span><br><span class="line">	System.out.println(jwt.getAudience());</span><br><span class="line">	System.out.println(SimpleDateFormat.getDateTimeInstance().format(jwt.getExpiresAt()));</span><br><span class="line">	System.out.println(SimpleDateFormat.getDateTimeInstance().format(jwt.getNotBefore()));</span><br><span class="line">	System.out.println(SimpleDateFormat.getDateTimeInstance().format(jwt.getIssuedAt()));</span><br><span class="line">	System.out.println(jwt.getId());</span><br><span class="line">	<span class="comment">// Private claims</span></span><br><span class="line">	System.out.println(jwt.getClaim(<span class="string">&quot;username&quot;</span>).asString());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="5、运行测试">5、运行测试</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">token</span> <span class="operator">=</span> getToken();</span><br><span class="line">    verifyToken(token);</span><br><span class="line">    printJwtInfo(token);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="image-20200924193627631.png" alt="image-20200924193627631"></p>
+<p>参考链接：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://jwt.io/">JWT官网</a> —— Auth0</li>
+<li><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2018/07/json_web_token-tutorial.html">JSON Web Token 入门教程</a> —— 阮一峰</li>
+<li><a target="_blank" rel="noopener" href="https://andaily.com/blog/?p=956">各类JWT库(java)的使用与评价</a>(2018-06-02) —— andaily</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Vsouild
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://vsouild.github.io/jwt-java/" title="JWT入门以及在java中的使用">https://vsouild.github.io/jwt-java/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/jwt/" rel="tag"><i class="fa fa-tag"></i> jwt</a>
+              <a href="/tags/json/" rel="tag"><i class="fa fa-tag"></i> json</a>
+              <a href="/tags/token/" rel="tag"><i class="fa fa-tag"></i> token</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/springboot-shiro-continue/" rel="prev" title="springboot整合shiro（续）">
+                  <i class="fa fa-chevron-left"></i> springboot整合shiro（续）
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/springboot-swagger/" rel="next" title="Springboot与Swagger的入门和使用">
+                  Springboot与Swagger的入门和使用 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user-circle"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vsouild</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">129k</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.0/katex.min.css" integrity="sha256-uik/hNqHWZldXh/0K35nqOSCff9F61/ZOFReqNOBgB0=" crossorigin="anonymous">
+
+
+
+</body>
+</html>
