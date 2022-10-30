@@ -21,12 +21,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"vsouild.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.13.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":220},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="一、用户和用户组  Linux 是多用户多任务操作系统，换句话说，Linux 系统支持多个用户在同一时间内登陆，不同用户可以执行不同的任务，并且互不影响。 不同用户具有不同的权限，毎个用户在权限允许的范围内可以在同一时间完成不同的任务，Linux 正是通过这种权限的划分与管理，实现了多用户多任务的运行机制。 用户组是具有相同特征用户的逻辑集合，可以把需要相同权限的用户放入一个组，那么，所有用户就">
+    <meta name="description" content="一、用户和用户组  Linux 是多用户多任务操作系统，换句话说，Linux 系统支持多个用户在同一时间内登陆，不同用户可以执行不同的任务，并且互不影响。 不同用户具有不同的权限，毎个用户在权限允许的范围内可以在同一时间完成不同的任务，Linux 正是通过这种权限的划分与管理，实现了多用户多任务的运行机制。 用户组是具有相同特征用户的逻辑集合，可以把需要相同权限的用户放入一个组，那么，所有用户就具">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux学习笔记（下）">
 <meta property="og:url" content="https://vsouild.github.io/linux-learn-part2/index.html">
 <meta property="og:site_name" content="Lv.0">
-<meta property="og:description" content="一、用户和用户组  Linux 是多用户多任务操作系统，换句话说，Linux 系统支持多个用户在同一时间内登陆，不同用户可以执行不同的任务，并且互不影响。 不同用户具有不同的权限，毎个用户在权限允许的范围内可以在同一时间完成不同的任务，Linux 正是通过这种权限的划分与管理，实现了多用户多任务的运行机制。 用户组是具有相同特征用户的逻辑集合，可以把需要相同权限的用户放入一个组，那么，所有用户就">
+<meta property="og:description" content="一、用户和用户组  Linux 是多用户多任务操作系统，换句话说，Linux 系统支持多个用户在同一时间内登陆，不同用户可以执行不同的任务，并且互不影响。 不同用户具有不同的权限，毎个用户在权限允许的范围内可以在同一时间完成不同的任务，Linux 正是通过这种权限的划分与管理，实现了多用户多任务的运行机制。 用户组是具有相同特征用户的逻辑集合，可以把需要相同权限的用户放入一个组，那么，所有用户就具">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://vsouild.github.io/linux-learn-part2/2-1Z40QP4595X.gif">
 <meta property="og:image" content="https://vsouild.github.io/linux-learn-part2/image-20200712183438723.png">
@@ -175,7 +175,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E7%94%A8%E6%88%B7%E5%92%8C%E7%94%A8%E6%88%B7%E7%BB%84"><span class="nav-text"> 一、用户和用户组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text"> 1、配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#11-%E7%94%A8%E6%88%B7%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text"> 1.1 用户配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-%E7%94%A8%E6%88%B7%E7%BB%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text"> 1.2 用户组配置文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86"><span class="nav-text"> 2、用户管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#21-%E6%B7%BB%E5%8A%A0%E7%94%A8%E6%88%B7"><span class="nav-text"> 2.1 添加用户</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#22-%E4%BF%AE%E6%94%B9%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81%E9%94%81%E5%AE%9A%E7%94%A8%E6%88%B7"><span class="nav-text"> 2.2 修改用户密码&amp;锁定用户</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#23-%E4%BF%AE%E6%94%B9%E7%94%A8%E6%88%B7%E5%B1%9E%E6%80%A7"><span class="nav-text"> 2.3 修改用户属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#24-%E5%88%87%E6%8D%A2%E7%94%A8%E6%88%B7"><span class="nav-text"> 2.4 切换用户</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#25-%E5%88%A0%E9%99%A4%E7%94%A8%E6%88%B7"><span class="nav-text"> 2.5 删除用户</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E7%94%A8%E6%88%B7%E7%BB%84%E7%AE%A1%E7%90%86"><span class="nav-text"> 3、用户组管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#31-%E6%B7%BB%E5%8A%A0%E7%94%A8%E6%88%B7%E7%BB%84"><span class="nav-text"> 3.1 添加用户组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#32-%E4%BF%AE%E6%94%B9%E7%94%A8%E6%88%B7%E7%BB%84"><span class="nav-text"> 3.2 修改用户组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#33-%E5%88%A0%E9%99%A4%E7%94%A8%E6%88%B7%E7%BB%84"><span class="nav-text"> 3.3 删除用户组</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E7%A3%81%E7%9B%98%E7%A9%BA%E9%97%B4"><span class="nav-text"> 二、磁盘空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86"><span class="nav-text"> 三、进程管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B-%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85"><span class="nav-text"> 四、软件安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%AE%89%E8%A3%85jdk8rpm"><span class="nav-text"> 1、安装jdk8（rpm）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%AE%89%E8%A3%85tomcattargz%E5%8E%8B%E7%BC%A9%E5%8C%85"><span class="nav-text"> 2、安装tomcat（tar.gz压缩包）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%AE%89%E8%A3%85vimyum"><span class="nav-text"> 3、安装vim（yum）</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E7%94%A8%E6%88%B7%E5%92%8C%E7%94%A8%E6%88%B7%E7%BB%84"><span class="nav-text">一、用户和用户组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">1、配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-%E7%94%A8%E6%88%B7%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">1.1 用户配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-%E7%94%A8%E6%88%B7%E7%BB%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">1.2 用户组配置文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86"><span class="nav-text">2、用户管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-%E6%B7%BB%E5%8A%A0%E7%94%A8%E6%88%B7"><span class="nav-text">2.1 添加用户</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-%E4%BF%AE%E6%94%B9%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81-%E9%94%81%E5%AE%9A%E7%94%A8%E6%88%B7"><span class="nav-text">2.2 修改用户密码&amp;锁定用户</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-%E4%BF%AE%E6%94%B9%E7%94%A8%E6%88%B7%E5%B1%9E%E6%80%A7"><span class="nav-text">2.3 修改用户属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-%E5%88%87%E6%8D%A2%E7%94%A8%E6%88%B7"><span class="nav-text">2.4 切换用户</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-%E5%88%A0%E9%99%A4%E7%94%A8%E6%88%B7"><span class="nav-text">2.5 删除用户</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E7%94%A8%E6%88%B7%E7%BB%84%E7%AE%A1%E7%90%86"><span class="nav-text">3、用户组管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-%E6%B7%BB%E5%8A%A0%E7%94%A8%E6%88%B7%E7%BB%84"><span class="nav-text">3.1 添加用户组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-%E4%BF%AE%E6%94%B9%E7%94%A8%E6%88%B7%E7%BB%84"><span class="nav-text">3.2 修改用户组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-%E5%88%A0%E9%99%A4%E7%94%A8%E6%88%B7%E7%BB%84"><span class="nav-text">3.3 删除用户组</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E7%A3%81%E7%9B%98%E7%A9%BA%E9%97%B4"><span class="nav-text">二、磁盘空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86"><span class="nav-text">三、进程管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85"><span class="nav-text">四、软件安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E5%AE%89%E8%A3%85jdk8%EF%BC%88rpm%EF%BC%89"><span class="nav-text">1、安装jdk8（rpm）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E5%AE%89%E8%A3%85tomcat%EF%BC%88tar-gz%E5%8E%8B%E7%BC%A9%E5%8C%85%EF%BC%89"><span class="nav-text">2、安装tomcat（tar.gz压缩包）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E5%AE%89%E8%A3%85vim%EF%BC%88yum%EF%BC%89"><span class="nav-text">3、安装vim（yum）</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -312,36 +312,36 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="一-用户和用户组"><a class="markdownIt-Anchor" href="#一-用户和用户组"></a> 一、用户和用户组</h2>
+        <h2 id="一、用户和用户组">一、用户和用户组</h2>
 <blockquote>
-<p>Linux 是<strong>多用户多任务</strong>操作系统，换句话说，Linux 系统支持多个用户在同一时间内登陆，不同用户可以执行不同的任务，并且互不影响。<br />
+<p>Linux 是<strong>多用户多任务</strong>操作系统，换句话说，Linux 系统支持多个用户在同一时间内登陆，不同用户可以执行不同的任务，并且互不影响。<br>
 不同用户具有不同的权限，毎个用户在权限允许的范围内可以在同一时间完成不同的任务，Linux 正是通过这种权限的划分与管理，实现了多用户多任务的运行机制。</p>
 <p>用户组是具有相同特征用户的逻辑集合，可以把需要相同权限的用户放入一个组，那么，所有用户就具有了和组一样的权限，这就是用户组。</p>
 </blockquote>
 <span id="more"></span>
 <p>用户和组之间的关系如下图所示：</p>
-<p><img src="2-1Z40QP4595X.gif" alt="img" /></p>
-<h3 id="1-配置文件"><a class="markdownIt-Anchor" href="#1-配置文件"></a> 1、配置文件</h3>
-<h4 id="11-用户配置文件"><a class="markdownIt-Anchor" href="#11-用户配置文件"></a> 1.1 用户配置文件</h4>
+<p><img src="2-1Z40QP4595X.gif" alt="img"></p>
+<h3 id="1、配置文件">1、配置文件</h3>
+<h4 id="1-1-用户配置文件">1.1 用户配置文件</h4>
 <blockquote>
 <p>本节了解即可</p>
 </blockquote>
 <p><code>/etc/passwd</code>和<code>/etc/shadow</code>：这两个文件可以说是linux系统中最重要的文件之一。如果没有这两个文件或者这两个文件出问题，那就无法正常登录linux系统了。</p>
 <p>使用<code>cat /etc/passwd</code>或<code>vim /etc/passwd</code>（推荐，有高亮显示）命令来查看文件</p>
-<p><img src="image-20200712183438723.png" alt="image-20200712183438723" /></p>
+<p><img src="image-20200712183438723.png" alt="image-20200712183438723"></p>
 <p>文件内容由<code>:</code>符号分割成7个字段，每个字段的含义：</p>
 <ul>
 <li>用户名：即代表用户账号的字符串</li>
 <li>该账号的口令（密码）：为什么是<code>x</code>呢？早期的unix系统口令确实是存放在这里，但基于安全因素，后来就将其存放到<code>/etc/shadow</code>中了，在这里只用一个<code>x</code>代替。</li>
-<li>用户标识号(uid)：系统识别用户身份就是通过这个数字来的，0就是root，取值范围是0<sub>65535，1</sub>499由系统作为管理账号保留。</li>
+<li>用户标识号(uid)：系统识别用户身份就是通过这个数字来的，0就是root，取值范围是0~65535，1~499由系统作为管理账号保留。</li>
 <li>组标识号(gid)：这个字段对应<code>/etc/group</code> 中的一条记录</li>
 <li>注释说明：该字段没有实际意义，相当于备注</li>
 <li>用户目录：当用户登录时就处在这个目录下。root的目录是/root，普通用户的目录则为<code>/home</code>相应的用户名文件夹，位置可以自定义。</li>
 <li>shell：用户登录后要启动一个进程，用来将用户下达的指令传给内核，这就是shell。Linux的shell有很多种，在CentOS中是bash</li>
 </ul>
-<hr />
+<hr>
 <p><code>/etc/shadow</code>文件：</p>
-<p><img src="image-20200712192135334.png" alt="image-20200712192135334" /></p>
+<p><img src="image-20200712192135334.png" alt="image-20200712192135334"></p>
 <p>这个文件和<code>/etc/passwd</code>类似，也用<code>:</code>分割成不同的字段，包括最后3个字段默认为空的共9个：</p>
 <ul>
 <li>用户名：跟/etc/passwd对应</li>
@@ -354,9 +354,9 @@
 <li>账号的有效期：和“上次更改密码的时间戳”一样，是按距离1970年1月1日多少天算的。它表示的含义是，账号在这个日期前可以使用，到期后账号作废。</li>
 <li>最后一个字段作为保留用的，无实际意义</li>
 </ul>
-<h4 id="12-用户组配置文件"><a class="markdownIt-Anchor" href="#12-用户组配置文件"></a> 1.2 用户组配置文件</h4>
+<h4 id="1-2-用户组配置文件">1.2 用户组配置文件</h4>
 <p><code>/etc/group</code>此文件是记录组 ID（GID）和组名相对应的文件。前面讲过，/etc/passwd 文件中每行用户信息的第四个字段对应的 /etc/group 文件中的一条记录。用vim打开这个文件，发现也是用<code>:</code>分割为4个字段</p>
-<p><img src="image-20200713153748531.png" alt="image-20200713153748531" /></p>
+<p><img src="image-20200713153748531.png" alt="image-20200713153748531"></p>
 <p>各字段的含义：</p>
 <ul>
 <li>
@@ -377,7 +377,7 @@
 </ul>
 <p><strong>每个用户都可以加入多个附加组，但是只能属于一个初始组</strong></p>
 <p><code>/etc/gshadow</code>文件同<code>/etc/shadow</code>文件，储存一些关于用户组的需要保护的信息，用vim打开，看到也是用<code>:</code>分割为4个字段，同时左下角提示这是只读的文件（图中已剪掉中间部分）</p>
-<p><img src="image-20200713160327799.png" alt="image-20200713160327799" /></p>
+<p><img src="image-20200713160327799.png" alt="image-20200713160327799"></p>
 <p>各字段含义：</p>
 <ul>
 <li>
@@ -398,166 +398,166 @@
 <p>组中的附加用户：该字段显示这个用户组中有哪些附加用户，和 /etc/group 文件中附加组显示内容相同。</p>
 </li>
 </ul>
-<h3 id="2-用户管理"><a class="markdownIt-Anchor" href="#2-用户管理"></a> 2、用户管理</h3>
-<h4 id="21-添加用户"><a class="markdownIt-Anchor" href="#21-添加用户"></a> 2.1 添加用户</h4>
+<h3 id="2、用户管理">2、用户管理</h3>
+<h4 id="2-1-添加用户">2.1 添加用户</h4>
 <p>使用<code>useradd [选项] 用户名</code>来添加用户，可用选项：</p>
 <blockquote>
-<p>-c&lt;备注&gt;：加上备注文字。备注文字会保存在passwd的备注栏位中；<br />
--d&lt;登入目录&gt;：指定用户登入时的启始目录；<br />
--e&lt;有效期限&gt;：指定帐号的有效期限（格式为 “YYYY-MM-DD”）；<br />
--f&lt;缓冲天数&gt;：指定在密码过期后多少天即关闭该帐号；<br />
--g&lt;群组&gt;：指定用户所属的群组。一般以和用户名相同的组作为用户的初始组，在创建用户时会默认建立初始组。一旦手动指定，则系统将不会在创建此默认的初始组目录；<br />
--G&lt;群组&gt;：指定用户所属的附加群组(把用户加入其他组，使用附加组)；<br />
-<strong>-m：自动建立用户的登入目录（该选项是默认的）</strong>；<br />
--M：不要自动建立用户的登入目录；<br />
--n：取消建立以用户名称为名的群组；<br />
--r：建立系统帐号。也就是 UID 在 1~499 之间，供系统程序使用的用户。由于系统用户主要用于运行系统所需服务的权限配置，因此系统用户的创建默认不会创建主目录；<br />
--s<shell>：指定用户登入后所使用的shell（默认是 /bin/bash）；<br />
+<p>-c&lt;备注&gt;：加上备注文字。备注文字会保存在passwd的备注栏位中；<br>
+-d&lt;登入目录&gt;：指定用户登入时的启始目录；<br>
+-e&lt;有效期限&gt;：指定帐号的有效期限（格式为 “YYYY-MM-DD”）；<br>
+-f&lt;缓冲天数&gt;：指定在密码过期后多少天即关闭该帐号；<br>
+-g&lt;群组&gt;：指定用户所属的群组。一般以和用户名相同的组作为用户的初始组，在创建用户时会默认建立初始组。一旦手动指定，则系统将不会在创建此默认的初始组目录；<br>
+-G&lt;群组&gt;：指定用户所属的附加群组(把用户加入其他组，使用附加组)；<br>
+<strong>-m：自动建立用户的登入目录（该选项是默认的）</strong>；<br>
+-M：不要自动建立用户的登入目录；<br>
+-n：取消建立以用户名称为名的群组；<br>
+-r：建立系统帐号。也就是 UID 在 1~499 之间，供系统程序使用的用户。由于系统用户主要用于运行系统所需服务的权限配置，因此系统用户的创建默认不会创建主目录；<br>
+-s<shell>：指定用户登入后所使用的shell（默认是 /bin/bash）；<br>
 -u<uid>：指定用户id。</p>
 </blockquote>
 <p>创建一个名为<code>guest</code>的用户，使用<code>tail -n1</code>查看配置文件最后一行的信息，发现写入了新建用户默认的数据。因为没有设置密码，所以密码字段是 <code>!!</code>，代表这个用户没有合理密码，不能正常登录。</p>
-<p><img src="image-20200712232132709.png" alt="image-20200712232132709" /></p>
+<p><img src="image-20200712232132709.png" alt="image-20200712232132709"></p>
 <p>切换到对应的用户目录，有一些默认的隐藏文件</p>
-<p><img src="image-20200712232703014.png" alt="image-20200712232703014" /></p>
-<h4 id="22-修改用户密码锁定用户"><a class="markdownIt-Anchor" href="#22-修改用户密码锁定用户"></a> 2.2 修改用户密码&amp;锁定用户</h4>
+<p><img src="image-20200712232703014.png" alt="image-20200712232703014"></p>
+<h4 id="2-2-修改用户密码-锁定用户">2.2 修改用户密码&amp;锁定用户</h4>
 <p><code>passwd [选项] 用户名</code>用于设置用户的认证信息，包括用户密码、密码过期时间等。系统管理者root则能用它管理系统用户的密码。只有管理者可以指定用户名，一般用户只能变更自己的密码。</p>
 <p>可用选项：</p>
 <blockquote>
-<p>-d：删除密码，仅有系统管理者才能使用；<br />
--f：强制执行；<br />
--k：设置只有在密码过期失效后，才能更新；<br />
--l：锁定密码，该选项会在 /etc/shadow 文件中指定用户的加密密码串前添加 “!”，使密码失效。仅 root 用户可用；<br />
--u：解锁用户，和 -l 选项相对应，也是只能 root 用户使用；<br />
--s：列出密码的相关信息，仅有系统管理者才能使用；<br />
--u：解开已上锁的帐号。<br />
--n天数：设置该用户修改密码后，多长时间不能再次修改密码，对应 /etc/shadow 文件中第4个字段；<br />
--x天数：设置该用户的密码有效期，对应 /etc/shadow 文件中各行密码的第5个字段；<br />
--w天数：设置用户密码过期前的警告天数，对于 /etc/shadow 文件中各行密码的第6个字段；<br />
+<p>-d：删除密码，仅有系统管理者才能使用；<br>
+-f：强制执行；<br>
+-k：设置只有在密码过期失效后，才能更新；<br>
+-l：锁定密码，该选项会在 /etc/shadow 文件中指定用户的加密密码串前添加 “!”，使密码失效。仅 root 用户可用；<br>
+-u：解锁用户，和 -l 选项相对应，也是只能 root 用户使用；<br>
+-s：列出密码的相关信息，仅有系统管理者才能使用；<br>
+-u：解开已上锁的帐号。<br>
+-n天数：设置该用户修改密码后，多长时间不能再次修改密码，对应 /etc/shadow 文件中第4个字段；<br>
+-x天数：设置该用户的密码有效期，对应 /etc/shadow 文件中各行密码的第5个字段；<br>
+-w天数：设置用户密码过期前的警告天数，对于 /etc/shadow 文件中各行密码的第6个字段；<br>
 -i日期：设置用户密码失效日期，对应 /etc/shadow 文件中各行密码的第7个字段。</p>
 </blockquote>
 <p>管理员模式下passwd命令附加用户名修改相应用户的密码，否则就是修改管理员的密码，如果密码长度小于8位或者过于简单，会出现提示</p>
 <p>输入两次修改密码，这里和登录的时候一样，是不显示任何字符的，但是已经输入了（图中设置了系统语言为中文）</p>
-<p><img src="image-20200713011418943.png" alt="image-20200713011418943" /></p>
-<h4 id="23-修改用户属性"><a class="markdownIt-Anchor" href="#23-修改用户属性"></a> 2.3 修改用户属性</h4>
+<p><img src="image-20200713011418943.png" alt="image-20200713011418943"></p>
+<h4 id="2-3-修改用户属性">2.3 修改用户属性</h4>
 <p>修改用户属性有两种方式，一种是使用Vim编辑器手动修改涉及用户信息的相关文件（/etc/passwd、/etc/shadow、/etc/group、/etc/gshadow（后两个为用户组文件））另一个方法就是使用usermod 命令，需要注意的是，此命令不允许你改变正在线上的使用者帐号名称。</p>
 <p>格式：</p>
 <p><code>usermod [选项] 用户名</code></p>
 <p>选项：</p>
 <blockquote>
-<p>-c&lt;备注&gt;：修改用户帐号的备注文字；<br />
--d&lt;用户目录&gt;：修改用户的主目录，使用绝对路径，<strong>对于不存在的目录，不会主动创建</strong>；<br />
--e&lt;有效期限&gt;：修改帐号的有效期限；<br />
--f&lt;失效天数&gt;：修改在密码过期后多少天即关闭该帐号；<br />
--g&lt;群组&gt;：修改用户所属的群组；<br />
--G&lt;群组&gt;；修改用户所属的附加群组；<br />
--l&lt;帐号名称&gt;：修改用户帐号名称；<br />
--L：锁定用户密码，即锁定用户；<br />
--s<shell>：修改用户登入后所使用的shell；<br />
--u<uid>：修改用户ID；<br />
+<p>-c&lt;备注&gt;：修改用户帐号的备注文字；<br>
+-d&lt;用户目录&gt;：修改用户的主目录，使用绝对路径，<strong>对于不存在的目录，不会主动创建</strong>；<br>
+-e&lt;有效期限&gt;：修改帐号的有效期限；<br>
+-f&lt;失效天数&gt;：修改在密码过期后多少天即关闭该帐号；<br>
+-g&lt;群组&gt;：修改用户所属的群组；<br>
+-G&lt;群组&gt;；修改用户所属的附加群组；<br>
+-l&lt;帐号名称&gt;：修改用户帐号名称；<br>
+-L：锁定用户密码，即锁定用户；<br>
+-s<shell>：修改用户登入后所使用的shell；<br>
+-u<uid>：修改用户ID；<br>
 -U:解除密码锁定。</p>
 </blockquote>
 <p><strong>useradd 命令和 usermod 命令的区别：前者用于添加用户，同时可以对用户信息进行指定；后者针对与已存在的用户，使用该命令可以修改它们的信息</strong></p>
-<p><img src="image-20200713013253372.png" alt="image-20200713013253372" /></p>
-<h4 id="24-切换用户"><a class="markdownIt-Anchor" href="#24-切换用户"></a> 2.4 切换用户</h4>
+<p><img src="image-20200713013253372.png" alt="image-20200713013253372"></p>
+<h4 id="2-4-切换用户">2.4 切换用户</h4>
 <p><code>su</code>是最简单的用户切换命令，通过该命令可以实现任何身份的切换，包括从普通用户切换为 root 用户、从 root 用户切换为普通用户以及普通用户之间的切换。</p>
 <blockquote>
 <p>普通用户之间切换以及普通用户切换至 root 用户，都需要知晓对方的密码，只有正确输入密码，才能实现切换；从 root 用户切换至其他用户，无需知晓对方密码，直接可切换成功。</p>
 </blockquote>
 <p>可使用的选项：</p>
 <blockquote>
-<p>-：当前用户不仅切换为指定用户的身份，同时所用的工作环境也切换为此用户的环境（包括 PATH 变量、MAIL 变量等），如果省略用户名，则默认切换为root用户。<br />
--l：同上，也是在切换用户身份的同时，完整切换工作环境，但后面需要添加要切换的用户名。<br />
--p或-m（–preserve-environment）：变更身份时，不要变更环境变量。<br />
+<p>-：当前用户不仅切换为指定用户的身份，同时所用的工作环境也切换为此用户的环境（包括 PATH 变量、MAIL 变量等），如果省略用户名，则默认切换为root用户。<br>
+-l：同上，也是在切换用户身份的同时，完整切换工作环境，但后面需要添加要切换的用户名。<br>
+-p或-m（–preserve-environment）：变更身份时，不要变更环境变量。<br>
 -c &lt;指令&gt; 或–command &lt;指令&gt;：仅切换用户执行完指定的指令后，即恢复原来的身份。</p>
 </blockquote>
 <p>也就是说，不使用<code>-</code>选项的话，切换后的环境变量是之前用户的，相当于临时切换。</p>
 <p>如图，新开一个会话窗口，登录guest用户，切换root用户，输入密码后用<code>env | grep guest</code>查看环境变量，发现用户名及相关环境变量还是guest，而不是root</p>
-<p><img src="image-20200713020512101.png" alt="image-20200713020512101" /></p>
-<h4 id="25-删除用户"><a class="markdownIt-Anchor" href="#25-删除用户"></a> 2.5 删除用户</h4>
+<p><img src="image-20200713020512101.png" alt="image-20200713020512101"></p>
+<h4 id="2-5-删除用户">2.5 删除用户</h4>
 <p><code>userdel</code>命令用于删除指定的用户，以及与用户相关的文件。若不加选项，则仅删除用户帐号，而不删除相关文件</p>
 <p>选项：</p>
 <blockquote>
-<p>-f：强制删除用户，即使用户当前已登录；<br />
+<p>-f：强制删除用户，即使用户当前已登录；<br>
 -r：删除用户的同时，删除与用户相关的所有文件。</p>
 </blockquote>
 <p><strong>不要轻易使用-r选项；它会同时删除用户的所有文件和目录，如果用户目录下有重要的文件，在删除前记得备份</strong></p>
-<h3 id="3-用户组管理"><a class="markdownIt-Anchor" href="#3-用户组管理"></a> 3、用户组管理</h3>
-<h4 id="31-添加用户组"><a class="markdownIt-Anchor" href="#31-添加用户组"></a> 3.1 添加用户组</h4>
+<h3 id="3、用户组管理">3、用户组管理</h3>
+<h4 id="3-1-添加用户组">3.1 添加用户组</h4>
 <p>命令格式：<code>groupadd [选项] 组名</code></p>
 <p>选项：</p>
 <ul>
 <li>-g GID：指定组 ID；</li>
 <li>-r：创建系统群组。</li>
 </ul>
-<h4 id="32-修改用户组"><a class="markdownIt-Anchor" href="#32-修改用户组"></a> 3.2 修改用户组</h4>
+<h4 id="3-2-修改用户组">3.2 修改用户组</h4>
 <p>命令格式：<code>groupmod [选项] 组名</code></p>
 <p>选项：</p>
 <ul>
 <li>-g GID：修改组 ID；</li>
 <li>-n 新组名：修改组名；</li>
 </ul>
-<h4 id="33-删除用户组"><a class="markdownIt-Anchor" href="#33-删除用户组"></a> 3.3 删除用户组</h4>
+<h4 id="3-3-删除用户组">3.3 删除用户组</h4>
 <p>命令格式：<code>groupdel 组名</code>。</p>
 <p>使用 groupdel 命令删除群组，其实就是删除 /etc/gourp 文件和 /etc/gshadow 文件中有关目标群组的数据信息。</p>
 <p><strong>不能使用 groupdel 命令随意删除群组</strong>：此命令仅适用于删除那些 “不是任何用户初始组” 的群组，换句话说，如果有群组还是某用户的初始群组，则无法使用 groupdel 命令成功删除</p>
-<h2 id="二-磁盘空间"><a class="markdownIt-Anchor" href="#二-磁盘空间"></a> 二、磁盘空间</h2>
+<h2 id="二、磁盘空间">二、磁盘空间</h2>
 <p><code>df</code>(disk free)命令用于显示已挂载磁盘的总容量、使用容量、剩余容量等，可以不加任何参数。默认显示单位为KB。</p>
-<p><img src="image-20200713184814551.png" alt="image-20200713184814551" /></p>
+<p><img src="image-20200713184814551.png" alt="image-20200713184814551"></p>
 <p>这样显示看着不太方便，可以使用<code>-h</code>选项自动选择合适的单位显示，如K、M、G（省略了B）</p>
-<p><img src="image-20200713185037612.png" alt="image-20200713185037612" /></p>
+<p><img src="image-20200713185037612.png" alt="image-20200713185037612"></p>
 <p>其它选项：</p>
 <blockquote>
-<p>-a或–all：包含全部的文件系统；<br />
-–block-size=&lt;区块大小&gt;：以指定的区块大小来显示区块数目；<br />
--h或–human-readable：以可读性较高的方式来显示信息；<br />
--H或–si：与-h参数相同，但在计算时是以1000 Bytes为换算单位而非1024 Bytes；<br />
--i或–inodes：显示inode的信息；<br />
--k或–kilobytes：指定区块大小为1024字节；<br />
--l或–local：仅显示本地端的文件系统；<br />
--m或–megabytes：指定区块大小为1024*1024字节；<br />
-–no-sync：在取得磁盘使用信息前，不要执行sync指令，此为预设值；<br />
--P或–portability：使用POSIX的输出格式；<br />
-–sync：在取得磁盘使用信息前，先执行sync指令；<br />
--t&lt;文件系统类型&gt;或–type=&lt;文件系统类型&gt;：仅显示指定文件系统类型的磁盘信息；<br />
--T或–print-type：显示文件系统的类型；<br />
--x&lt;文件系统类型&gt;或–exclude-type=&lt;文件系统类型&gt;：不要显示指定文件系统类型的磁盘信息；<br />
-–help：显示帮助；<br />
+<p>-a或–all：包含全部的文件系统；<br>
+–block-size=&lt;区块大小&gt;：以指定的区块大小来显示区块数目；<br>
+-h或–human-readable：以可读性较高的方式来显示信息；<br>
+-H或–si：与-h参数相同，但在计算时是以1000 Bytes为换算单位而非1024 Bytes；<br>
+-i或–inodes：显示inode的信息；<br>
+-k或–kilobytes：指定区块大小为1024字节；<br>
+-l或–local：仅显示本地端的文件系统；<br>
+-m或–megabytes：指定区块大小为1024*1024字节；<br>
+–no-sync：在取得磁盘使用信息前，不要执行sync指令，此为预设值；<br>
+-P或–portability：使用POSIX的输出格式；<br>
+–sync：在取得磁盘使用信息前，先执行sync指令；<br>
+-t&lt;文件系统类型&gt;或–type=&lt;文件系统类型&gt;：仅显示指定文件系统类型的磁盘信息；<br>
+-T或–print-type：显示文件系统的类型；<br>
+-x&lt;文件系统类型&gt;或–exclude-type=&lt;文件系统类型&gt;：不要显示指定文件系统类型的磁盘信息；<br>
+–help：显示帮助；<br>
 –version：显示版本信息。</p>
 </blockquote>
-<hr />
+<hr>
 <p><code>du</code>(Disk usage)也是查看使用空间的，但是与df命令不同的是du命令是对文件和目录磁盘使用空间的查看，不加选项时默认显示当前目录的使用空间情况。</p>
 <p>选项：</p>
 <blockquote>
-<p>-a或-all 显示目录中个别文件的大小。<br />
--b或-bytes 显示目录或文件大小时，以byte为单位。<br />
--c或–total 除了显示个别目录或文件的大小外，同时也显示所有目录或文件的总和。<br />
--k或–kilobytes 以KB(1024bytes)为单位输出。<br />
--m或–megabytes 以MB为单位输出。<br />
--s或–summarize 仅显示总计，只列出最后加总的值。<br />
--h或–human-readable 以K，M，G为单位，提高信息的可读性。<br />
--x或–one-file-xystem 以一开始处理时的文件系统为准，若遇上其它不同的文件系统目录则略过。<br />
--L&lt;符号链接&gt;或–dereference&lt;符号链接&gt; 显示选项中所指定符号链接的源文件大小。<br />
--S或–separate-dirs 显示个别目录的大小时，并不含其子目录的大小。<br />
--X&lt;文件&gt;或–exclude-from=&lt;文件&gt; 在&lt;文件&gt;指定目录或文件。<br />
-–exclude=&lt;目录或文件&gt; 略过指定的目录或文件。<br />
--D或–dereference-args 显示指定符号链接的源文件大小。<br />
--H或–si 与-h参数相同，但是K，M，G是以1000为换算单位。<br />
+<p>-a或-all 显示目录中个别文件的大小。<br>
+-b或-bytes 显示目录或文件大小时，以byte为单位。<br>
+-c或–total 除了显示个别目录或文件的大小外，同时也显示所有目录或文件的总和。<br>
+-k或–kilobytes 以KB(1024bytes)为单位输出。<br>
+-m或–megabytes 以MB为单位输出。<br>
+-s或–summarize 仅显示总计，只列出最后加总的值。<br>
+-h或–human-readable 以K，M，G为单位，提高信息的可读性。<br>
+-x或–one-file-xystem 以一开始处理时的文件系统为准，若遇上其它不同的文件系统目录则略过。<br>
+-L&lt;符号链接&gt;或–dereference&lt;符号链接&gt; 显示选项中所指定符号链接的源文件大小。<br>
+-S或–separate-dirs 显示个别目录的大小时，并不含其子目录的大小。<br>
+-X&lt;文件&gt;或–exclude-from=&lt;文件&gt; 在&lt;文件&gt;指定目录或文件。<br>
+–exclude=&lt;目录或文件&gt; 略过指定的目录或文件。<br>
+-D或–dereference-args 显示指定符号链接的源文件大小。<br>
+-H或–si 与-h参数相同，但是K，M，G是以1000为换算单位。<br>
 -l或–count-links 重复计算硬件链接的文件。</p>
 </blockquote>
 <p>示例：</p>
-<p><img src="image-20200713193318434.png" alt="image-20200713193318434" /></p>
-<h2 id="三-进程管理"><a class="markdownIt-Anchor" href="#三-进程管理"></a> 三、进程管理</h2>
+<p><img src="image-20200713193318434.png" alt="image-20200713193318434"></p>
+<h2 id="三、进程管理">三、进程管理</h2>
 <p><code>ps</code> （Process Status，不是PhotoShop）命令是最常用的监控进程的命令，通过此命令可以查看系统中所有运行进程的详细信息。</p>
 <p>由于ps命令能够支持的系统类型非常多，所以选项也很多。这里只列出了几个常用的选项：</p>
 <blockquote>
-<p>a：显示一个终端的所有进程，除会话引线外；<br />
-u：显示进程的归属用户及内存的使用情况；<br />
-x：显示没有控制终端的进程；<br />
--l：长格式显示更加详细的信息；<br />
+<p>a：显示一个终端的所有进程，除会话引线外；<br>
+u：显示进程的归属用户及内存的使用情况；<br>
+x：显示没有控制终端的进程；<br>
+-l：长格式显示更加详细的信息；<br>
 -e：显示所有进程；</p>
 </blockquote>
 <p>ps 命令有些与众不同，它的部分选项可以不用加<code>-</code>符号，比如选项<code>aux</code>。</p>
-<p><img src="image-20200713195629067.png" alt="image-20200713195629067" /></p>
+<p><img src="image-20200713195629067.png" alt="image-20200713195629067"></p>
 <p>图中部分输出已省略，各列的含义分别是：</p>
 <table>
 <thead>
@@ -613,20 +613,20 @@ x：显示没有控制终端的进程；<br />
 </tr>
 </tbody>
 </table>
-<hr />
+<hr>
 <p><code>pstree</code> 命令是以树形结构显示程序和进程之间的关系，基本格式如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pstree [选项] [PID或用户名]</span><br></pre></td></tr></table></figure>
 <p>常用选项及含义：</p>
 <blockquote>
-<p>-a：显示启动每个进程对应的完整指令，包括启动进程的路径、参数等。<br />
--c：不使用精简法显示进程信息，即显示的进程中包含子进程和父进程。<br />
--n：根据进程 PID 号来排序输出，默认是以程序名排序输出的。<br />
--p：显示进程的 PID。<br />
+<p>-a：显示启动每个进程对应的完整指令，包括启动进程的路径、参数等。<br>
+-c：不使用精简法显示进程信息，即显示的进程中包含子进程和父进程。<br>
+-n：根据进程 PID 号来排序输出，默认是以程序名排序输出的。<br>
+-p：显示进程的 PID。<br>
 -u：显示进程对应的用户名称。</p>
 </blockquote>
-<p><img src="image-20200713213453435.png" alt="image-20200713213453435" /></p>
+<p><img src="image-20200713213453435.png" alt="image-20200713213453435"></p>
 <p>另外，centos7上默认没有安装psmisc包，无法使用pstree命令，安装命令：<code> yum -y install psmisc</code></p>
-<hr />
+<hr>
 <p><code>kill</code>命令用来杀死进程。本质上，kill 命令的原理是向操作系统内核发送一个信号（多是终止信号）和目标进程的 PID，然后系统内核根据收到的信号类型，对指定进程进行相应的操作。</p>
 <p>格式：<code>kill [信号] PID</code></p>
 <p>kill 命令只能识别 PID，而不能识别进程名。Linux 定义了几十种不同类型的信号，可以使用 <code>kill -l</code> 命令查看所有信号及其编号，以下是常用的信号及其含义（表中省略了信号名称的前缀 SIG）：</p>
@@ -676,7 +676,7 @@ x：显示没有控制终端的进程；<br />
 </tr>
 </tbody>
 </table>
-<h2 id="四-软件安装"><a class="markdownIt-Anchor" href="#四-软件安装"></a> 四、软件安装</h2>
+<h2 id="四、软件安装">四、软件安装</h2>
 <blockquote>
 <p>Linux系统和Windows系统安装应用软件的方式是不同的，而且Linux系统的软件包的管理要比Windows系统软件包的管理复杂得多。同时因为Windows下所有的软件都不能在Linux中识别，所以 Windows 中大量的木马和病毒也都无法感染Linux。</p>
 </blockquote>
@@ -686,12 +686,12 @@ x：显示没有控制终端的进程；<br />
 <li>压缩包解压缩安装</li>
 <li>yum在线安装（Yellow dog Updater, Modified）</li>
 </ul>
-<h3 id="1-安装jdk8rpm"><a class="markdownIt-Anchor" href="#1-安装jdk8rpm"></a> 1、安装jdk8（rpm）</h3>
+<h3 id="1、安装jdk8（rpm）">1、安装jdk8（rpm）</h3>
 <p>首先去<a target="_blank" rel="noopener" href="https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html">oracle官网</a>上下载jdk8的rpn包（提示需要注册账号，注册即可）</p>
-<p><img src="image-20200714160703488.png" alt="image-20200714160703488" /></p>
+<p><img src="image-20200714160703488.png" alt="image-20200714160703488"></p>
 <p>使用FTP将其上传到服务器。参考：<a target="_blank" rel="noopener" href="https://cloud.tencent.com/document/product/213/10912">Linux 云服务器搭建 FTP 服务</a></p>
 <p>然后确认当前服务器没有java环境，并且rpm包已经上传完毕</p>
-<p><img src="image-20200714161422232.png" alt="image-20200714161422232" /></p>
+<p><img src="image-20200714161422232.png" alt="image-20200714161422232"></p>
 <p>执行<code>rpm -ivh jdk-8u241-linux-x64.rpm</code>命令开始安装，这里的参数含义：</p>
 <ul>
 <li>-i：安装（install）;</li>
@@ -699,16 +699,16 @@ x：显示没有控制终端的进程；<br />
 <li>-h：打印 #，显示安装进度（hash）;</li>
 </ul>
 <p>当两个进度条走完后，便安装完毕了，此时可以删除rpm包</p>
-<p><img src="image-20200714163114857.png" alt="image-20200714163114857" /></p>
+<p><img src="image-20200714163114857.png" alt="image-20200714163114857"></p>
 <p>在/usr/java目录下可以看到安装后的jdk文件</p>
-<p><img src="image-20200714165218512.png" alt="image-20200714165218512" /></p>
+<p><img src="image-20200714165218512.png" alt="image-20200714165218512"></p>
 <p>配置环境变量：使用命令<code>vim /etc/profile</code>打开并编辑环境变量文件，在末尾追加如下内容</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> JAVA_HOME=/usr/java/jdk1.8.0_241-amd64</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$JAVA_HOME</span>/jre/bin</span><br></pre></td></tr></table></figure>
 <p>最后执行<code>source /etc/profile</code>使修改的文件生效，然后<code>java -version</code>检查是否安装成功</p>
-<p><img src="image-20200714171318731.png" alt="image-20200714171318731" /></p>
-<h3 id="2-安装tomcattargz压缩包"><a class="markdownIt-Anchor" href="#2-安装tomcattargz压缩包"></a> 2、安装tomcat（tar.gz压缩包）</h3>
+<p><img src="image-20200714171318731.png" alt="image-20200714171318731"></p>
+<h3 id="2、安装tomcat（tar-gz压缩包）">2、安装tomcat（tar.gz压缩包）</h3>
 <p>从<a target="_blank" rel="noopener" href="https://tomcat.apache.org/download-90.cgi">tomcat官网</a>下载tar.gz格式的二进制分发包，然后使用FTP上传到服务器，检查文件是否存在，然后使用<code>tar -zxvf 压缩包名</code>命令解压</p>
-<p><img src="image-20200714221828581.png" alt="image-20200714221828581" /></p>
+<p><img src="image-20200714221828581.png" alt="image-20200714221828581"></p>
 <p>其中的选项说明：</p>
 <ul>
 <li>-z或–gzip或–ungzip：通过gzip指令处理备份文件</li>
@@ -717,9 +717,9 @@ x：显示没有控制终端的进程；<br />
 <li>-f&lt;备份文件&gt;或–file=&lt;备份文件&gt;：指定备份文件</li>
 </ul>
 <p>解压完成后，检查当前目录，进入tomcat的bin目录，Windows使用bat文件启动，Linux使用sh文件</p>
-<p><img src="image-20200714222039077.png" alt="image-20200714222039077" /></p>
+<p><img src="image-20200714222039077.png" alt="image-20200714222039077"></p>
 <p>运行此文件不能直接输入文件名，会被视为命令，此时使用<code>./startup.sh</code>（需要注意的是tomcat依赖java环境，此时）</p>
-<p><img src="image-20200714222259665.png" alt="image-20200714222259665" /></p>
+<p><img src="image-20200714222259665.png" alt="image-20200714222259665"></p>
 <p>当然，关闭的时候运行<code>./shutdown.sh</code></p>
 <p>附：tar命令详解：</p>
 <blockquote>
@@ -727,21 +727,21 @@ x：显示没有控制终端的进程；<br />
 <p>首先要弄清两个概念：打包和压缩。打包是指将一大堆文件或目录变成一个总的文件；压缩则是将一个大的文件通过一些压缩算法变成一个小文件。</p>
 <p>为什么要区分这两个概念呢？这源于Linux中很多压缩程序只能针对一个文件进行压缩，这样当你想要压缩一大堆文件时，你得先将这一大堆文件先打成一个包（tar命令），然后再用压缩程序进行压缩（gzip bzip2命令）。</p>
 </blockquote>
-<h3 id="3-安装vimyum"><a class="markdownIt-Anchor" href="#3-安装vimyum"></a> 3、安装vim（yum）</h3>
+<h3 id="3、安装vim（yum）">3、安装vim（yum）</h3>
 <blockquote>
-<p>目前Linux厂商发布软件机制主要分为2大类<br />
-Dpkg:由 Debian Linux 社区开发，B2D,Ubantu 等 Linux 发行版使用就是这种机制<br />
-RPM:由 Red Hat 开发，CentOs,SuSe 使用就是这种机制<br />
-这两种机制安装软件会先检测前置软件是否存在，如果不存在则不安装.如软件 A 安装。需系统内含有软件 B，那么不存在则不会安装软件<br />
+<p>目前Linux厂商发布软件机制主要分为2大类<br>
+Dpkg:由 Debian Linux 社区开发，B2D,Ubantu 等 Linux 发行版使用就是这种机制<br>
+RPM:由 Red Hat 开发，CentOs,SuSe 使用就是这种机制<br>
+这两种机制安装软件会先检测前置软件是否存在，如果不存在则不安装.如软件 A 安装。需系统内含有软件 B，那么不存在则不会安装软件<br>
 为了解决这种因依赖问题而导致软件不能安装厂商又提供了在线升级机制，简单的说就是先将前驱软件都安装以保证要安的软件能正确安装</p>
-<p>Dpkg 机制对应的在线升级机制 APT<br />
+<p>Dpkg 机制对应的在线升级机制 APT<br>
 RPM 机制对应的在线升级机制 YUM</p>
 </blockquote>
 <p>虚拟机安装的CentOS默认是没有vim的，下面将通过vim来演示yum的使用</p>
 <p>安装命令：<code>yum -y install 包名</code>，<code>-y</code>表示安装过程中所有询问用户的操作都为 yes</p>
-<p><img src="image-20200715003210525.png" alt="image-20200715003210525" /></p>
+<p><img src="image-20200715003210525.png" alt="image-20200715003210525"></p>
 <p>卸载命令：<code>yum remove 包名</code></p>
-<p><img src="image-20200714235946397.png" alt="image-20200714235946397" /></p>
+<p><img src="image-20200714235946397.png" alt="image-20200714235946397"></p>
 <blockquote>
 <p>使用 yum 卸载软件包时，会同时卸载所有与该包有依赖关系的其他软件包，即便有依赖包属于系统运行必备文件，也会被 yum 无情卸载，带来的直接后果就是使系统崩溃。</p>
 <p><strong>除非你能确定卸载此包以及它的所有依赖包不会对系统产生影响，否则不要使用 yum 卸载软件包。</strong></p>
